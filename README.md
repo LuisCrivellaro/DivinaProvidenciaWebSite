@@ -2,6 +2,21 @@
 
 Nova versão do site da Comunidade Católica Divina Providência (Rondonópolis, MT), feita em Next.js. O site atual (WordPress + WooCommerce) continua no ar e responsável por inscrições, carrinho, pagamento e conta do cliente.
 
+![Página inicial do novo site](docs/screenshots-novo-site/home-desktop.jpg)
+
+## Status
+
+| | |
+|---|---|
+| Desenvolvimento | Concluído e testado localmente (117 rotas, build de produção limpo) |
+| Publicação | Ainda não publicado. Depende de autorização da comunidade e da escolha de domínio/hospedagem |
+| Inscrições e pagamentos | Continuam no site oficial (WooCommerce + Mercado Pago); o novo site lê os produtos ao vivo e leva até eles |
+| Conteúdo | Vem de fontes públicas e aguarda validação da comunidade (lista em `docs/AI_HANDOFF.md`) |
+
+## Tecnologias
+
+Next.js 16 (App Router, Cache Components) · React 19 · TypeScript · Tailwind CSS 4 · Lucide · fontes Gambetta e Switzer (Fontshare). Identidade visual: logo oficial e paleta vinho `#7B2733`, vermelho `#DA4540`, dourado `#CCAF76`, marfim `#FFF8F2` e carvão `#2B2024` (detalhes em `docs/DESIGN_SYSTEM.md`).
+
 ## Rodar localmente
 
 Requisitos: Node.js 20 ou superior.
