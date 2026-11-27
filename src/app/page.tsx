@@ -8,11 +8,12 @@ import { VideoFacade } from "@/components/VideoFacade";
 import { BrandIcon } from "@/components/BrandIcon";
 import { Embers, Marquee, RotatingBadge } from "@/components/Decor";
 import { CountUp } from "@/components/Motion";
+import { PhotoStrip } from "@/components/PhotoStrip";
 import { events } from "@/content/events";
 import { camps, prayerGroups, retreats } from "@/content/programs";
 import { contacts, mapsLink, photos, site, whatsappLink } from "@/content/site";
 import { videos } from "@/content/videos";
-import { galleries, uploadUrl } from "@/lib/galleries";
+import { galleries, groupLabel, uploadUrl } from "@/lib/galleries";
 import { dateRange } from "@/lib/dates";
 import { today } from "@/lib/today";
 
@@ -329,15 +330,18 @@ export default async function Home() {
             ))}
           </ul>
         </div>
-        <div className="mt-6" aria-hidden="true">
-          <Marquee
-            reverse
-            speed={60}
-            separator={null}
-            gap="0.75rem"
-            items={stripCovers.map((g) => (
-              <Photo key={g.slug} src={g.cover} alt="" sizes="240px" quality={60} className="h-32 w-48 rounded-[var(--radius-md)] sm:h-40 sm:w-60" />
-            ))}
+        <div className="mt-6">
+          <h3 className="sr-only">Mais fotos da comunidade</h3>
+          <PhotoStrip
+            photos={stripCovers.map((g) => ({
+              slug: g.slug,
+              title: g.title,
+              cover: g.cover,
+              group: g.group,
+              groupLabel: groupLabel[g.group] ?? "Galeria",
+              published: g.published,
+              count: g.images.length,
+            }))}
           />
         </div>
       </section>

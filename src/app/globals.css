@@ -717,6 +717,46 @@
   from { background: var(--color-night); border-color: rgb(255 255 255 / 0.25); box-shadow: 0 0 0 5px rgb(31 26 22); scale: 0.7; }
 }
 
+/* ------------------------------------------------------------------
+   Tira de fotos clicável + visualizador em tela cheia (PhotoStrip.tsx)
+   ------------------------------------------------------------------ */
+.photo-strip { padding-block: 12px; }
+.photo-strip:focus-within .marquee-track { animation-play-state: paused; }
+.strip-photo {
+  cursor: zoom-in;
+  transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo);
+}
+.strip-photo img { transition: transform 1s var(--ease-out-expo), filter 0.5s var(--ease-out-quart); }
+.strip-veil { opacity: 0; transition: opacity 0.35s var(--ease-out-quart); }
+.strip-zoom { transform: scale(0.5) rotate(-60deg); transition: transform 0.55s var(--ease-out-expo); }
+.strip-photo:hover, .strip-photo:focus-visible {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 26px 40px -22px rgb(0 0 0 / 0.85), 0 0 0 2px var(--color-gold-night);
+}
+.strip-photo:hover img, .strip-photo:focus-visible img { transform: scale(1.12); }
+.strip-photo:hover .strip-veil, .strip-photo:focus-visible .strip-veil { opacity: 1; }
+.strip-photo:hover .strip-zoom, .strip-photo:focus-visible .strip-zoom { transform: none; }
+
+.lightbox[open], .lightbox[open]::backdrop { animation: lb-fade 0.4s var(--ease-out-quart); }
+@keyframes lb-fade { from { opacity: 0; } }
+.lb-photo { animation: lb-in 0.75s var(--ease-out-expo) both; }
+.lb-photo[data-dir="-1"] { animation-name: lb-in-back; }
+@keyframes lb-in { from { opacity: 0; transform: translateX(5%) scale(0.94); filter: blur(10px); } }
+@keyframes lb-in-back { from { opacity: 0; transform: translateX(-5%) scale(0.94); filter: blur(10px); } }
+.lb-info > * { animation: fade-up 0.7s var(--ease-out-expo) both; }
+.lb-info > :nth-child(2) { animation-delay: 60ms; }
+.lb-info > :nth-child(3) { animation-delay: 120ms; }
+.lb-info > :nth-child(4) { animation-delay: 180ms; }
+.lb-info > :nth-child(5) { animation-delay: 240ms; }
+.lb-info > :nth-child(6) { animation-delay: 300ms; }
+.lb-btn { background: rgb(255 255 255 / 0.06); transition: background-color 0.3s var(--ease-out-quart), color 0.3s, transform 0.4s var(--ease-out-expo); }
+.lb-btn:hover { background: var(--color-gold); color: var(--color-ink); }
+.lb-nav:hover { scale: 1.08; }
+.lb-thumb { opacity: 0.45; transition: opacity 0.3s, transform 0.4s var(--ease-out-expo), box-shadow 0.3s; }
+.lb-thumb:hover { opacity: 0.85; transform: translateY(-2px); }
+.lb-thumb[aria-current="true"] { opacity: 1; box-shadow: 0 0 0 2px var(--color-gold-night); }
+.lb-rail { scrollbar-width: thin; }
+
 @media (prefers-reduced-motion: reduce) {
   .ken-burns, .embers, .float, .btn-pulse, .btn-pulse::after, .live-dot::after, .scroll-cue .mouse::after,
   .marquee-sep, .badge-ring, .carisma-band::before, .scroll-progress { animation: none !important; }
@@ -728,6 +768,7 @@
   .scroll-progress { display: none; }
   .poster-photo img, .poster-frame i, .tick, .caminho-list::after, .caminho-bead, .caminho-year::before { animation: none !important; }
   .caminho-card:hover, .caminho-card:focus-visible { transform: none; }
+  .strip-photo:hover, .strip-photo:focus-visible { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

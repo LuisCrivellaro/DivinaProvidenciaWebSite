@@ -119,6 +119,10 @@ Como funciona (e por que não quebra): o script `lib/reveal.ts` põe `.js-reveal
 | `.title-accent` | `SectionTitle` | sublinhado dourado que se desenha sob a linha em itálico |
 | `.lift` / `data-tilt` (PointerFX) | todos os cartões | inclinação 3D na direção do cursor e foco de luz; cartões largos inclinam menos; só mouse |
 | `.carisma-band::before` | faixa do carisma | raios de luz girando devagar (90 s) |
+| `<UpcomingEvents>` + `<Countdown>` | "Próximos encontros" da home | **Caminho de fé**: o próximo evento vira um cartaz emoldurado (estrelas nos cantos, Ken Burns, data gigante) com contagem regressiva ao vivo; os seguintes ficam num fio dourado que se desenha com a rolagem, com contas que acendem e o ano em contorno. A contagem usa `useSyncExternalStore` com um relógio único e o horário do servidor na hidratação |
+| `<PhotoStrip>` | tira de fotos da galeria na home | a tira corre e pausa no hover/foco; cada foto sobe com moldura dourada e abre em tela cheia (`<dialog>`) com ficha do álbum (categoria, contexto, nº de fotos, data), "Ver o álbum", "Compartilhar", setas, teclado, gesto e trilho de miniaturas. A cópia do laço fica fora do leitor de tela e da tabulação |
+
+> Obs.: no Windows, o Turbopack às vezes não percebe mudanças no `globals.css` feitas por script ou depois de um `next build`. Se um estilo novo não aparecer no `next dev`, salve o arquivo pelo editor ou reinicie o servidor.
 
 Com `prefers-reduced-motion`, os laços param, as brasas somem, as faixas viram linhas estáticas centralizadas e o PointerFX não liga.
 
