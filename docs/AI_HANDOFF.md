@@ -30,7 +30,7 @@ npm run dev
 - Fotos servidas do WordPress oficial via `next/image` (`remotePatterns` em `next.config.ts`).
 
 ## 4. Identidade visual implementada
-Ver `docs/DESIGN_SYSTEM.md`. Resumo: header marfim com a logo oficial original (`public/brand/logo-oficial.webp`, cópia do arquivo enviado, original intocado em `public/brand/original/`), hero com foto real e sobreposição vinho, títulos Gambetta em dois tons (carvão + itálico vinho), texto Switzer, carisma em fundo vinho, footer vinho com a logo sobre superfície marfim. Vermelho só em ícones/números grandes; `#A52C34` para texto pequeno e selos; dourado só decorativo (texto dourado apenas sobre vinho/escuro).
+Ver `docs/DESIGN_SYSTEM.md`. **Redesign de 27/11/2026: o vinho/vermelho foi substituído pelo dourado `#B99550`** e entrou um sistema de animações (`RevealObserver` + `globals.css`). Resumo: header marfim com a logo oficial original (`public/brand/logo-oficial.webp`, original intocado em `public/brand/original/`), CTA e botões dourados com texto carvão, hero com foto real e sobreposição café, títulos Gambetta em dois tons (carvão + itálico `gold-deep`), texto Switzer, carisma numa faixa dourada, footer café profundo. Regra: fundo dourado → texto carvão; dourado como texto só em `gold-deep` (claro) ou `gold-light` (escuro). Erros de formulário usam `danger`.
 
 ## 5. Páginas concluídas
 Início · Comunidade · Agenda (+ 26 páginas de evento) · Acampamentos (+5) · Retiros (+4) · Grupos de oração · Vida de oração · Obras e projetos · Casa Terapêutica · Galeria (+58) · Vídeos · Loja e inscrições · Contato · Privacidade (provisória) · 404 · sitemap/robots. Mapa em `docs/SITEMAP.md`.
@@ -45,7 +45,7 @@ Menu desktop com dropdown e menu mobile acessível · agenda com próximos/passa
 Ver `docs/AUDITORIA_FINAL.md` (tsc, eslint, build, auditoria de 91 rotas, console, performance, testes manuais de formulário, filtros, lightbox, menus, loja, revisão visual em 1440/390 px).
 
 ## 9. Decisões
-1. Manter WooCommerce + Mercado Pago no WordPress; o novo site não tem checkout nem login próprios (proibido simular).
+1. Manter WooCommerce + Mercado Pago no WordPress; o novo site não tem checkout próprio (proibido simular). A tela `/login` (27/11/2026) tem o visual do novo site, mas o formulário faz POST direto para `wp-login.php` do site oficial (campos `log`, `pwd`, `rememberme`, `redirect_to=/minha-conta/`): a autenticação é real e o novo site nunca recebe a senha. Senha errada cai na tela de erro padrão do WordPress.
 2. Formulário de contato sem servidor: abre o WhatsApp com a mensagem pronta; nada é guardado.
 3. Galerias de Mirim, Juvenil, FAC e Teatro Vivo (16 galerias, 2.256 fotos) não são republicadas: aviso + link para o site oficial + `noindex`.
 4. Nenhum nome da coordenação publicado até validação.
@@ -53,7 +53,7 @@ Ver `docs/AUDITORIA_FINAL.md` (tsc, eslint, build, auditoria de 91 rotas, consol
 6. Taste-skill e o lançador binário do Impeccable não foram executados (motivos em `SKILLS_APLICADAS.md`); as regras foram aplicadas manualmente.
 
 ## 10. Pendências (para a comunidade validar)
-Carisma oficial do Estatuto · ano de fundação (2005 × ≈1998) · endereço exato ("Rua Padre Anchieta" × "Rua Anchieta") · horários de cada grupo de oração · local/horários da adoração perpétua · faixas etárias e regras de cada acampamento · o que são "Acampamento RS" e "Acampamento II" · nomes da coordenação · autorização de uso das fotos e da logo · autoria das fotos · situação dos projetos Divina Saúde, Ler é Crescer, Missões Populares, Divina Horta · política de privacidade oficial · domínio e hospedagem. Lista completa: `docs/analise-divina-providencia/10_FONTES_E_PENDENCIAS.md`.
+Carisma oficial do Estatuto · ano de fundação (2005 × ≈1998) · endereço exato ("Rua Padre Anchieta" × "Rua Anchieta") · horários de cada grupo de oração · local/horários da adoração perpétua · faixas etárias e regras de cada acampamento · o que são "Acampamento RS" e "Acampamento II" · nomes da coordenação · autorização de uso das fotos e da logo · autoria das fotos · situação dos projetos Missões Populares e Divina Horta (Divina Saúde e Ler é Crescer confirmados ativos pelo Instagram em nov/2026) · horário do grupo de oração (19h × 19h30) · canal de inscrição do Desperta (WooCommerce × Microsoft Forms) · política de privacidade oficial · domínio e hospedagem. Lista completa: `docs/analise-divina-providencia/10_FONTES_E_PENDENCIAS.md`.
 
 ## 11. Problemas conhecidos
 - Galerias abertas podem conter crianças ao fundo (curadoria manual pendente).

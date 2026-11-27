@@ -32,7 +32,7 @@ export default function Page() {
           return (
             <section key={topic} aria-labelledby={`t-${topic}`} className="mt-20">
               <h2 id={`t-${topic}`} className="font-display text-[clamp(1.8rem,1.4rem+1.4vw,2.6rem)]">{topicLabel[topic]}</h2>
-              <ul className="mt-8 grid gap-x-5 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-8 grid gap-x-5 gap-y-10 md:grid-cols-2 lg:grid-cols-3" data-reveal-stagger="">
                 {list.map((v) => (
                   <li key={v.id}>
                     <VideoFacade id={v.id} title={v.title} />

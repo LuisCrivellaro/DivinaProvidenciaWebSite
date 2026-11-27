@@ -61,9 +61,9 @@ export function ButtonLink({
 }
 
 /** Link de texto com seta, para ações secundárias. */
-export function TextLink({ href, children, className = "", tone = "red" }: { href: string; children: ReactNode; className?: string; tone?: "red" | "light" | "ink" }) {
+export function TextLink({ href, children, className = "", tone = "gold" }: { href: string; children: ReactNode; className?: string; tone?: "gold" | "light" | "ink" }) {
   const isExternal = /^https?:/.test(href);
-  const color = tone === "light" ? "text-gold-night" : tone === "ink" ? "text-ink" : "text-wine";
+  const color = tone === "light" ? "text-gold-night" : tone === "ink" ? "text-ink" : "text-gold-deep";
   const cls = `group inline-flex items-center gap-1.5 font-medium ${color} min-h-11 ${className}`;
   const body = (
     <>
@@ -96,6 +96,7 @@ export function Photo({
   className = "",
   imgClassName = "",
   quality = 75,
+  reveal,
 }: {
   photo?: PhotoKey;
   src?: string;
@@ -105,12 +106,14 @@ export function Photo({
   className?: string;
   imgClassName?: string;
   quality?: 60 | 75 | 85;
+  /** Revela a foto com uma cortina suave ao entrar na tela */
+  reveal?: boolean;
 }) {
   const p = photo ? photos[photo] : undefined;
   const path = p?.src ?? src ?? "";
   const url = path.startsWith("http") ? path : `${UPLOADS}${path}`;
   return (
-    <div className={`relative overflow-hidden bg-linen ${className}`}>
+    <div className={`relative overflow-hidden bg-linen ${className}`} data-reveal={reveal ? "image" : undefined}>
       <Image
         src={url}
         alt={alt ?? p?.alt ?? ""}
@@ -149,9 +152,9 @@ export function SectionTitle({
   id?: string;
 }) {
   const leadColor = tone === "dark" ? "text-on-night" : "text-ink";
-  const accentColor = tone === "dark" ? "text-gold-night" : "text-wine";
+  const accentColor = tone === "dark" ? "text-gold-night" : "text-gold-deep";
   return (
-    <Tag id={id} className={`text-[clamp(2rem,1.4rem+2.6vw,3.6rem)] ${leadColor} ${className}`}>
+    <Tag id={id} className={`text-[clamp(2rem,1.4rem+2.6vw,3.6rem)] ${leadColor} ${className}`} data-reveal={Tag === "h1" ? undefined : ""}>
       {lead}
       {accent && (
         <>
@@ -251,7 +254,7 @@ export function PageHeader({
             {intro && <div className="fade-up mt-6" style={{ ["--d" as string]: "120ms" }}>{typeof intro === "string" ? <Lede>{intro}</Lede> : intro}</div>}
             {children && <div className="fade-up mt-8 flex flex-wrap gap-3" style={{ ["--d" as string]: "200ms" }}>{children}</div>}
           </div>
-          {photo && <Photo photo={photo} sizes="(min-width: 1024px) 45vw, 100vw" priority className="aspect-[4/3] rounded-[var(--radius-lg)]" />}
+          {photo && <Photo photo={photo} sizes="(min-width: 1024px) 45vw, 100vw" priority reveal className="aspect-[4/3] rounded-[var(--radius-lg)]" />}
         </div>
       </div>
     </header>
@@ -262,7 +265,7 @@ export function Section({ children, className = "", id, tone = "paper", labelled
   const bg = tone === "sand" ? "bg-sand" : tone === "night" ? "bg-night text-on-night on-night" : "";
   return (
     <section id={id} aria-labelledby={labelledBy} className={`py-20 md:py-28 ${bg} ${className}`}>
-      <div className="wrap">{children}</div>
+      <div className="wrap" data-reveal-stagger="">{children}</div>
     </section>
   );
 }

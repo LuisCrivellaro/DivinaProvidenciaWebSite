@@ -19,6 +19,11 @@
 | Acampamentos (edições, meses) | `content/programs.ts` | Galerias do site oficial; calendário 2027 | Edições contadas pelas galerias |
 | Pré-requisitos do Desperta, datas, valores, realização com JDA, tema e Lc 15,20 | retiros/desperta, agenda | Produtos do WooCommerce e arte oficial | Confirmado |
 | Calendário 2027 (25 itens) | `content/events.ts` | Post "CALENDÁRIO OFICIAL 2027", Instagram, 19/11/2026 | "Sujeito a alterações" (avisado no site). Sem horários/locais, exceto "Noite Católica – Sede". "Lual" grafado como "Luau". "Acampamento RS" e "Acampamento II" sem explicação pública |
+| Acampamento Juvenil 2027: 18ª edição, 18 a 24 anos, pré-inscrições 30/11 a 07/12/2026 | `content/programs.ts`, `content/events.ts` | Post "SAVE THE DATE", Instagram, 21/11/2026 | Confirmado. A faixa etária pode ter mudado em relação às edições antigas (o programa ainda tem `minors: true` para proteger galerias passadas) |
+| Divina Saúde ativo (atendimentos na sede aos sábados, nov/2026) | `obras-e-projetos` | Posts do Instagram de 16/11 e 23/11/2026 | Confirmado que existe hoje; frequência não publicada |
+| Ler é Crescer ativo (nov/2026) | `obras-e-projetos` | Reel do Instagram de 21/11/2026 | Confirmado que existe hoje; público e horário não publicados. Não usar fotos (provável público infantil) |
+| Grupo de oração às segundas | `grupos-de-oracao` | Site atual (19h30); post do Instagram de 24/11/2026 diz "a partir das 19h"; reel de 23/11/2026 diz 19h30 | **Divergente**: mantido 19h30 com aviso para confirmar |
+| Inscrição do 5º Desperta (5–6/12/2026) | `content/events.ts` | Site oficial (produtos WooCommerce) × post do Instagram de 12/11/2026 (link de Microsoft Forms) | **Divergente**: confirmar qual canal vale |
 | Projetos Divina Saúde, Ler é Crescer, Missões Populares, Divina Horta | obras | A Tribuna MT 2015/2020 | Apresentados como "citados na imprensa"; status atual **a confirmar** |
 | Contatos (WhatsApp das secretarias, fixo, e-mails), endereço | `content/site.ts` | Site oficial, Facebook, Diocese | Endereço "Rua Padre Anchieta" (Diocese) × "Rua Anchieta" (Facebook) → **validar** |
 | Vídeos | `content/videos.ts` | Feed RSS do canal oficial (26/11/2026) | Confirmado |

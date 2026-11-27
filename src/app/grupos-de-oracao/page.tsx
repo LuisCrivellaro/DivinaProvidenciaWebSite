@@ -28,7 +28,7 @@ export default function Page() {
 
       <Section tone="sand" labelledBy="grupos">
         <h2 id="grupos" className="sr-only">Os grupos</h2>
-        <ul className="grid gap-5 md:grid-cols-2">
+        <ul className="grid gap-5 md:grid-cols-2" data-reveal-stagger="">
           {prayerGroups.map((g) => (
             <li key={g.slug} className="flex flex-col rounded-[var(--radius-xl)] bg-paper p-8 md:p-10">
               <div className="flex h-36 items-center">

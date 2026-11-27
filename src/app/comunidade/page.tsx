@@ -60,7 +60,7 @@ export default function Page() {
             {timeline.map((t) => (
               <li key={t.year} className="relative pb-12 last:pb-0">
                 <span className="absolute -left-[2.45rem] top-2 h-3 w-3 rounded-full border-2 border-gold bg-paper" aria-hidden="true" />
-                <p className="font-display text-[2.2rem] leading-none text-wine tabular">{t.year}</p>
+                <p className="font-display text-[2.2rem] leading-none text-gold-deep tabular">{t.year}</p>
                 <h3 className="mt-2 font-display text-[1.6rem] leading-tight">{t.title}</h3>
                 <p className="mt-2 max-w-[60ch] text-ink-soft">{t.text}</p>
               </li>
@@ -71,7 +71,7 @@ export default function Page() {
 
       <Section tone="sand" labelledBy="espiritualidade">
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
-          <Photo photo="cercoAltar" sizes="(min-width: 1024px) 45vw, 100vw" className="arch aspect-[4/5]" />
+          <Photo photo="cercoAltar" sizes="(min-width: 1024px) 45vw, 100vw" reveal className="arch aspect-[4/5]" />
           <div>
             <SectionTitle id="espiritualidade" lead="Espiritualidade" accent="e vida de oração." />
             <ul className="mt-8 divide-y divide-ink/12 border-y border-ink/12">
@@ -105,7 +105,7 @@ export default function Page() {
               A comunidade é também a Associação Divina Providência, com presidência e secretarias. Os nomes da coordenação serão publicados aqui depois de validados pela própria comunidade.
             </Lede>
           </div>
-          <ul className="grid gap-5 sm:grid-cols-2">
+          <ul className="grid gap-5 sm:grid-cols-2" data-reveal-stagger="">
             {[
               { t: "Presidência da Associação", d: "Responde pela Associação Divina Providência." },
               { t: "Coordenação de Pastoral", d: "Coordena a vida pastoral da comunidade." },

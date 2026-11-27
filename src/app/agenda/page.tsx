@@ -51,7 +51,7 @@ export default async function Page() {
           <div className="space-y-14">
             {[...byMonth.entries()].map(([key, items]) => (
               <section key={key} aria-labelledby={`m-${key}`}>
-                <h3 id={`m-${key}`} className="font-display text-[1.9rem] capitalize text-wine">
+                <h3 id={`m-${key}`} className="font-display text-[1.9rem] capitalize text-gold-deep">
                   {monthLong(`${key}-15`)} <span className="text-ink-soft tabular">{key.slice(0, 4)}</span>
                 </h3>
                 <div className="mt-4">
@@ -66,7 +66,7 @@ export default async function Page() {
       <Section id="grandes-eventos" labelledBy="grandes-titulo">
         <SectionTitle id="grandes-titulo" lead="Grandes" accent="eventos." />
         <Lede className="mt-6">Eles se repetem todo ano e reúnem a cidade.</Lede>
-        <ul className="mt-12 grid gap-6 md:grid-cols-2">
+        <ul className="mt-12 grid gap-6 md:grid-cols-2" data-reveal-stagger="">
           {bigEvents.map((b) => {
             const next = events.find((e) => e.slug === b.nextEventSlug);
             return (
@@ -74,7 +74,7 @@ export default async function Page() {
                 <Photo photo={b.photo} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[16/10]" />
                 <div className="p-7 md:p-9">
                   <h3 className="font-display text-[2rem] leading-none">{b.name}</h3>
-                  <p className="mt-2 font-display text-[1.2rem] italic text-wine">{b.short}</p>
+                  <p className="mt-2 font-display text-[1.2rem] italic text-gold-deep">{b.short}</p>
                   {b.text.map((t, i) => (
                     <p key={i} className="mt-4 text-ink-soft">{t}</p>
                   ))}
@@ -94,7 +94,7 @@ export default async function Page() {
           <SectionTitle id="anteriores" lead="Eventos" accent="anteriores." />
           <ButtonLink href="/galeria" variant="ghost">Todas as galerias</ButtonLink>
         </div>
-        <ul className="mt-10 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger="">
           {past.map((g) => (
             <li key={g.slug}>
               <GalleryCard g={g} />

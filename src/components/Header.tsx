@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import { BrandIcon } from "./BrandIcon";
-import { contacts, shop, social, whatsappLink } from "@/content/site";
+import { WhatsAppChat } from "./WhatsAppChat";
+import { contacts, social, whatsappLink } from "@/content/site";
 
 const participe = [
   { href: "/acampamentos", label: "Acampamentos", hint: "Mirim, Juvenil, FAC, Sênior e Casais" },
@@ -132,7 +133,8 @@ export function Header() {
                 aria-expanded={dropOpen}
                 aria-controls={dropId}
                 onClick={() => setDropOpen((v) => !v)}
-                className={`flex min-h-11 items-center gap-1 rounded-full px-4 transition-colors hover:bg-ink/6 ${participeActive ? "underline decoration-red decoration-2 underline-offset-8" : ""}`}
+                data-active={participeActive || dropOpen}
+                className="nav-link flex min-h-11 items-center gap-1 rounded-full px-4 transition-colors duration-300 hover:bg-gold/10"
               >
                 Participe
                 <ChevronDown size={16} aria-hidden="true" className={`transition-transform duration-300 ${dropOpen ? "rotate-180" : ""}`} />
@@ -140,17 +142,17 @@ export function Header() {
               <div
                 id={dropId}
                 hidden={!dropOpen}
-                className="absolute left-0 top-[calc(100%+10px)] w-[22rem] rounded-[var(--radius-lg)] border border-ink/10 bg-paper p-2 text-ink shadow-[0_24px_48px_-24px_rgb(42_29_20/0.45)]"
+                className="dropdown-panel absolute left-0 top-[calc(100%+10px)] w-[22rem] rounded-[var(--radius-lg)] border border-ink/10 bg-paper p-2 text-ink shadow-[0_28px_56px_-28px_rgb(84_62_24/0.45)]"
               >
                 <ul>
-                  {participe.map((p) => (
-                    <li key={p.href}>
+                  {participe.map((p, i) => (
+                    <li key={p.href} style={{ ["--i" as string]: i }}>
                       <Link
                         href={p.href}
-                        className="block rounded-[var(--radius-md)] px-4 py-3 transition-colors hover:bg-sand"
+                        className="group/item block rounded-[var(--radius-md)] px-4 py-3 transition-colors duration-300 hover:bg-gold/10"
                         aria-current={isActive(p.href) ? "page" : undefined}
                       >
-                        <span className="block font-display text-[1.2rem] leading-tight">{p.label}</span>
+                        <span className="block font-display text-[1.2rem] leading-tight transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/item:translate-x-1">{p.label}</span>
                         <span className="mt-0.5 block text-sm font-normal text-ink-soft">{p.hint}</span>
                       </Link>
                     </li>
@@ -163,9 +165,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`flex min-h-11 items-center rounded-full px-4 transition-colors hover:bg-ink/6 ${
-                    isActive(item.href) ? "underline decoration-red decoration-2 underline-offset-8" : ""
-                  }`}
+                  className="nav-link flex min-h-11 items-center rounded-full px-4 transition-colors duration-300 hover:bg-gold/10"
                 >
                   {item.label}
                 </Link>
@@ -177,35 +177,33 @@ export function Header() {
         <div className="relative z-10 flex items-center gap-1.5">
           <Link
             href="/loja"
-            className={`hidden min-h-11 min-w-11 items-center justify-center gap-2 rounded-full px-3 text-[0.95rem] font-medium sm:flex hover:bg-ink/6`}
+            className={`hidden min-h-11 min-w-11 items-center justify-center gap-2 rounded-full px-3 text-[0.95rem] font-medium sm:flex transition-colors duration-300 hover:bg-gold/10`}
           >
             <ShoppingBag size={19} aria-hidden="true" />
             <span className="hidden xl:inline">Loja</span>
             <span className="sr-only xl:hidden">Loja e inscrições</span>
           </Link>
-          <a
-            href={shop.account}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`hidden min-h-11 min-w-11 items-center justify-center rounded-full sm:flex hover:bg-ink/6`}
+          <Link
+            href="/login"
+            aria-current={isActive("/login") ? "page" : undefined}
+            className={`hidden min-h-11 min-w-11 items-center justify-center rounded-full sm:flex transition-colors duration-300 hover:bg-gold/10 ${isActive("/login") ? "bg-gold/15" : ""}`}
           >
             <UserRound size={19} aria-hidden="true" />
-            <span className="sr-only">Minha conta no site oficial (abre em nova aba)</span>
-          </a>
-          <a
-            href={whatsappLink(evangelizacao.whatsapp!)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`ml-1 hidden min-h-11 items-center gap-2 rounded-full px-4 text-[0.95rem] font-medium transition-colors md:flex bg-wine text-white hover:bg-wine-hover`}
-          >
-            <BrandIcon name="whatsapp" width={17} height={17} />
-            Fale conosco
-            <span className="sr-only"> pelo WhatsApp da Secretaria de Evangelização (abre em nova aba)</span>
-          </a>
+            <span className="sr-only">Entrar na minha conta</span>
+          </Link>
+          {/* Componente WhatsAppChat (recriado do Framer), em português */}
+          <WhatsAppChat
+            phoneNumber={evangelizacao.whatsapp!}
+            message="Olá! Vim pelo site da Comunidade Divina Providência e gostaria de falar com a secretaria."
+            buttonText="Fale Conosco"
+            srLabel="com a Secretaria de Evangelização"
+            className="wa-chat--collapse ml-1 hidden md:inline-flex"
+            labelClassName="lg:sr-only xl:not-sr-only"
+          />
           <button
             ref={menuBtnRef}
             type="button"
-            className={`flex min-h-11 min-w-11 items-center justify-center rounded-full lg:hidden hover:bg-ink/6`}
+            className={`flex min-h-11 min-w-11 items-center justify-center rounded-full lg:hidden transition-colors duration-300 hover:bg-gold/10`}
             aria-expanded={menuOpen}
             aria-controls="menu-mobile"
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
@@ -233,7 +231,7 @@ export function Header() {
                   className="flex min-h-14 items-center justify-between font-display text-[1.6rem] leading-none"
                 >
                   {l.label}
-                  {isActive(l.href) && <span className="h-2 w-2 rounded-full bg-wine" aria-hidden="true" />}
+                  {isActive(l.href) && <span className="h-2 w-2 rounded-full bg-gold" aria-hidden="true" />}
                 </Link>
               </li>
             ))}
@@ -246,10 +244,9 @@ export function Header() {
             </span>
             <span className="sr-only"> (abre em nova aba)</span>
           </a>
-          <a href={shop.account} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-plain justify-start gap-2">
+          <Link href="/login" className="btn btn-ghost btn-plain justify-start gap-2">
             <UserRound size={18} aria-hidden="true" /> Minha conta
-            <span className="sr-only"> no site oficial (abre em nova aba)</span>
-          </a>
+          </Link>
         </div>
         <ul className="mt-8 flex gap-2">
           {social.map((s) => (

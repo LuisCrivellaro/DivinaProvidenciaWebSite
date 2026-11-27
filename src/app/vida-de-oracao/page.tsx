@@ -31,7 +31,7 @@ export default function Page() {
 
       <section id="adoracao" aria-labelledby="adoracao-titulo" className="on-night bg-night py-24 text-on-night md:py-32">
         <div className="wrap grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-20">
-          <Photo photo="capela" sizes="(min-width: 1024px) 40vw, 100vw" className="arch aspect-[4/5]" />
+          <Photo photo="capela" sizes="(min-width: 1024px) 40vw, 100vw" reveal className="arch aspect-[4/5]" />
           <div>
             <SectionTitle id="adoracao-titulo" tone="dark" lead="Adoração" accent="perpétua." />
             <div className="mt-6 space-y-5 text-[1.08rem] leading-relaxed text-on-night-soft">
@@ -57,7 +57,7 @@ export default function Page() {
             </Lede>
             <VideoFacade id={cercoVideo.id} title={cercoVideo.title} className="mt-10" />
           </div>
-          <Photo photo="cercoPalco" sizes="(min-width: 1024px) 40vw, 100vw" className="aspect-[4/5] rounded-[var(--radius-lg)]" />
+          <Photo photo="cercoPalco" sizes="(min-width: 1024px) 40vw, 100vw" reveal className="aspect-[4/5] rounded-[var(--radius-lg)]" />
         </div>
       </Section>
 
