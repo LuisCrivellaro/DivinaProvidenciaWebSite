@@ -159,7 +159,7 @@ export function SectionTitle({
       {accent && (
         <>
           {" "}
-          <em className={`block font-normal italic ${accentColor}`}>{accent}</em>
+          <em className={`title-accent block font-normal italic ${accentColor}`}>{accent}</em>
         </>
       )}
     </Tag>
@@ -188,7 +188,7 @@ export function BlurTitle({ text, accent, className = "" }: { text: string; acce
         {accentWords.length > 0 && (
           <em className="block font-normal italic text-gold-night">
             {accentWords.map((w, i) => (
-              <span key={`a${i}`} className="blur-word" style={{ ["--i" as string]: words.length + i }}>
+              <span key={`a${i}`} className="blur-word gold-shimmer" style={{ ["--i" as string]: words.length + i }}>
                 {w}&nbsp;
               </span>
             ))}

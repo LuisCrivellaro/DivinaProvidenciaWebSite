@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { RevealObserver } from "@/components/RevealObserver";
+import { PointerFX } from "@/components/Motion";
 import { revealBootScript } from "@/lib/reveal";
 import { site } from "@/content/site";
 import "./globals.css";
@@ -85,12 +86,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Pular para o conteúdo
         </a>
+        <div className="scroll-progress" aria-hidden="true" />
         <Header />
         <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>
         <Footer />
         <RevealObserver />
+        <PointerFX />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

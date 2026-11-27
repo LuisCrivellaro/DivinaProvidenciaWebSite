@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { BlurTitle, ButtonLink, Lede, Photo, SectionTitle, TextLink } from "@/components/ui";
-import { EventList } from "@/components/EventList";
+import { UpcomingEvents } from "@/components/UpcomingEvents";
 import { Carisma } from "@/components/Carisma";
 import { VideoFacade } from "@/components/VideoFacade";
 import { BrandIcon } from "@/components/BrandIcon";
+import { Embers, Marquee, RotatingBadge } from "@/components/Decor";
+import { CountUp } from "@/components/Motion";
 import { events } from "@/content/events";
 import { camps, prayerGroups, retreats } from "@/content/programs";
 import { contacts, mapsLink, photos, site, whatsappLink } from "@/content/site";
@@ -24,16 +26,21 @@ export default async function Home() {
     .map((s) => galleries.find((g) => g.slug === s)!)
     .filter(Boolean);
   const totalPhotos = galleries.reduce((n, g) => n + g.images.length, 0);
+  const yearsOfMission = Number(now.slice(0, 4)) - 2005;
+  const stripCovers = galleries.filter((g) => !highlightGalleries.includes(g)).slice(0, 10);
 
   return (
     <>
       {/* HERO ------------------------------------------------------------ */}
       <section aria-labelledby="hero-title" className="hero-drift on-night relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-on-night">
-        <Image src={uploadUrl(photos.hero.src)} alt={photos.hero.alt} fill preload loading="eager" sizes="100vw" quality={85} className="-z-10 object-cover object-[50%_35%]" />
+        <div className="ken-burns absolute inset-0 -z-10">
+          <Image src={uploadUrl(photos.hero.src)} alt={photos.hero.alt} fill preload loading="eager" sizes="100vw" quality={85} className="object-cover object-[50%_35%]" />
+        </div>
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.35)_0%,rgb(31_26_22/0.1)_30%,rgb(31_26_22/0.78)_72%,rgb(31_26_22/0.94)_100%)]" aria-hidden="true" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(31_26_22/0.6)_0%,rgb(31_26_22/0)_62%)]" aria-hidden="true" />
         {/* No celular o texto ocupa a largura toda: um véu extra garante a leitura sobre a foto */}
         <div className="absolute inset-0 -z-10 bg-night/35 md:hidden" aria-hidden="true" />
+        <Embers className="-z-10" />
         <div className="wrap grid gap-10 pb-12 pt-[calc(var(--header-h)+3rem)] md:pb-16 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">
           <div>
             <div id="hero-title">
@@ -43,14 +50,15 @@ export default async function Home() {
               Somos a Comunidade Divina Providência, uma comunidade católica de aliança em Rondonópolis (MT). Evangelizamos famílias com acampamentos, retiros e grupos de oração, e acolhemos homens em recuperação na nossa Comunidade Terapêutica.
             </p>
             <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ ["--d" as string]: "560ms" }}>
-              <ButtonLink href="/comunidade">Conheça a comunidade</ButtonLink>
-              <ButtonLink href="/agenda" variant="ghost-light" icon={false}>
+              <ButtonLink href="/comunidade" className="btn-pulse" data-magnetic="">Conheça a comunidade</ButtonLink>
+              <ButtonLink href="/agenda" variant="ghost-light" icon={false} data-magnetic="">
                 Ver a agenda
               </ButtonLink>
             </div>
           </div>
 
           {next && (
+            <div className="float">
             <Link
               href={`/agenda/${next.slug}`}
               className="fade-up group block rounded-[var(--radius-lg)] border border-white/15 bg-night/55 p-6 backdrop-blur-md transition-colors hover:border-gold-night/60"
@@ -60,21 +68,40 @@ export default async function Home() {
               <span className="mt-2 block font-display text-[1.9rem] leading-tight">{next.title}</span>
               <span className="mt-2 block text-on-night-soft">{dateRange(next.start, next.end)}</span>
               <span className="mt-5 flex items-center justify-between border-t border-white/15 pt-4 text-[0.95rem]">
-                <span className={next.registration ? "font-semibold text-gold-night" : "text-on-night-soft"}>
+                <span className={next.registration ? "inline-flex items-center gap-2.5 font-semibold text-gold-night" : "text-on-night-soft"}>
+                  {next.registration && <span className="live-dot" aria-hidden="true" />}
                   {next.registration ? "Inscrições abertas" : "Detalhes do evento"}
                 </span>
                 <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </Link>
+            </div>
           )}
         </div>
+        <a href="#quem-somos" className="scroll-cue fade-up absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-on-night-soft transition-colors hover:text-gold-night xl:grid" style={{ ["--d" as string]: "1200ms" }}>
+          <span className="mouse" aria-hidden="true" />
+          Role
+        </a>
       </section>
+
+      {/* FAIXA QUE CORRE ------------------------------------------------------ */}
+      <div className="border-y border-ink/10 bg-gold py-5 text-ink md:py-7">
+        <Marquee
+          className="font-display text-[clamp(1.6rem,1.1rem+2vw,2.8rem)] italic leading-none"
+          items={["Acampamentos", "Retiros", "Adoração perpétua", "Grupos de oração", "Cerco de Jericó", "Comunidade Terapêutica", "Festa das Nações", "Divina Jovem"]}
+        />
+      </div>
 
       {/* QUEM SOMOS --------------------------------------------------------- */}
       <section aria-labelledby="quem-somos" className="py-24 md:py-32">
         <div className="wrap grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div className="relative" data-reveal="image">
-            <Photo photo="missaCompromisso" sizes="(min-width: 1024px) 40vw, 100vw" className="arch aspect-[4/5]" imgClassName="object-[78%_45%]" />
+          <div className="relative">
+            <div data-reveal="image">
+              <Photo photo="missaCompromisso" sizes="(min-width: 1024px) 40vw, 100vw" className="arch aspect-[4/5]" imgClassName="object-[78%_45%]" />
+            </div>
+            <RotatingBadge text="Desde 2005 · Comunidade de Aliança · " className="absolute -bottom-8 right-2 w-32 bg-night text-gold-night shadow-[0_20px_40px_-20px_rgb(31_26_22/0.7)] sm:-right-6 sm:w-40">
+              <span className="font-display text-[2.2rem] italic leading-none sm:text-[2.6rem]">DP</span>
+            </RotatingBadge>
           </div>
           <div className="lg:pt-10" data-reveal-stagger="">
             <SectionTitle id="quem-somos" lead="Uma comunidade de aliança" accent="nascida na Igreja local." />
@@ -103,6 +130,21 @@ export default async function Home() {
             <TextLink href="/comunidade" className="mt-8">Nossa história e o nosso carisma</TextLink>
           </div>
         </div>
+        <dl className="wrap mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-ink/12 pt-12 lg:grid-cols-4" data-reveal-stagger="">
+          {[
+            { value: yearsOfMission, label: "anos de missão em Rondonópolis" },
+            { value: 25, label: "edições do Acampamento Sênior" },
+            { value: galleries.length, label: "galerias de fotos publicadas" },
+            { value: totalPhotos, label: "fotos de encontros e celebrações" },
+          ].map((st) => (
+            <div key={st.label} className="flex flex-col-reverse justify-end gap-3">
+              <dt className="max-w-[22ch] text-ink-soft">{st.label}</dt>
+              <dd className="stat-number font-display text-[clamp(2.8rem,2rem+3vw,4.6rem)] leading-none">
+                <CountUp value={st.value} />
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       {/* VIDA EM COMUNIDADE -------------------------------------------------- */}
@@ -164,20 +206,7 @@ export default async function Home() {
       </section>
 
       {/* PRÓXIMOS EVENTOS ----------------------------------------------------- */}
-      <section aria-labelledby="proximos" className="py-24 md:py-32">
-        <div className="wrap grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:self-start" data-reveal-stagger="">
-            <SectionTitle id="proximos" lead="Próximos" accent="encontros." />
-            <Lede className="mt-6">
-              Datas do site oficial e do calendário 2027 que a comunidade publicou em 19 de novembro de 2026. A programação pode mudar; horários e locais são confirmados pela secretaria.
-            </Lede>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/agenda" variant="ghost">Agenda completa</ButtonLink>
-            </div>
-          </div>
-          <EventList items={upcoming} />
-        </div>
-      </section>
+      <UpcomingEvents items={upcoming} now={now} />
 
       {/* ACAMPAMENTOS E RETIROS -------------------------------------------------- */}
       <section aria-labelledby="acampamentos" className="bg-sand py-24 md:py-32">
@@ -300,6 +329,17 @@ export default async function Home() {
             ))}
           </ul>
         </div>
+        <div className="mt-6" aria-hidden="true">
+          <Marquee
+            reverse
+            speed={60}
+            separator={null}
+            gap="0.75rem"
+            items={stripCovers.map((g) => (
+              <Photo key={g.slug} src={g.cover} alt="" sizes="240px" quality={60} className="h-32 w-48 rounded-[var(--radius-md)] sm:h-40 sm:w-60" />
+            ))}
+          />
+        </div>
       </section>
 
       {/* PROGRAMAÇÃO DE ORAÇÃO ------------------------------------------------------ */}
@@ -351,6 +391,11 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAIXA DO LEMA ------------------------------------------------------------ */}
+      <div className="on-night bg-night py-8 text-on-night md:py-10" aria-hidden="true">
+        <Marquee reverse speed={45} className="font-display text-[clamp(2.4rem,1.6rem+3.4vw,4.6rem)] italic leading-none text-gold-night" items={[site.motto, "Venha nos conhecer", site.motto, "Venha nos conhecer"]} />
+      </div>
 
       {/* PARTICIPE / CONTATO ------------------------------------------------------- */}
       <section aria-labelledby="participe" className="py-24 md:py-32">

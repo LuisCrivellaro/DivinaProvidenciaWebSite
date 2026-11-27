@@ -85,15 +85,15 @@ Escala (fluida com `clamp`): H1 de página 2,4 → 4,6 rem · H1 do hero 3,1 →
 
 ## 7. Movimento
 
-Princípios: entrar **uma vez**, devagar e sem pular; nada se move sozinho em loop; nenhum layout shift (só `opacity`, `transform`, `clip-path`); tudo desliga com `prefers-reduced-motion`.
+Princípios (revistos em 27/11/2026 para um site mais animado): entradas com presença, que sobem, desfocam e crescem; um pouco de **vida contínua** onde faz sentido (brasas, faixas que correm, luz que gira, botão principal que pulsa); nenhum layout shift (só `opacity`, `transform`, `filter`, `clip-path`); tudo para com `prefers-reduced-motion`.
 
 **Entradas ao rolar** — um só motor, `RevealObserver` (IntersectionObserver), montado no layout:
 
 | Marcação | Efeito |
 |---|---|
-| `data-reveal` | sobe 24 px e aparece (0,9–1,1 s, `ease-out-expo`) |
+| `data-reveal` | sobe 56 px, sai do desfoque (8 px) e cresce de 0,96 para 1 (0,9–1,2 s, `ease-out-expo`) |
 | `data-reveal="fade"` | só aparece |
-| `data-reveal="image"` (ou `<Photo reveal>`) | cortina de baixo para cima + a foto assenta de 1,08 para 1 |
+| `data-reveal="image"` (ou `<Photo reveal>`) | cortina inteira de baixo para cima + a foto assenta de 1,3 para 1 |
 | `data-reveal="rule"` | filete que se desenha do centro |
 | `data-reveal-stagger` no contêiner | filhos diretos em cascata (90 ms entre itens que entram **juntos**, máx. 540 ms) |
 
@@ -101,7 +101,26 @@ Já vêm ligados: `SectionTitle` (exceto o H1), o conteúdo de todo `Section`, `
 
 Como funciona (e por que não quebra): o script `lib/reveal.ts` põe `.js-reveal` no `<html>` antes da primeira pintura, só com JS e sem redução de movimento. O estado escondido é **só CSS**; o observer apenas acrescenta `.is-revealed` depois que o React hidratou o elemento (evita *hydration mismatch*) e, ao fim, `.reveal-done`, que devolve as transições normais de hover. Se o observer não montar em 3 s, o modo é desligado e tudo aparece.
 
-**Outros movimentos:** hero com entrada palavra a palavra (BlurText em CSS) e parallax muito discreto da foto (4 %, scroll-driven, sem JS) · carisma scroll-driven · botões com brilho único no hover · cartões sobem 4 px com sombra quente · fotos aproximam 1,045 · linhas da agenda ganham fundo dourado translúcido e o dia fica dourado · dropdown com `@starting-style`.
+**Outros movimentos:** hero com entrada palavra a palavra (BlurText em CSS) e parallax muito discreto da foto (4 %, scroll-driven, sem JS) · carisma scroll-driven · botões com brilho no hover · fotos aproximam 1,045 · linhas da agenda ganham fundo dourado translúcido e o dia fica dourado · dropdown com `@starting-style`.
+
+**Movimento contínuo e interativo** (`Decor.tsx`, `Motion.tsx`, seção "Movimento contínuo" do `globals.css`):
+
+| Peça | Onde | Efeito |
+|---|---|---|
+| `.scroll-progress` | layout | filete dourado no topo que acompanha a leitura (scroll-driven) |
+| `.ken-burns` | hero | a foto aproxima e desloca devagar (24 s, vai e volta) |
+| `<Embers>` | hero | brasas douradas subindo; posições determinísticas (mesmo HTML no servidor e no cliente) |
+| `.gold-shimmer` | destaque do H1 da home | brilho de folha de ouro que atravessa a palavra em laço |
+| `.btn-pulse` + `data-magnetic` | CTA do hero | anel que pulsa, brilho que passa sozinho e botão atraído pelo cursor |
+| `.float`, `.live-dot` | cartão "Próximo na agenda" | cartão flutua; ponto pulsando ao lado de "Inscrições abertas" |
+| `<Marquee>` | home: faixa dourada, tira de fotos da galeria, faixa do lema | conteúdo duplicado correndo em laço; pausa no hover |
+| `<RotatingBadge>` | "Quem somos" | selo "Desde 2005" girando |
+| `<CountUp>` | números da comunidade | conta de 0 até o valor ao entrar na tela; o HTML do servidor já traz o valor final |
+| `.title-accent` | `SectionTitle` | sublinhado dourado que se desenha sob a linha em itálico |
+| `.lift` / `data-tilt` (PointerFX) | todos os cartões | inclinação 3D na direção do cursor e foco de luz; cartões largos inclinam menos; só mouse |
+| `.carisma-band::before` | faixa do carisma | raios de luz girando devagar (90 s) |
+
+Com `prefers-reduced-motion`, os laços param, as brasas somem, as faixas viram linhas estáticas centralizadas e o PointerFX não liga.
 
 Navegadores sem scroll-driven animations (Firefox) veem o hero estático e o carisma já pintado; o restante funciona em todos.
 
