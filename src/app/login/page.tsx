@@ -36,7 +36,7 @@ export default function Page() {
         </div>
 
         {/* Painel fotográfico */}
-        <aside aria-hidden="true" className="relative hidden overflow-hidden rounded-[var(--radius-xl)] bg-night lg:sticky lg:top-[calc(var(--header-h)+2.5rem)] lg:block lg:h-[calc(100svh-var(--header-h)-5rem)] lg:min-h-[34rem]">
+        <aside aria-hidden="true" className="keep-dark relative hidden overflow-hidden rounded-[var(--radius-xl)] bg-night lg:sticky lg:top-[calc(var(--header-h)+2.5rem)] lg:block lg:h-[calc(100svh-var(--header-h)-5rem)] lg:min-h-[34rem]">
           <div className="absolute inset-0">
             <Photo photo="louvor" sizes="(min-width: 1024px) 50vw, 1px" priority className="h-full !bg-night" />
           </div>

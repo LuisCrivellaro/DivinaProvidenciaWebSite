@@ -116,7 +116,7 @@ export function GalleryViewer({ images, title }: { images: string[]; title: stri
           e.preventDefault();
           close();
         }}
-        className="m-0 h-dvh max-h-none w-screen max-w-none overscroll-contain bg-night/96 p-0 text-on-night backdrop:bg-night/80"
+        className="keep-dark m-0 h-dvh max-h-none w-screen max-w-none overscroll-contain bg-night/96 p-0 text-on-night backdrop:bg-night/80"
       >
         {index !== null && (
           <div

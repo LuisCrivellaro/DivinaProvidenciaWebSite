@@ -8,7 +8,7 @@ import { Play } from "lucide-react";
 export function VideoFacade({ id, title, className = "", priority }: { id: string; title: string; className?: string; priority?: boolean }) {
   const [active, setActive] = useState(false);
   return (
-    <div className={`relative aspect-video overflow-hidden rounded-[var(--radius-lg)] bg-night ${className}`}>
+    <div className={`keep-dark relative aspect-video overflow-hidden rounded-[var(--radius-lg)] bg-night ${className}`}>
       {active ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}

@@ -18,10 +18,12 @@
   --color-gold-light: #e6c58c;     /* Dourado claro — texto sobre escuro (10,5:1 no night) */
   --color-gold-ink: #6f5322;       /* Dourado escurecido para texto pequeno de reserva (6,8:1) */
   --color-danger: #9c3d2e;         /* Somente mensagens de erro de formulário (6,4:1) — não é cor de marca */
-  --color-night: #1f1a16;          /* Café profundo — seções escuras, galerias, lightbox */
-  --color-on-night: #fff8f2;       /* 16,4:1 no night */
-  --color-on-night-soft: #eee3d6;  /* texto secundário sobre night */
-  --color-gold-night: #e6c58c;     /* dourado claro sobre night (10,5:1) */
+  /* Superfícies de destaque (antes café profundo, desde 27/11/2026 no dourado principal).
+     As áreas que sombreiam fotos usam .keep-dark e voltam ao café. */
+  --color-night: #b99550;          /* Dourado principal — seções e cartões de destaque, rodapé */
+  --color-on-night: #1f1a16;       /* texto sobre o dourado (6,1:1) */
+  --color-on-night-soft: #3a2e25;  /* texto secundário sobre o dourado (4,7:1) */
+  --color-gold-night: #3f2c0e;     /* destaque sobre o dourado (4,7:1) */
 
   --font-display: var(--font-gambetta), "Iowan Old Style", Georgia, serif;
   --font-sans: var(--font-switzer), ui-sans-serif, system-ui, sans-serif;
@@ -96,6 +98,17 @@
 }
 
 .wrap { width: var(--wrap); margin-inline: auto; }
+
+/* Café profundo onde ele sombreia fotos (hero, cartões com foto, cartaz, vídeo, visualizadores):
+   devolve os valores escuros aos tokens só dentro deste elemento. */
+.keep-dark {
+  --color-night: #1f1a16;
+  --color-on-night: #fff8f2;
+  --color-on-night-soft: #eee3d6;
+  --color-gold-night: #e6c58c;
+  /* a cor herdada já vem resolvida do pai dourado: precisa ser declarada de novo aqui */
+  color: var(--color-on-night);
+}
 
 .tabular { font-variant-numeric: tabular-nums; }
 
@@ -209,11 +222,11 @@
 .btn-ghost-light {
   --btn-bg: transparent;
   --btn-fg: var(--color-on-night);
-  --btn-bg-hover: color-mix(in oklab, white 10%, transparent);
+  --btn-bg-hover: color-mix(in oklab, var(--color-on-night) 10%, transparent);
   --btn-shadow: none;
-  border-color: color-mix(in oklab, white 38%, transparent);
+  border-color: color-mix(in oklab, var(--color-on-night) 40%, transparent);
 }
-.btn-ghost-light:hover { border-color: var(--color-gold-light); box-shadow: none; }
+.btn-ghost-light:hover { border-color: var(--color-on-night); box-shadow: none; }
 .btn-ghost::after, .btn-light::after, .btn-ghost-light::after { display: none; }
 .btn[aria-disabled="true"], .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 .btn[aria-disabled="true"]::after, .btn:disabled::after { display: none; }
@@ -515,8 +528,6 @@
 @keyframes marquee { to { transform: translate3d(-50%, 0, 0); } }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Selo que gira */
-.badge-ring { animation: spin 22s linear infinite; }
 
 /* Luz que vem do alto girando devagar atrás do carisma */
 .carisma-band::before {
@@ -584,12 +595,12 @@
 .caminho {
   --thread-x: 1.25rem;
   background:
-    radial-gradient(60% 50% at 85% 0%, rgb(201 166 96 / 0.16), transparent 70%),
-    radial-gradient(50% 45% at 0% 100%, rgb(201 166 96 / 0.12), transparent 70%),
+    radial-gradient(60% 50% at 85% 0%, rgb(255 244 220 / 0.32), transparent 70%),
+    radial-gradient(50% 45% at 0% 100%, rgb(255 244 220 / 0.22), transparent 70%),
     var(--color-night);
 }
 @media (min-width: 640px) { .caminho { --thread-x: 1.5rem; } }
-/* grão de papel antigo sobre o escuro */
+/* grão de papel antigo sobre o dourado */
 .caminho::before {
   content: "";
   position: absolute;
@@ -646,10 +657,10 @@
   width: 2px;
   border-radius: 2px;
 }
-.caminho-list::before { background: rgb(255 255 255 / 0.1); }
+.caminho-list::before { background: color-mix(in oklab, var(--color-on-night) 15%, transparent); }
 .caminho-list::after {
-  background: linear-gradient(180deg, var(--color-gold-light), var(--color-gold) 70%, rgb(185 149 80 / 0.2));
-  box-shadow: 0 0 12px rgb(230 197 140 / 0.55);
+  background: linear-gradient(180deg, var(--color-on-night), color-mix(in oklab, var(--color-on-night) 70%, transparent) 70%, color-mix(in oklab, var(--color-on-night) 15%, transparent));
+  box-shadow: 0 0 12px rgb(255 244 220 / 0.6);
   transform-origin: top;
 }
 .caminho-bead {
@@ -661,9 +672,9 @@
   height: 16px;
   margin-top: -8px;
   border-radius: 999px;
-  border: 2px solid var(--color-gold-light);
-  background: var(--color-gold);
-  box-shadow: 0 0 0 5px rgb(31 26 22), 0 0 18px 2px rgb(230 197 140 / 0.7);
+  border: 2px solid var(--color-paper);
+  background: var(--color-on-night);
+  box-shadow: 0 0 0 5px var(--color-night), 0 0 18px 3px rgb(255 244 220 / 0.85);
 }
 .caminho-year {
   position: relative;
@@ -682,21 +693,21 @@
   width: 18px;
   height: 18px;
   margin-top: -9px;
-  background: var(--color-gold-light);
+  background: var(--color-on-night);
   transform: rotate(45deg);
-  box-shadow: 0 0 0 5px rgb(31 26 22), 0 0 22px 4px rgb(230 197 140 / 0.6);
+  box-shadow: 0 0 0 5px var(--color-night), 0 0 22px 4px rgb(255 244 220 / 0.8);
 }
 .caminho-card {
   transition: transform 0.6s var(--ease-out-expo), background-color 0.4s var(--ease-out-quart), border-color 0.4s var(--ease-out-quart), box-shadow 0.6s var(--ease-out-expo);
 }
 .caminho-card:hover, .caminho-card:focus-visible {
   transform: translateX(6px);
-  background-color: rgb(255 255 255 / 0.07);
-  border-color: rgb(230 197 140 / 0.45);
-  box-shadow: 0 24px 50px -30px rgb(0 0 0 / 0.9), inset 0 0 0 1px rgb(230 197 140 / 0.1);
+  background-color: rgb(255 250 240 / 0.22);
+  border-color: color-mix(in oklab, var(--color-on-night) 45%, transparent);
+  box-shadow: 0 24px 50px -30px rgb(60 40 10 / 0.7);
 }
 .caminho-day { transition: color 0.4s var(--ease-out-quart); }
-.caminho-card:hover .caminho-day { color: var(--color-gold-light); }
+.caminho-card:hover .caminho-day { color: var(--color-gold-night); }
 .caminho-thumb img { filter: grayscale(0.7) sepia(0.35) brightness(0.8); transition: filter 0.6s var(--ease-out-quart), transform 1s var(--ease-out-expo); }
 .caminho-card:hover .caminho-thumb img { filter: none; transform: scale(1.08); }
 
@@ -714,7 +725,7 @@
 }
 @keyframes grow-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes bead-on {
-  from { background: var(--color-night); border-color: rgb(255 255 255 / 0.25); box-shadow: 0 0 0 5px rgb(31 26 22); scale: 0.7; }
+  from { background: var(--color-night); border-color: color-mix(in oklab, var(--color-on-night) 35%, transparent); box-shadow: 0 0 0 5px var(--color-night); scale: 0.7; }
 }
 
 /* ------------------------------------------------------------------
@@ -759,7 +770,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ken-burns, .embers, .float, .btn-pulse, .btn-pulse::after, .live-dot::after, .scroll-cue .mouse::after,
-  .marquee-sep, .badge-ring, .carisma-band::before, .scroll-progress { animation: none !important; }
+  .marquee-sep, .carisma-band::before, .scroll-progress { animation: none !important; }
   .embers { display: none; }
   .marquee-track { animation: none !important; flex-wrap: wrap; width: auto; }
   .marquee-row[aria-hidden] { display: none; }

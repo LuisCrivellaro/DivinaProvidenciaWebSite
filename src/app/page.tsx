@@ -6,7 +6,7 @@ import { UpcomingEvents } from "@/components/UpcomingEvents";
 import { Carisma } from "@/components/Carisma";
 import { VideoFacade } from "@/components/VideoFacade";
 import { BrandIcon } from "@/components/BrandIcon";
-import { Embers, Marquee, RotatingBadge } from "@/components/Decor";
+import { Embers, Marquee } from "@/components/Decor";
 import { CountUp } from "@/components/Motion";
 import { PhotoStrip } from "@/components/PhotoStrip";
 import { events } from "@/content/events";
@@ -33,7 +33,7 @@ export default async function Home() {
   return (
     <>
       {/* HERO ------------------------------------------------------------ */}
-      <section aria-labelledby="hero-title" className="hero-drift on-night relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-on-night">
+      <section aria-labelledby="hero-title" className="hero-drift keep-dark on-night relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-on-night">
         <div className="ken-burns absolute inset-0 -z-10">
           <Image src={uploadUrl(photos.hero.src)} alt={photos.hero.alt} fill preload loading="eager" sizes="100vw" quality={85} className="object-cover object-[50%_35%]" />
         </div>
@@ -100,9 +100,14 @@ export default async function Home() {
             <div data-reveal="image">
               <Photo photo="missaCompromisso" sizes="(min-width: 1024px) 40vw, 100vw" className="arch aspect-[4/5]" imgClassName="object-[78%_45%]" />
             </div>
-            <RotatingBadge text="Desde 2005 · Comunidade de Aliança · " className="absolute -bottom-8 right-2 w-32 bg-night text-gold-night shadow-[0_20px_40px_-20px_rgb(31_26_22/0.7)] sm:-right-6 sm:w-40">
-              <span className="font-display text-[2.2rem] italic leading-none sm:text-[2.6rem]">DP</span>
-            </RotatingBadge>
+            <Image
+              src="/brand/logo-simbolo.png"
+              alt=""
+              width={589}
+              height={488}
+              sizes="176px"
+              className="float absolute -bottom-12 right-0 w-32 drop-shadow-[0_10px_18px_rgb(255_248_242/0.95)] sm:w-40 lg:-right-16 lg:w-44"
+            />
           </div>
           <div className="lg:pt-10" data-reveal-stagger="">
             <SectionTitle id="quem-somos" lead="Uma comunidade de aliança" accent="nascida na Igreja local." />
@@ -157,7 +162,7 @@ export default async function Home() {
           </div>
 
           <div className="mt-14 grid gap-5 md:grid-cols-6 md:grid-rows-[auto_auto]" data-reveal-stagger="">
-            <Link href="/acampamentos" className="group lift relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-7 text-on-night md:col-span-4 md:row-span-2 md:min-h-[38rem]">
+            <Link href="/acampamentos" className="group lift keep-dark relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-7 text-on-night md:col-span-4 md:row-span-2 md:min-h-[38rem]">
               <Photo photo="louvor" sizes="(min-width: 768px) 66vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/35 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[clamp(2rem,1.5rem+2vw,3rem)] leading-none">Acampamentos</h3>
@@ -167,14 +172,14 @@ export default async function Home() {
               </span>
             </Link>
 
-            <Link href="/retiros" className="group lift relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
+            <Link href="/retiros" className="group lift keep-dark relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
               <Photo photo="retiroLouvor" sizes="(min-width: 768px) 33vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/30 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[1.9rem] leading-none">Retiros</h3>
               <p className="mt-2 text-on-night-soft">Desperta, Homens de Fé, Mulheres e o Curso 5 Linguagens do Amor.</p>
             </Link>
 
-            <Link href="/vida-de-oracao#adoracao" className="group lift relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
+            <Link href="/vida-de-oracao#adoracao" className="group lift keep-dark relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
               <Photo photo="adoracaoAltar" sizes="(min-width: 768px) 33vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/30 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[1.9rem] leading-none">Adoração</h3>
@@ -321,7 +326,7 @@ export default async function Home() {
           <ul className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-2" data-reveal-stagger="">
             {highlightGalleries.map((g, i) => (
               <li key={g.slug} className={i === 0 ? "col-span-2 row-span-2" : ""}>
-                <Link href={`/galeria/${g.slug}`} className="group relative block h-full min-h-[11rem] overflow-hidden rounded-[var(--radius-md)]">
+                <Link href={`/galeria/${g.slug}`} className="group keep-dark relative block h-full min-h-[11rem] overflow-hidden rounded-[var(--radius-md)]">
                   <Photo src={g.cover} alt="" sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"} className="zoom-frame !absolute inset-0" />
                   <span className="absolute inset-0 bg-gradient-to-t from-night/85 via-transparent to-transparent" aria-hidden="true" />
                   <span className="absolute bottom-0 left-0 p-4 font-display text-[1.15rem] leading-tight sm:text-[1.3rem]">{g.title}</span>

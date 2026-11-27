@@ -115,7 +115,7 @@ export function PhotoStrip({ photos, speed = 60 }: { photos: StripPhoto[]; speed
               setCopied(false);
               setIndex(i);
             }}
-            className="strip-photo group relative block h-32 w-48 overflow-hidden rounded-[var(--radius-md)] bg-white/5 sm:h-40 sm:w-60"
+            className="strip-photo keep-dark group relative block h-32 w-48 overflow-hidden rounded-[var(--radius-md)] bg-white/5 sm:h-40 sm:w-60"
           >
             <Image src={`${UPLOADS}${p.cover}`} alt="" fill sizes="240px" quality={60} className="object-cover" />
             <span className="strip-veil absolute inset-0 flex flex-col whitespace-normal justify-end bg-gradient-to-t from-night/90 via-night/20 to-transparent p-3 text-left" aria-hidden="true">
@@ -151,7 +151,7 @@ export function PhotoStrip({ photos, speed = 60 }: { photos: StripPhoto[]; speed
           e.preventDefault();
           close();
         }}
-        className="lightbox on-night m-0 h-dvh max-h-none w-screen max-w-none overflow-y-auto overscroll-contain bg-night/75 p-0 text-on-night backdrop:bg-night/85 backdrop:backdrop-blur-md"
+        className="lightbox keep-dark on-night m-0 h-dvh max-h-none w-screen max-w-none overflow-y-auto overscroll-contain bg-night/75 p-0 text-on-night backdrop:bg-night/85 backdrop:backdrop-blur-md"
       >
         {p && index !== null && (
           <div className="grid min-h-full grid-rows-[auto_minmax(55vh,1fr)_auto] lg:h-full lg:grid-cols-[1fr_24rem] lg:grid-rows-[auto_1fr_auto]">

@@ -63,20 +63,3 @@ export function Marquee({ items, reverse = false, speed = 38, className = "", se
     </div>
   );
 }
-
-/** Selo circular com texto que gira devagar. Quem usa define a posição (absolute/relative) no className. */
-export function RotatingBadge({ text, children, className = "" }: { text: string; children?: ReactNode; className?: string }) {
-  return (
-    <div className={`rotating-badge grid aspect-square place-items-center rounded-full ${className}`} aria-hidden="true">
-      <svg viewBox="0 0 200 200" className="badge-ring absolute inset-0 h-full w-full">
-        <defs>
-          <path id="badge-circle" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" />
-        </defs>
-        <text className="fill-current text-[15.5px] font-semibold uppercase tracking-[0.32em]">
-          <textPath href="#badge-circle">{text}</textPath>
-        </text>
-      </svg>
-      {children}
-    </div>
-  );
-}

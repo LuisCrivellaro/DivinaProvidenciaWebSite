@@ -62,7 +62,7 @@ export function UpcomingEvents({ items, now }: { items: CommunityEvent[]; now: s
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
           {/* CARTAZ DO PRÓXIMO ENCONTRO ------------------------------------------------ */}
-          <article className="lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:self-start" data-reveal="">
+          <article className="keep-dark lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:self-start" data-reveal="">
             <div className="poster group relative isolate flex min-h-[38rem] flex-col overflow-hidden rounded-[var(--radius-xl)] p-7 shadow-[0_40px_80px_-40px_rgb(0_0_0/0.8)] sm:p-9" data-tilt="4">
               <Photo photo={nextPhoto} sizes="(min-width: 1024px) 45vw, 100vw" className="poster-photo !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.25)_0%,rgb(31_26_22/0.55)_40%,rgb(31_26_22/0.96)_78%)]" aria-hidden="true" />
@@ -130,7 +130,7 @@ export function UpcomingEvents({ items, now }: { items: CommunityEvent[]; now: s
                     <span className="caminho-bead" aria-hidden="true" />
                     <Link
                       href={`/agenda/${e.slug}`}
-                      className="caminho-card group my-3 grid grid-cols-[3.75rem_1fr] items-center gap-4 rounded-[var(--radius-lg)] border border-white/10 bg-white/[0.035] p-4 sm:grid-cols-[4.5rem_1fr_6.5rem] sm:gap-5 sm:p-5 lg:grid-cols-[4.5rem_1fr] xl:grid-cols-[4.5rem_1fr_6.5rem]"
+                      className="caminho-card group my-3 grid grid-cols-[3.75rem_1fr] items-center gap-4 rounded-[var(--radius-lg)] border border-on-night/15 bg-paper/15 p-4 sm:grid-cols-[4.5rem_1fr_6.5rem] sm:gap-5 sm:p-5 lg:grid-cols-[4.5rem_1fr] xl:grid-cols-[4.5rem_1fr_6.5rem]"
                     >
                       <span className="text-center leading-none">
                         <span className="block text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-on-night-soft">{weekday(e.start)}</span>

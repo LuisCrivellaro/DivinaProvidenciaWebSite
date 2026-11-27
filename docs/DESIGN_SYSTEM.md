@@ -35,11 +35,14 @@ Contrastes calculados pela fórmula WCAG 2.x.
 | `gold` | `#B99550` | **Dourado principal**: botões, selos "Inscrições abertas", faixa do carisma, painéis de destaque, filetes, sublinhado do menu | carvão sobre ele **5,6:1** · 2,7:1 no marfim → **nunca texto dourado sobre claro**; branco sobre ele 2,8:1 → **nunca texto branco sobre dourado** |
 | `gold-bright` | `#C9A660` | Hover dos botões dourados (fica mais luminoso, não mais escuro) | carvão 6,8:1 |
 | `gold-deep` | `#846430` | Dourado profundo: segunda linha dos títulos, links, ícones, números de edição, mês na agenda, foco | 5,2:1 marfim · 4,9:1 creme |
-| `gold-light` / `gold-night` | `#E6C58C` | Texto dourado sobre fundos escuros | 10,5:1 no night |
+| `gold-light` | `#E6C58C` | Texto dourado sobre fundos escuros (fotos, `.keep-dark`) | 10,5:1 no café |
+| `gold-night` | `#3F2C0E` | Destaque (itálicos, selos, links) sobre a superfície `night` dourada. Em `.keep-dark` volta a `#E6C58C` | 4,7:1 no dourado |
 | `gold-ink` | `#6F5322` | Reserva para texto pequeno dourado | 6,8:1 marfim |
 | `danger` | `#9C3D2E` | **Só** mensagens e bordas de erro de formulário (não é cor de marca) | 6,4:1 marfim |
-| `night` | `#1F1A16` | Café profundo: footer, painel "Fé que vira cuidado", galeria da home, adoração, lightbox | — |
-| `on-night` / `on-night-soft` | `#FFF8F2` / `#EEE3D6` | Texto sobre `night` | 16,4:1 / cerca de 13:1 |
+| `night` | `#B99550` | **Desde 27/11/2026 é o dourado principal** (antes café `#1F1A16`): rodapé, painel "Fé que vira cuidado", galeria e próximos encontros da home, adoração, cartões de destaque | — |
+| `on-night` / `on-night-soft` | `#1F1A16` / `#3A2E25` | Texto sobre a superfície `night` dourada | 6,1:1 / 4,7:1 |
+
+**`.keep-dark`** devolve os valores café (`night #1F1A16`, `on-night #FFF8F2`, `on-night-soft #EEE3D6`, `gold-night #E6C58C`) só dentro do elemento. Usado onde o escuro sombreia fotos: hero, cartões com foto da home, ladrilhos da galeria, cartaz do próximo encontro, capa de vídeo, painel do login e os visualizadores de foto.
 
 Regra de ouro: **fundo dourado → texto carvão; fundo claro → dourado só em `gold-deep`; fundo escuro → `gold-light`.** Vinho e vermelho não existem mais como tokens.
 
@@ -73,7 +76,7 @@ Escala (fluida com `clamp`): H1 de página 2,4 → 4,6 rem · H1 do hero 3,1 →
 | `SectionTitle`, `Lede`, `PageHeader`, `Breadcrumbs`, `Section`, `FactList`, `Note` | `ui.tsx` | Estrutura das páginas internas. |
 | `BlurTitle` | `ui.tsx` | Entrada palavra a palavra do H1 do hero (técnica do BlurText/React Bits em CSS). |
 | `Header` | `Header.tsx` | Marfim fixo; links com filete dourado que nasce do centro (`.nav-link`); dropdown "Participe" que desce com fade e itens em cascata (`.dropdown-panel`); CTA dourado (só ícone entre 1024 e 1279 px); menu mobile em tela cheia com entrada escalonada, foco preso, Esc. |
-| `Footer` | `Footer.tsx` | Café profundo com filete dourado no topo, logo sobre marfim, colunas que entram em cascata, contatos por setor, redes. |
+| `Footer` | `Footer.tsx` | Dourado principal com texto café, logo sobre marfim, colunas que entram em cascata, contatos por setor, redes. |
 | `EventList` | `EventList.tsx` | Linhas de agenda (dia da semana, dia, mês, título, categoria, data, selo). |
 | `Carisma` | `Carisma.tsx` | Faixa dourada; as palavras ganham tinta na rolagem (CSS scroll-driven, sem JS). |
 | `RevealObserver` | `RevealObserver.tsx`, `lib/reveal.ts` | Motor único das animações de entrada (ver §7). |
