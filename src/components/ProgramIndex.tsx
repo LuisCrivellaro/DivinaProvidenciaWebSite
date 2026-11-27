@@ -9,7 +9,7 @@ import { dateRange } from "@/lib/dates";
 /** Lista editorial de programas, alternando foto e texto (composição inspirada no Fosters). */
 export function ProgramIndex({ items, base }: { items: Program[]; base: string }) {
   return (
-    <ul className="space-y-6">
+    <ul className="space-y-6" data-reveal-stagger="">
       {items.map((p, i) => {
         const ev = events.find((e) => e.slug === p.nextEventSlug);
         const reversed = i % 2 === 1;
@@ -33,7 +33,7 @@ export function ProgramIndex({ items, base }: { items: Program[]; base: string }
                 )}
               </div>
               <div className="flex flex-col justify-center p-8 md:p-12">
-                <h2 className="font-display text-[clamp(1.9rem,1.4rem+1.6vw,2.8rem)] leading-none transition-colors group-hover:text-wine">{p.name}</h2>
+                <h2 className="font-display text-[clamp(1.9rem,1.4rem+1.6vw,2.8rem)] leading-none transition-colors group-hover:text-gold-deep">{p.name}</h2>
                 <p className="mt-4 max-w-[44ch] text-[1.08rem] text-ink-soft">{p.short}</p>
                 <dl className="mt-8 grid gap-4 border-t border-ink/12 pt-6 sm:grid-cols-2">
                   <div>
@@ -47,7 +47,7 @@ export function ProgramIndex({ items, base }: { items: Program[]; base: string }
                     </div>
                   )}
                 </dl>
-                <span className="mt-8 inline-flex items-center gap-2 font-medium text-wine">
+                <span className="mt-8 inline-flex items-center gap-2 font-medium text-gold-deep">
                   {p.registration ? "Ver inscrições" : "Saiba mais"} <ArrowRight size={18} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
                 </span>
               </div>

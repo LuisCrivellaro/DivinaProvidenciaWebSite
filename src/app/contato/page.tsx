@@ -24,7 +24,7 @@ export default function Page() {
 
       <Section tone="sand" className="!pt-14" labelledBy="secretarias">
         <h2 id="secretarias" className="sr-only">Secretarias</h2>
-        <ul className="grid gap-5 md:grid-cols-3">
+        <ul className="grid gap-5 md:grid-cols-3" data-reveal-stagger="">
           {contacts.map((c) => (
             <li key={c.id} className="flex flex-col rounded-[var(--radius-xl)] bg-paper p-7">
               <h3 className="font-display text-[1.6rem] leading-tight">{c.label}</h3>
@@ -33,7 +33,7 @@ export default function Page() {
                 {c.whatsapp && (
                   <li>
                     <a href={whatsappLink(c.whatsapp)} target="_blank" rel="noopener noreferrer" className="link-draw inline-flex min-h-11 items-center gap-2 font-medium tabular">
-                      <BrandIcon name="whatsapp" width={18} height={18} className="text-red" /> {formatPhone(c.whatsapp)}
+                      <BrandIcon name="whatsapp" width={18} height={18} className="text-gold-deep" /> {formatPhone(c.whatsapp)}
                       <span className="sr-only"> no WhatsApp (abre em nova aba)</span>
                     </a>
                   </li>
@@ -41,14 +41,14 @@ export default function Page() {
                 {c.phone && (
                   <li>
                     <a href={`tel:+55${c.phone}`} className="link-draw inline-flex min-h-11 items-center gap-2 font-medium tabular">
-                      <Phone size={18} className="text-red" aria-hidden="true" /> {formatPhone(c.phone)}
+                      <Phone size={18} className="text-gold-deep" aria-hidden="true" /> {formatPhone(c.phone)}
                     </a>
                   </li>
                 )}
                 {c.email && (
                   <li>
                     <a href={`mailto:${c.email}`} className="link-draw inline-flex min-h-11 items-center gap-2 break-all font-medium">
-                      <Mail size={18} className="shrink-0 text-red" aria-hidden="true" /> {c.email}
+                      <Mail size={18} className="shrink-0 text-gold-deep" aria-hidden="true" /> {c.email}
                     </a>
                   </li>
                 )}
@@ -75,7 +75,7 @@ export default function Page() {
           <div>
             <SectionTitle id="endereco" lead="Onde" accent="estamos." />
             <address className="mt-6 flex gap-3 not-italic text-[1.1rem]">
-              <MapPin size={22} className="mt-1 shrink-0 text-red" aria-hidden="true" />
+              <MapPin size={22} className="mt-1 shrink-0 text-gold-deep" aria-hidden="true" />
               <span>
                 {address.street}
                 <br />
@@ -89,7 +89,7 @@ export default function Page() {
               {social.map((s) => (
                 <li key={s.id}>
                   <a href={s.href} target="_blank" rel="noopener noreferrer" className="link-draw inline-flex min-h-11 items-center gap-3">
-                    <BrandIcon name={s.id} className="text-red" /> {s.label} · {s.handle}
+                    <BrandIcon name={s.id} className="text-gold-deep" /> {s.label} · {s.handle}
                     <span className="sr-only"> (abre em nova aba)</span>
                   </a>
                 </li>

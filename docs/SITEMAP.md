@@ -19,12 +19,13 @@
 /galeria/[slug]                Grade + lightbox (?foto=N); 16 galerias restritas (2.256 fotos) mostram aviso + link para o site oficial
 /videos                        Vídeos do canal oficial por tema
 /loja                          Produtos vivos da Store API do WooCommerce + links para carrinho/conta oficiais
+/login                         Tela de login própria; envia direto ao wp-login.php oficial e abre Minha conta (noindex)
 /contato                       Secretarias · formulário → WhatsApp · endereço · mapa · redes
 /privacidade                   Texto provisório sobre dados e imagens
 /sitemap.xml  /robots.txt  /icon.png  /apple-icon.png
 ```
 
-**Menu principal (desktop):** Participe ▾ (Acampamentos, Retiros e formação, Grupos de oração, Vida de oração) · Comunidade · Agenda · Obras · Galeria · Contato · ícones Loja e Minha conta · botão "Fale conosco" (WhatsApp da Evangelização).
+**Menu principal (desktop):** Participe ▾ (Acampamentos, Retiros e formação, Grupos de oração, Vida de oração) · Comunidade · Agenda · Obras · Galeria · Contato · ícones Loja e Minha conta (→ `/login`) · botão "Fale conosco" (WhatsApp da Evangelização).
 **Menu mobile:** tela cheia com 12 itens + WhatsApp + Minha conta + redes.
 **Rodapé:** A comunidade · Participe · Acervo e serviços · Fale com a gente · endereço · redes.
 

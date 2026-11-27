@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BrandIcon } from "./BrandIcon";
-import { address, contacts, formatPhone, mapsLink, shop, site, social, whatsappLink } from "@/content/site";
+import { address, contacts, formatPhone, mapsLink, site, social, whatsappLink } from "@/content/site";
 
 const groups = [
   {
@@ -30,7 +30,7 @@ const groups = [
       { href: "/galeria", label: "Galeria de fotos" },
       { href: "/videos", label: "Vídeos" },
       { href: "/loja", label: "Loja e inscrições" },
-      { href: shop.account, label: "Minha conta", external: true },
+      { href: "/login", label: "Minha conta" },
       { href: "/privacidade", label: "Privacidade" },
     ],
   },
@@ -38,7 +38,8 @@ const groups = [
 
 export function Footer() {
   return (
-    <footer className="on-night bg-wine text-on-night">
+    <footer className="on-night relative bg-night text-on-night">
+      <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" aria-hidden="true" />
       <div className="wrap grid gap-14 py-20 lg:grid-cols-[1.1fr_2fr]">
         <div>
           <span className="inline-block rounded-[var(--radius-lg)] bg-paper px-5 py-3">
@@ -60,7 +61,7 @@ export function Footer() {
           </address>
         </div>
 
-        <div className="grid gap-12 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-12 sm:grid-cols-2 xl:grid-cols-4" data-reveal-stagger="fade">
           {groups.map((g) => (
             <nav key={g.title} aria-label={g.title}>
               <h2 className="font-sans text-sm font-semibold text-gold-night">{g.title}</h2>

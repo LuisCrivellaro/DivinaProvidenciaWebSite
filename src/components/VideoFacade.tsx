@@ -23,7 +23,7 @@ export function VideoFacade({ id, title, className = "", priority }: { id: strin
           <span className="absolute inset-0 bg-gradient-to-t from-night/85 via-night/20 to-transparent" aria-hidden="true" />
           <span className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-4 p-5 sm:p-7">
             <span className="font-display text-[1.25rem] leading-tight text-on-night sm:text-[1.6rem]">{title}</span>
-            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-wine text-white transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
+            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-gold text-ink transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
               <Play size={22} fill="currentColor" />
             </span>
           </span>

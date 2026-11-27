@@ -62,7 +62,7 @@ export default async function Page({ params }: PageProps<"/galeria/[slug]">) {
         {related.length > 0 && (
           <section aria-labelledby="relacionadas" className="mt-24">
             <h2 id="relacionadas" className="font-display text-[2rem]">Mais galerias de {(groupLabel[g.group] ?? "").toLowerCase()}</h2>
-            <ul className="mt-8 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="mt-8 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger="">
               {related.map((r) => (
                 <li key={r.slug}>
                   <GalleryCard g={r} />

@@ -90,9 +90,26 @@ export const shop = {
   store: `${OFFICIAL_SITE}/produtos/`,
   cart: `${OFFICIAL_SITE}/carrinho/`,
   account: `${OFFICIAL_SITE}/minha-conta/`,
+  /** Login padrão do WordPress oficial (sem nonce nem captcha). A tela /login envia as credenciais direto para cá. */
+  login: `${OFFICIAL_SITE}/wp-login.php`,
   lostPassword: `${OFFICIAL_SITE}/minha-conta/lost-password/`,
   storeApi: `${OFFICIAL_SITE}/wp-json/wc/store/v1/products?per_page=50`,
 };
+
+/**
+ * Entrar com Google/Facebook. Depende do plugin gratuito Nextend Social Login no WordPress oficial,
+ * que AINDA NÃO está instalado (verificado em 27/11/2026). Enquanto `enabled` for false, os botões
+ * aparecem desativados com "em breve" — nunca simulam um login. Depois de instalar e configurar o
+ * plugin (credenciais OAuth do Google e do Facebook), troque para true.
+ */
+export const socialLogin = {
+  enabled: false,
+  providers: [
+    { id: "google", label: "Google" },
+    { id: "facebook", label: "Facebook" },
+  ],
+  href: (provider: string) => `${OFFICIAL_SITE}/wp-login.php?loginSocial=${provider}&redirect=${encodeURIComponent(shop.account)}`,
+} as const;
 
 /** Linha do tempo — somente marcos com fonte (ver docs/CONTENT_SOURCES.md). */
 export const timeline = [
@@ -113,6 +130,10 @@ export const photos = {
   cercoPalco: { src: "2025/08/DLS0522.jpg", alt: "Pregação no palco do Cerco de Jericó 2025 diante de uma multidão" },
   capela: { src: "2026/09/DLS5211.jpg", alt: "Capela iluminada à noite, com a cruz no alto, na missa de um ano da Adoração Perpétua" },
   homensDeFe: { src: "2026/04/Retiro-Homens-de-Fe-47.jpg", alt: "Homem em oração com as mãos erguidas durante o I Retiro Homens de Fé" },
+  homensDeFeAbraco: { src: "2026/04/Retiro-Homens-de-Fe-5.jpg", alt: "Dois participantes se abraçam sorrindo durante o I Retiro Homens de Fé" },
+  retiroLouvor: { src: "2026/04/Retiro-Homens-de-Fe-14.jpg", alt: "Participantes do I Retiro Homens de Fé louvam de mãos erguidas no salão da sede" },
+  adoracaoAltar: { src: "2026/09/DLS5301.jpg", alt: "Sacerdote no altar da capela, diante do crucifixo, na missa de um ano da Adoração Perpétua" },
+  jovensPregacao: { src: "2025/10/DLS1887.jpg", alt: "Jovens sentados acompanham uma pregação durante o Divina Jovem 2025" },
   festaNacoes: { src: "2025/06/festa-nacoes-2025-51.jpg", alt: "Cruz branca e flores na entrada da Festa das Nações 2025" },
   festaNacoes24: { src: "2024/06/FestadasNacoes335.jpg", alt: "Participantes com a bandeira do Rio Grande do Sul na Festa das Nações 2024" },
   sede: { src: "2024/09/DLS7863.jpg", alt: "Salão com arco de balões na entrada, no fim da tarde, durante o 23º Acampamento Sênior" },

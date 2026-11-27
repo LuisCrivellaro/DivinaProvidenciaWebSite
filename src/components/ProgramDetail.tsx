@@ -22,7 +22,7 @@ export function ProgramDetail({ program, parent }: { program: Program; parent: {
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
               <SectionTitle as="h1" lead={program.name} className="fade-up text-[clamp(2.4rem,1.6rem+3.4vw,4.6rem)]" />
-              <p className="fade-up mt-3 font-display text-[1.5rem] italic text-wine" style={{ ["--d" as string]: "80ms" }}>{program.audience}</p>
+              <p className="fade-up mt-3 font-display text-[1.5rem] italic text-gold-deep" style={{ ["--d" as string]: "80ms" }}>{program.audience}</p>
               <div className="fade-up mt-8 space-y-5 text-[1.08rem] leading-relaxed text-ink-soft" style={{ ["--d" as string]: "140ms" }}>
                 {program.intro.map((p, i) => (
                   <p key={i}>{p}</p>
@@ -79,7 +79,7 @@ export function ProgramDetail({ program, parent }: { program: Program; parent: {
             <FactList facts={program.facts} />
             {ev && (
               <p className="mt-6 text-ink-soft">
-                Próxima data no calendário: <Link href={`/agenda/${ev.slug}`} className="link-draw font-medium text-wine">{dateRange(ev.start, ev.end)}</Link>
+                Próxima data no calendário: <Link href={`/agenda/${ev.slug}`} className="link-draw font-medium text-gold-deep">{dateRange(ev.start, ev.end)}</Link>
               </p>
             )}
           </div>

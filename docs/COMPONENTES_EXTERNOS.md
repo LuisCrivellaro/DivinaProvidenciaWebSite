@@ -16,3 +16,10 @@
 | Fontes Gambetta e Switzer | Fontshare (Indian Type Foundry) | https://www.fontshare.com/fonts/gambetta · /switzer | ITF Free Font License (auto-hospedagem permitida) | Todo o site | Variáveis, auto-hospedadas com `next/font/local` | nenhuma | 116 KB (3 arquivos woff2) |
 
 **Avaliados e descartados:** React Bits `SplitText`/`ScrollFloat` (exigem GSAP), `CircularGallery`/`DomeGallery` (WebGL, pesados, sem ganho para galerias de evento), `TiltedCard`/`SpotlightCard` (efeito "tech", fora da identidade), contadores `CountUp` (números sem fonte viram métrica vazia). Uiverse: botões com glow/neon e loaders chamativos (contra a direção visual).
+
+## WhatsAppChat (Framer)
+
+- **Origem:** componente "WhatsAppChat" do Framer (`framer.com/m/WhatsAppChat-fyWs.js@q1lP6khd8m6Fr35C9HJU`), enviado pelo responsável pelo projeto em 27/11/2026.
+- **Uso:** botão "Fale Conosco" do header (Secretaria de Evangelização), em `src/components/WhatsAppChat.tsx` + `.wa-chat` em `globals.css`.
+- **Adaptação:** o original depende do runtime do Framer (`addPropertyControls`) e abre o WhatsApp com `window.open`. Foi recriado como componente React nativo e link comum (funciona sem JS, com texto para leitor de tela), mantendo o visual: verde `#25D366`, texto branco seminegrito, cantos de 8 px, sombra `0 2px 8px`, hover com opacidade 0,9 e subida de 1 px, tamanhos small/medium/large e mensagem pré-preenchida. Texto em português ("Fale Conosco"). Entre 1024 e 1279 px vira só o ícone para caber no menu.
+- **Atenção:** branco sobre `#25D366` tem contraste de cerca de 2:1 (abaixo do AA). É o visual do componente escolhido; se a comunidade quiser AA, basta passar `backgroundColor="#128C7E"` ou `#075E54` (verdes oficiais mais escuros).

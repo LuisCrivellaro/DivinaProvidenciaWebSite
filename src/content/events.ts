@@ -52,7 +52,7 @@ export const events: CommunityEvent[] = [
     source: "site",
   },
   { slug: "retorno-das-atividades-2027", title: "Retorno das atividades", category: "comunidade", start: "2027-01-25", summary: "A comunidade retoma a programação do ano.", source: "calendario-2027" },
-  { slug: "acampamento-juvenil-2027", title: "Acampamento Juvenil", category: "acampamento", start: "2027-02-06", end: "2027-02-09", summary: "Acampamento para adolescentes e jovens.", programHref: "/acampamentos/juvenil", source: "calendario-2027" },
+  { slug: "acampamento-juvenil-2027", title: "Acampamento Juvenil", category: "acampamento", start: "2027-02-06", end: "2027-02-09", summary: "18ª edição, para jovens de 18 a 24 anos. Pré-inscrições de 30 de novembro a 7 de dezembro de 2026.", programHref: "/acampamentos/juvenil", source: "calendario-2027" },
   { slug: "forma-divina-2027", title: "Forma Divina", category: "formacao", start: "2027-02-22", end: "2027-02-28", summary: "Semana do Forma Divina no calendário da comunidade.", source: "calendario-2027" },
   { slug: "romaria-dos-martires-2027", title: "Romaria dos Mártires", category: "diocese", start: "2027-03-07", summary: "Romaria que consta no calendário da comunidade.", source: "calendario-2027" },
   { slug: "retiro-mulheres-2027", title: "Retiro das Mulheres", category: "retiro", start: "2027-03-20", end: "2027-03-21", summary: "Retiro para mulheres.", programHref: "/retiros/mulheres", source: "calendario-2027" },

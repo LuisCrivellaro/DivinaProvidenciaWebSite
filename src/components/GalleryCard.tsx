@@ -16,7 +16,7 @@ export function GalleryCard({ g, sizes = "(min-width: 1024px) 25vw, (min-width: 
       ) : (
         <Photo src={g.cover} alt="" sizes={sizes} className="zoom-frame aspect-[4/3] rounded-[var(--radius-md)]" />
       )}
-      <H className="mt-3 font-display text-[1.25rem] leading-tight transition-colors group-hover:text-wine">{g.title}</H>
+      <H className="mt-3 font-display text-[1.25rem] leading-tight transition-colors group-hover:text-gold-deep">{g.title}</H>
       <p className="mt-1 text-sm text-ink-soft tabular">
         {g.year} · {g.images.length} fotos
       </p>

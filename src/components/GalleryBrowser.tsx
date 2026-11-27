@@ -63,12 +63,12 @@ export function GalleryBrowser({ galleries, groups, years }: Props) {
       {filtered.length === 0 ? (
         <p className="mt-6 rounded-[var(--radius-lg)] bg-sand p-8 text-ink-soft">
           Nenhuma galeria com esses filtros.{" "}
-          <button type="button" className="link-draw font-medium text-wine" onClick={() => router.replace(pathname, { scroll: false })}>
+          <button type="button" className="link-draw font-medium text-gold-deep" onClick={() => router.replace(pathname, { scroll: false })}>
             Limpar filtros
           </button>
         </p>
       ) : (
-        <ul className="mt-6 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className="mt-6 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-reveal-stagger="">
           {filtered.map((g) => (
             <li key={g.slug}>
               <GalleryCardClient g={g} />

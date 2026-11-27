@@ -60,12 +60,12 @@ export default function Page() {
       <Section labelledBy="apoiar">
         <SectionTitle id="apoiar" lead="Como" accent="apoiar." />
         <Lede className="mt-6">A casa não tem fins lucrativos. Os eventos beneficentes da comunidade ajudam a mantê-la.</Lede>
-        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4" data-reveal-stagger="">
           {bigEvents.filter((b) => b.slug === "festa-das-nacoes" || b.slug === "divina-brasa").map((b) => (
             <li key={b.slug} className="rounded-[var(--radius-lg)] border border-ink/10 p-6">
               <h3 className="font-display text-[1.5rem] leading-tight">{b.name}</h3>
               <p className="mt-2 text-ink-soft">{b.short}</p>
-              <Link href={`/agenda#${b.slug}`} className="link-draw mt-4 inline-flex min-h-11 items-center font-medium text-wine">Ver na agenda</Link>
+              <Link href={`/agenda#${b.slug}`} className="link-draw mt-4 inline-flex min-h-11 items-center font-medium text-gold-deep">Ver na agenda</Link>
             </li>
           ))}
           <li className="rounded-[var(--radius-lg)] bg-night p-6 text-on-night lg:col-span-2 on-night">

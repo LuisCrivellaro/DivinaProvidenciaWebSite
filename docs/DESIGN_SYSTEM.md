@@ -1,11 +1,11 @@
 # Design system — Comunidade Divina Providência
 
 > Fonte da verdade no código: `src/app/globals.css` (bloco `@theme` do Tailwind 4) e `src/components/ui.tsx`.
-> Última atualização: 27/11/2026 (paleta oficial vinho/vermelho/dourado/marfim definida pela comunidade).
+> Última atualização: 27/11/2026 — **redesign dourado**: o vinho e o vermelho deram lugar ao dourado `#B99550` como cor de destaque, e entrou um sistema de animações de entrada.
 
 ## 1. Direção
 
-**Conceito:** "casa da misericórdia" — acolhimento de família, sobriedade litúrgica e energia jovem. O vinho dá estrutura, o vermelho dá energia em pontos pequenos, o dourado aparece só em detalhes e o marfim é o fundo predominante. Fotografias reais da comunidade são protagonistas.
+**Conceito:** "casa da misericórdia" — acolhimento de família, sobriedade litúrgica e energia jovem. O dourado é a luz da marca (calor, esperança, acolhimento): botões, selos, filetes e uma faixa de destaque. O marfim é o fundo predominante e o café profundo (`night`) dá peso às seções escuras. Fotografias reais da comunidade são protagonistas.
 
 **Referências** (detalhes em `FRAMER_REFERENCES.md`): MyChurch (hero fotográfico, cartões de evento, acolhimento), Riwaq (títulos serifados em dois tons, agenda em linhas, filtros em pílula, programação em tabela), Fosters (painel colorido com acordeão + foto, cartões de projeto alternados).
 
@@ -19,31 +19,31 @@
 | `public/brand/grupo-*.png` | Logotipos dos quatro grupos de oração. |
 | `src/app/icon.png`, `apple-icon.png` | Ícone do site (avatar oficial do WordPress atual). |
 
-Regras: a logo nunca é recolorida, distorcida ou recriada. Sobre o vinho (footer) ela fica numa superfície marfim (`bg-paper`, cantos `--radius-lg`).
+Regras: a logo nunca é recolorida, distorcida ou recriada (o vermelho e o dourado dela continuam como estão). Sobre fundo escuro (footer) ela fica numa superfície marfim (`bg-paper`, cantos `--radius-lg`).
 
 ## 3. Cores (tokens)
+
+Contrastes calculados pela fórmula WCAG 2.x.
 
 | Token Tailwind | Hex | Papel | Contraste verificado |
 |---|---|---|---|
 | `paper` | `#FFF8F2` | Marfim — fundo principal | — |
 | `sand` | `#F7F1E9` | Creme claro — seções alternadas, cards | — |
 | `linen` | `#EFE3D6` | Bordas suaves, fundo de imagem carregando | — |
-| `ink` | `#2B2024` | Carvão — texto | 14,95:1 no marfim |
-| `ink-soft` | `#66585D` | Texto secundário | 6,4:1 marfim · 6,0:1 creme |
-| `wine` | `#7B2733` | **Cor principal**: botões, títulos de destaque (segunda linha em itálico), carisma, footer, painéis | 9,16:1 no marfim · branco sobre ele 9,63:1 |
-| `wine-hover` | `#65202A` | Hover/pressionado | branco 11,7:1 |
-| `red` | `#DA4540` | Vermelho institucional: ícones, sublinhado do menu ativo, números grandes de edição | 4,07:1 no marfim → **só ícones e texto ≥ 24 px** |
-| `red-dark` | `#A52C34` | Texto pequeno vermelho e selos com texto branco ("Inscrições abertas") | 6,63:1 no marfim · branco 6,98:1 |
-| `gold` | `#CCAF76` | Dourado: filetes, bordas, divisórias, ornamentos | 2,0:1 no marfim → **nunca texto sobre claro** |
-| `gold-light` / `gold-night` | `#E6C58C` | Texto dourado sobre vinho/escuro | 5,84:1 no vinho · 10,47:1 no night |
-| `gold-ink` | `#7A5E2A` | Dourado para texto sobre claro (reserva) | 5,41:1 no creme |
-| `night` | `#2E1218` | Vinho quase preto: galeria da home, adoração, lightbox, blocos restritos | — |
-| `on-night` | `#FFF8F2` | Texto sobre vinho/night | 9,16:1 vinho · 16,4:1 night |
-| `on-night-soft` | `#F2E3DC` | Texto secundário sobre vinho/night | 7,7:1 vinho · 12,6:1 night |
+| `ink` | `#2A221D` | Carvão quente — texto | 14,8:1 marfim · 13,9:1 creme |
+| `ink-soft` | `#675C53` | Texto secundário | 6,2:1 marfim · 5,8:1 creme |
+| `gold` | `#B99550` | **Dourado principal**: botões, selos "Inscrições abertas", faixa do carisma, painéis de destaque, filetes, sublinhado do menu | carvão sobre ele **5,6:1** · 2,7:1 no marfim → **nunca texto dourado sobre claro**; branco sobre ele 2,8:1 → **nunca texto branco sobre dourado** |
+| `gold-bright` | `#C9A660` | Hover dos botões dourados (fica mais luminoso, não mais escuro) | carvão 6,8:1 |
+| `gold-deep` | `#846430` | Dourado profundo: segunda linha dos títulos, links, ícones, números de edição, mês na agenda, foco | 5,2:1 marfim · 4,9:1 creme |
+| `gold-light` / `gold-night` | `#E6C58C` | Texto dourado sobre fundos escuros | 10,5:1 no night |
+| `gold-ink` | `#6F5322` | Reserva para texto pequeno dourado | 6,8:1 marfim |
+| `danger` | `#9C3D2E` | **Só** mensagens e bordas de erro de formulário (não é cor de marca) | 6,4:1 marfim |
+| `night` | `#1F1A16` | Café profundo: footer, painel "Fé que vira cuidado", galeria da home, adoração, lightbox | — |
+| `on-night` / `on-night-soft` | `#FFF8F2` / `#EEE3D6` | Texto sobre `night` | 16,4:1 / cerca de 13:1 |
 
-Branco `#FFFFFF` é usado sobre `wine`, `wine-hover` e `red-dark`. Verde não é usado.
+Regra de ouro: **fundo dourado → texto carvão; fundo claro → dourado só em `gold-deep`; fundo escuro → `gold-light`.** Vinho e vermelho não existem mais como tokens.
 
-**Onde cada cor aparece:** header marfim com logo original e CTA vinho · hero com foto real + sobreposição vinho (gradiente lateral) e itálico dourado claro · "Quem somos" marfim com segunda linha do título em vinho · "Nosso carisma" em fundo vinho com filetes dourados · acampamentos com números de edição em vermelho · eventos em linhas claras com mês em vermelho escuro e selo vermelho escuro · formulários em branco com foco vinho · footer vinho com logo sobre marfim e títulos em dourado claro.
+**Onde cada cor aparece:** header marfim com sublinhado dourado e CTA dourado · hero com foto real e sobreposição café · títulos com segunda linha em itálico `gold-deep` · "Nosso carisma" numa faixa dourada com luz vinda do alto (`.carisma-band`) e texto carvão · cartão "Obras e caridade", cartão da Comunidade Terapêutica e primeira opção de inscrição em dourado com texto carvão · selos "Inscrições abertas" dourados · números de edição, mês da agenda e ícones em `gold-deep` · formulários brancos com foco e seleção dourados e erros em `danger` · footer café com filete dourado no topo e títulos em dourado claro.
 
 ## 4. Tipografia
 
@@ -61,21 +61,22 @@ Escala (fluida com `clamp`): H1 de página 2,4 → 4,6 rem · H1 do hero 3,1 →
 - Container `.wrap`: `min(1240px, 100% − 2,5rem)` (− 4 rem a partir de 768 px). Bordas esquerda/direita iguais em todas as seções.
 - Seções: `py-20 md:py-28` (homepage 24/32). Mais espaço acima de títulos do que abaixo.
 - Raios: `sm 8` · `md 14` · `lg 22` · `xl 32` px. Botões em pílula. Janela em arco (`.arch`) só para fotos de oração/liturgia.
-- Sombras: só no hover de cartões (`.lift`: −2 px + sombra suave com deslocamento).
+- Sombras: hover de cartões (`.lift`: −4 px + sombra quente) e sombra dourada discreta sob o botão primário.
 
 ## 6. Componentes
 
 | Componente | Arquivo | Notas |
 |---|---|---|
-| `ButtonLink` (`.btn`, `.btn-ghost`, `.btn-light`, `.btn-ghost-light`) | `ui.tsx`, `globals.css` | Pílula com círculo de seta que desliza no hover e escala 0,97 ao pressionar (adaptado de Uiverse). Externos ganham ↗ e "(abre em nova aba)" para leitores de tela. Altura mínima 48 px. |
+| `ButtonLink` (`.btn`, `.btn-ghost`, `.btn-light`, `.btn-ghost-light`) | `ui.tsx`, `globals.css` | Pílula dourada com texto carvão; no hover sobe 1 px, clareia e um brilho atravessa o botão uma vez (luz sobre folha de ouro); círculo da seta desliza 4 px; escala 0,98 ao pressionar. Ghost ganha borda `gold-deep` no hover. Externos ganham ↗ e "(abre em nova aba)". Altura mínima 48 px. |
 | `TextLink` | `ui.tsx` | Link com sublinhado que se desenha. |
-| `Photo` | `ui.tsx` | `next/image` com `fill`, fotos do acervo oficial; `preload` para a primeira dobra. |
+| `Photo` | `ui.tsx` | `next/image` com `fill`, fotos do acervo oficial; `preload` para a primeira dobra; `reveal` liga a revelação em cortina. |
 | `SectionTitle`, `Lede`, `PageHeader`, `Breadcrumbs`, `Section`, `FactList`, `Note` | `ui.tsx` | Estrutura das páginas internas. |
 | `BlurTitle` | `ui.tsx` | Entrada palavra a palavra do H1 do hero (técnica do BlurText/React Bits em CSS). |
-| `Header` | `Header.tsx` | Marfim fixo, dropdown "Participe" acessível, menu mobile em tela cheia com entrada escalonada, foco preso, Esc. |
-| `Footer` | `Footer.tsx` | Vinho, logo sobre marfim, colunas de links, contatos por setor, redes. |
+| `Header` | `Header.tsx` | Marfim fixo; links com filete dourado que nasce do centro (`.nav-link`); dropdown "Participe" que desce com fade e itens em cascata (`.dropdown-panel`); CTA dourado (só ícone entre 1024 e 1279 px); menu mobile em tela cheia com entrada escalonada, foco preso, Esc. |
+| `Footer` | `Footer.tsx` | Café profundo com filete dourado no topo, logo sobre marfim, colunas que entram em cascata, contatos por setor, redes. |
 | `EventList` | `EventList.tsx` | Linhas de agenda (dia da semana, dia, mês, título, categoria, data, selo). |
-| `Carisma` | `Carisma.tsx` | Momento tipográfico com palavras que "acendem" na rolagem (CSS scroll-driven, sem JS). |
+| `Carisma` | `Carisma.tsx` | Faixa dourada; as palavras ganham tinta na rolagem (CSS scroll-driven, sem JS). |
+| `RevealObserver` | `RevealObserver.tsx`, `lib/reveal.ts` | Motor único das animações de entrada (ver §7). |
 | `ProgramIndex`, `ProgramDetail` | — | Listagem alternada e página de acampamento/retiro. |
 | `GalleryCard(Client)`, `GalleryBrowser`, `GalleryViewer` | — | Cartões, filtros com URL, grade + lightbox `<dialog>`. |
 | `VideoFacade` | — | Miniatura do YouTube; player `youtube-nocookie` só após o clique. |
@@ -84,14 +85,29 @@ Escala (fluida com `clamp`): H1 de página 2,4 → 4,6 rem · H1 do hero 3,1 →
 
 ## 7. Movimento
 
-- Hero: entrada única com desfoque → nitidez por palavra (90 ms de escalonamento) e `fade-up` no restante.
-- Um momento por página longa: carisma em scroll-driven (Chrome/Edge/Safari recentes; demais veem o texto pronto).
-- Micro-interações: cartão sobe 2 px, foto aproxima 1,03, seta do botão desliza 4 px, sublinhado se desenha.
-- Sem parallax, 3D, carrossel automático ou animação contínua. `prefers-reduced-motion` desliga tudo e mostra o conteúdo final.
+Princípios: entrar **uma vez**, devagar e sem pular; nada se move sozinho em loop; nenhum layout shift (só `opacity`, `transform`, `clip-path`); tudo desliga com `prefers-reduced-motion`.
+
+**Entradas ao rolar** — um só motor, `RevealObserver` (IntersectionObserver), montado no layout:
+
+| Marcação | Efeito |
+|---|---|
+| `data-reveal` | sobe 24 px e aparece (0,9–1,1 s, `ease-out-expo`) |
+| `data-reveal="fade"` | só aparece |
+| `data-reveal="image"` (ou `<Photo reveal>`) | cortina de baixo para cima + a foto assenta de 1,08 para 1 |
+| `data-reveal="rule"` | filete que se desenha do centro |
+| `data-reveal-stagger` no contêiner | filhos diretos em cascata (90 ms entre itens que entram **juntos**, máx. 540 ms) |
+
+Já vêm ligados: `SectionTitle` (exceto o H1), o conteúdo de todo `Section`, `EventList`, `ProgramIndex`, grades da galeria, vídeos, loja, contato, obras, colunas do footer e as seções da home.
+
+Como funciona (e por que não quebra): o script `lib/reveal.ts` põe `.js-reveal` no `<html>` antes da primeira pintura, só com JS e sem redução de movimento. O estado escondido é **só CSS**; o observer apenas acrescenta `.is-revealed` depois que o React hidratou o elemento (evita *hydration mismatch*) e, ao fim, `.reveal-done`, que devolve as transições normais de hover. Se o observer não montar em 3 s, o modo é desligado e tudo aparece.
+
+**Outros movimentos:** hero com entrada palavra a palavra (BlurText em CSS) e parallax muito discreto da foto (4 %, scroll-driven, sem JS) · carisma scroll-driven · botões com brilho único no hover · cartões sobem 4 px com sombra quente · fotos aproximam 1,045 · linhas da agenda ganham fundo dourado translúcido e o dia fica dourado · dropdown com `@starting-style`.
+
+Navegadores sem scroll-driven animations (Firefox) veem o hero estático e o carisma já pintado; o restante funciona em todos.
 
 ## 8. Superfícies do navegador
 
-Seleção de texto em dourado claro, cursor de digitação vinho, anel de foco vinho (dourado claro sobre fundos escuros) com `outline-offset: 3px`, barra de rolagem no tom do carvão, `theme-color` marfim.
+Seleção de texto em dourado claro, cursor de digitação `gold-deep`, anel de foco `gold-deep` (dourado claro sobre fundos escuros) com `outline-offset: 3px`, barra de rolagem no tom do carvão, `theme-color` marfim.
 
 ## 9. Acessibilidade (resumo)
 

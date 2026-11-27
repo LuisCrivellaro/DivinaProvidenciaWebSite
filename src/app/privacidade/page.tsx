@@ -18,12 +18,12 @@ export default function Page() {
           <Note>Texto provisório, que descreve o funcionamento técnico deste site. A política oficial da comunidade ainda precisa ser aprovada por ela.</Note>
           <section>
             <h2 className="font-display text-[1.8rem] text-ink">O que este site coleta</h2>
-            <p className="mt-3">Este site não tem cadastro, não grava formulários e não usa cookies de publicidade. O formulário de contato apenas monta uma mensagem e abre o WhatsApp; nada é enviado até você tocar em enviar no próprio WhatsApp.</p>
+            <p className="mt-3">Este site não tem cadastro, não grava formulários e não usa cookies de publicidade. O formulário de contato apenas monta uma mensagem e abre o WhatsApp; nada é enviado até você tocar em enviar no próprio WhatsApp. Na tela Entrar, o e-mail e a senha vão direto do seu navegador para o site oficial, sem passar por este site.</p>
           </section>
           <section>
             <h2 className="font-display text-[1.8rem] text-ink">Inscrições e compras</h2>
             <p className="mt-3">
-              Inscrições, carrinho, pagamentos e a sua conta ficam no site oficial da comunidade (<a href={shop.store} className="link-draw text-wine">adivinaprovidencia.com.br</a>), que pede nome, celular e CPF do participante e processa o pagamento. Esses dados seguem as regras daquele site.
+              Inscrições, carrinho, pagamentos e a sua conta ficam no site oficial da comunidade (<a href={shop.store} className="link-draw text-gold-deep">adivinaprovidencia.com.br</a>), que pede nome, celular e CPF do participante e processa o pagamento. Esses dados seguem as regras daquele site.
             </p>
           </section>
           <section>

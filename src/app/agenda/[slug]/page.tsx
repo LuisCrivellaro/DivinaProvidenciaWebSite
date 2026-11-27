@@ -45,25 +45,25 @@ export default async function Page({ params }: PageProps<"/agenda/[slug]">) {
         <div className={`mt-8 grid gap-12 ${e.photo ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-[1.2fr_0.8fr]"}`}>
           <div>
             <SectionTitle as="h1" lead={e.title} className="text-[clamp(2.4rem,1.6rem+3.4vw,4.4rem)]" />
-            <p className="mt-3 inline-flex rounded-full bg-sand px-3 py-1 text-sm font-medium text-red-dark">{categoryLabel[e.category]}</p>
+            <p className="mt-3 inline-flex rounded-full bg-sand px-3 py-1 text-sm font-medium text-gold-deep">{categoryLabel[e.category]}</p>
             <p className="mt-6 max-w-[55ch] text-[1.15rem] leading-relaxed text-ink-soft">{e.summary}</p>
             <dl className="mt-10 grid gap-5 border-y border-ink/12 py-7 sm:grid-cols-3">
               <div className="flex gap-3">
-                <CalendarDays size={22} className="mt-0.5 shrink-0 text-red" aria-hidden="true" />
+                <CalendarDays size={22} className="mt-0.5 shrink-0 text-gold-deep" aria-hidden="true" />
                 <div>
                   <dt className="text-sm text-ink-soft">Data</dt>
                   <dd className="font-medium">{dateRange(e.start, e.end)}</dd>
                 </div>
               </div>
               <div className="flex gap-3">
-                <Clock size={22} className="mt-0.5 shrink-0 text-red" aria-hidden="true" />
+                <Clock size={22} className="mt-0.5 shrink-0 text-gold-deep" aria-hidden="true" />
                 <div>
                   <dt className="text-sm text-ink-soft">Horário</dt>
                   <dd className="font-medium">{e.time ?? "A confirmar com a secretaria"}</dd>
                 </div>
               </div>
               <div className="flex gap-3">
-                <MapPin size={22} className="mt-0.5 shrink-0 text-red" aria-hidden="true" />
+                <MapPin size={22} className="mt-0.5 shrink-0 text-gold-deep" aria-hidden="true" />
                 <div>
                   <dt className="text-sm text-ink-soft">Local</dt>
                   <dd className="font-medium">{e.place ?? "A confirmar com a secretaria"}</dd>
@@ -78,13 +78,13 @@ export default async function Page({ params }: PageProps<"/agenda/[slug]">) {
                 <p className="mt-2 max-w-[55ch] text-ink-soft">
                   A inscrição é feita no site oficial, com pagamento online. Lá você informa nome, celular e CPF do participante.
                 </p>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2" data-reveal-stagger="">
                   {e.registration.map((r, i) => (
                     <li key={r.url}>
-                      <a href={r.url} target="_blank" rel="noopener noreferrer" className={`lift flex h-full flex-col rounded-[var(--radius-lg)] p-6 ${i === 0 ? "bg-wine text-white" : "border border-ink/15"}`}>
+                      <a href={r.url} target="_blank" rel="noopener noreferrer" className={`lift flex h-full flex-col rounded-[var(--radius-lg)] p-6 ${i === 0 ? "bg-gold text-ink" : "border border-ink/15"}`}>
                         <span className="font-display text-[1.5rem] leading-tight">{r.label}</span>
-                        {r.price && <span className={`mt-2 text-[1.3rem] font-semibold tabular ${i === 0 ? "" : "text-wine"}`}>{r.price}</span>}
-                        <span className={`mt-4 text-sm ${i === 0 ? "text-white/85" : "text-ink-soft"}`}>Ir para a inscrição ↗</span>
+                        {r.price && <span className={`mt-2 text-[1.3rem] font-semibold tabular ${i === 0 ? "" : "text-gold-deep"}`}>{r.price}</span>}
+                        <span className={`mt-4 text-sm ${i === 0 ? "text-ink" : "text-ink-soft"}`}>Ir para a inscrição ↗</span>
                         <span className="sr-only"> (site oficial, abre em nova aba)</span>
                       </a>
                     </li>
@@ -106,7 +106,7 @@ export default async function Page({ params }: PageProps<"/agenda/[slug]">) {
             </div>
           </div>
           {e.photo ? (
-            <Photo photo={e.photo} sizes="(min-width: 1024px) 40vw, 100vw" priority className="aspect-[4/5] rounded-[var(--radius-lg)]" />
+            <Photo photo={e.photo} sizes="(min-width: 1024px) 40vw, 100vw" priority reveal className="aspect-[4/5] rounded-[var(--radius-lg)]" />
           ) : (
             <div className="flex aspect-[4/5] max-h-[34rem] flex-col justify-between rounded-[var(--radius-lg)] bg-night p-8 text-on-night">
               <span className="h-px w-16 bg-gold" aria-hidden="true" />

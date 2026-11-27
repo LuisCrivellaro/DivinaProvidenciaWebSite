@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { RevealObserver } from "@/components/RevealObserver";
+import { revealBootScript } from "@/lib/reveal";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -71,7 +73,11 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${gambetta.variable} ${switzer.variable} antialiased`}>
+    <html lang="pt-BR" className={`${gambetta.variable} ${switzer.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        {/* Liga as animações de entrada antes da primeira pintura (ver src/lib/reveal.ts) */}
+        <script dangerouslySetInnerHTML={{ __html: revealBootScript }} />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#conteudo"
@@ -84,6 +90,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <RevealObserver />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

@@ -48,11 +48,11 @@ export function ContactForm({ sectors }: { sectors: Sector[] }) {
     setStatus(w === null ? "blocked" : "opened");
   }
 
-  const field = "mt-2 block w-full rounded-[var(--radius-md)] border bg-white px-4 py-3 text-[1.05rem] text-ink transition-colors placeholder:text-ink-soft/80 focus:border-wine focus:outline-none focus:ring-2 focus:ring-wine/25";
-  const border = (k: keyof Errors) => (errors[k] ? "border-wine" : "border-ink/20");
+  const field = "mt-2 block w-full rounded-[var(--radius-md)] border bg-white px-4 py-3 text-[1.05rem] text-ink transition-colors placeholder:text-ink-soft/80 focus:border-gold-deep focus:outline-none focus:ring-2 focus:ring-gold/40";
+  const border = (k: keyof Errors) => (errors[k] ? "border-danger" : "border-ink/20");
   const err = (k: keyof Errors) =>
     errors[k] ? (
-      <p id={`${id}-${k}-erro`} className="mt-2 text-[0.92rem] font-medium text-wine">
+      <p id={`${id}-${k}-erro`} className="mt-2 text-[0.92rem] font-medium text-danger">
         {errors[k]}
       </p>
     ) : null;
@@ -69,10 +69,10 @@ export function ContactForm({ sectors }: { sectors: Sector[] }) {
         <legend className="font-medium">Com quem você quer falar?</legend>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           {sectors.map((s) => (
-            <label key={s.id} className="group flex min-h-14 cursor-pointer items-center gap-3 rounded-[var(--radius-md)] border border-ink/20 bg-white px-4 py-3 has-[:checked]:border-wine has-[:checked]:bg-wine/5 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-wine/40">
+            <label key={s.id} className="group flex min-h-14 cursor-pointer items-center gap-3 rounded-[var(--radius-md)] border border-ink/20 bg-white px-4 py-3 has-[:checked]:border-gold-deep has-[:checked]:bg-gold/10 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-gold/50">
               <input type="radio" name="setor" value={s.id} className="peer sr-only" />
-              <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 border-ink/40 peer-checked:border-wine" aria-hidden="true">
-                <span className="h-2.5 w-2.5 scale-0 rounded-full bg-wine transition-transform group-has-[:checked]:scale-100" />
+              <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 border-ink/40 peer-checked:border-gold-deep" aria-hidden="true">
+                <span className="h-2.5 w-2.5 scale-0 rounded-full bg-gold-deep transition-transform group-has-[:checked]:scale-100" />
               </span>
               <span>{s.label}</span>
             </label>
@@ -105,7 +105,7 @@ export function ContactForm({ sectors }: { sectors: Sector[] }) {
         {/* Checkbox com marcação animada (inspirada em checkboxes do Uiverse, MIT), adaptada ao design system */}
         <label className="flex cursor-pointer items-start gap-3">
           <input type="checkbox" name="aceite" className="peer sr-only" aria-invalid={!!errors.aceite} aria-describedby={errors.aceite ? `${id}-aceite-erro` : undefined} />
-          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-[6px] border-2 border-ink/40 bg-white text-white transition-colors peer-checked:border-wine peer-checked:bg-wine peer-focus-visible:ring-2 peer-focus-visible:ring-wine/40 [&>svg]:scale-0 peer-checked:[&>svg]:scale-100" aria-hidden="true">
+          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-[6px] border-2 border-ink/40 bg-white text-ink transition-colors peer-checked:border-gold peer-checked:bg-gold peer-focus-visible:ring-2 peer-focus-visible:ring-gold/50 [&>svg]:scale-0 peer-checked:[&>svg]:scale-100" aria-hidden="true">
             <Check size={16} strokeWidth={3} className="transition-transform duration-200" />
           </span>
           <span className="text-[0.98rem] text-ink-soft">
@@ -131,9 +131,9 @@ export function ContactForm({ sectors }: { sectors: Sector[] }) {
           </p>
         )}
         {status === "blocked" && (
-          <p className="rounded-[var(--radius-md)] border border-wine/50 bg-wine/5 px-5 py-4">
+          <p className="rounded-[var(--radius-md)] border border-gold/60 bg-gold/10 px-5 py-4">
             O navegador bloqueou a nova aba.{" "}
-            <a href={link} target="_blank" rel="noopener noreferrer" className="link-draw font-medium text-wine">
+            <a href={link} target="_blank" rel="noopener noreferrer" className="link-draw font-medium text-gold-deep">
               Toque aqui para abrir o WhatsApp
             </a>
             .
