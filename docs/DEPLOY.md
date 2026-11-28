@@ -9,6 +9,7 @@
 |---|---|
 | `deploy/divina-site.service` | Serviço systemd: mantém o site rodando e reinicia sozinho |
 | `deploy/Caddyfile` | Caddy na frente do site: HTTPS automático, compressão, `www` → domínio |
+| `deploy/Caddyfile.homologacao` | Mesmo Caddy para o subdomínio de teste, com `noindex` para o Google |
 | `deploy/atualizar.sh` | Atualiza o site no servidor (git pull, npm ci, build, reinício, checagem) |
 | `Dockerfile`, `docker-compose.yml`, `deploy/Caddyfile.docker`, `.dockerignore` | Alternativa em contêiner (não testada aqui) |
 | `scripts/test-independencia.mjs` | Teste final contra o endereço publicado |
@@ -36,7 +37,7 @@ sudo useradd --system --create-home --shell /bin/bash divina && sudo mkdir -p /s
 Se o pacote `caddy` não existir na sua versão, siga https://caddyserver.com/docs/install.
 
 ### 2. Baixar o site
-O deploy usa a branch `main`. **Antes, faça o merge do PR #1** (`feat/redesign-dourado` → `main`); até lá, troque `main` por `feat/redesign-dourado` nos comandos.
+O deploy usa a branch `main` (os PRs #1 e #2 já foram mesclados nela).
 ```bash
 sudo -u divina git clone --branch main https://github.com/LuisCrivellaro/DivinaProvidenciaWebSite.git /srv/divina-site
 ```
@@ -72,26 +73,30 @@ curl -I http://127.0.0.1:3000/
 Deve responder `HTTP/1.1 200 OK`.
 
 ### 5. HTTPS e domínio (primeiro em homologação)
-1. Crie no DNS um registro de teste, por exemplo `novo.adivinaprovidencia.com.br` → `A` com o IP do servidor.
-2. Em `deploy/Caddyfile`, troque temporariamente `adivinaprovidencia.com.br` por `novo.adivinaprovidencia.com.br` e:
+1. Crie no DNS um registro de teste, por exemplo `novo.adivinaprovidencia.com.br` → `A` com o IP do servidor. Só esse registro: os do domínio principal e dos e-mails continuam como estão.
+2. Use o Caddyfile de homologação (já vem com `novo.adivinaprovidencia.com.br`; se escolher outro nome, troque no arquivo). Ele manda o cabeçalho `X-Robots-Tag: noindex` para o Google não indexar a cópia de teste:
 ```bash
-sudo cp /srv/divina-site/deploy/Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
+sudo cp /srv/divina-site/deploy/Caddyfile.homologacao /etc/caddy/Caddyfile && sudo systemctl reload caddy
 ```
-3. Abra `https://novo.adivinaprovidencia.com.br`. O certificado é emitido sozinho em alguns segundos.
+3. Abra `https://novo.adivinaprovidencia.com.br`. O certificado é emitido sozinho em alguns segundos (portas 80 e 443 precisam estar liberadas: `sudo ufw allow 80,443/tcp`).
 4. Rode o teste final do seu computador (precisa do Chromium do Playwright):
 ```powershell
 node scripts/test-independencia.mjs https://novo.adivinaprovidencia.com.br
 ```
 
 ### 6. Virar o domínio (com autorização)
-Siga `docs/MIGRACAO_DOMINIO.md` §5: backup do WordPress e dos pedidos, TTL baixo, troca **somente** dos registros `A`/`AAAA` (ou `CNAME`) de `adivinaprovidencia.com.br` e `www` para o IP do servidor, **sem mexer em `MX`, `SPF`, `DKIM` e `DMARC`** (e-mails `secretaria@` e `cterapeutica@`). Depois volte o `Caddyfile` para `adivinaprovidencia.com.br` e recarregue o Caddy. Os redirecionamentos 301 das URLs antigas já estão no código.
+Siga `docs/MIGRACAO_DOMINIO.md` §5: backup do WordPress e dos pedidos, TTL baixo, troca **somente** dos registros `A`/`AAAA` (ou `CNAME`) de `adivinaprovidencia.com.br` e `www` para o IP do servidor, **sem mexer em `MX`, `SPF`, `DKIM` e `DMARC`** (e-mails `secretaria@` e `cterapeutica@`). Depois troque para o Caddyfile definitivo (sem o bloqueio do Google) e recarregue:
+```bash
+sudo cp /srv/divina-site/deploy/Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
+```
+Os redirecionamentos 301 das URLs antigas já estão no código.
 
 ## Atualizações futuras
-Depois de cada mudança aprovada e mesclada na `main`:
+Depois de cada mudança aprovada e mesclada na `main`, com o seu usuário administrador:
 ```bash
-sudo -u divina bash /srv/divina-site/deploy/atualizar.sh
+sudo bash /srv/divina-site/deploy/atualizar.sh
 ```
-O script busca a versão nova, instala, gera, reinicia e confere se o site respondeu. Fotos novas: coloque os arquivos `.webp` em `public/media/AAAA/MM/` no servidor (ou rode `migrate-media` enquanto o WordPress existir).
+O script busca a versão nova, instala e gera como o usuário `divina`, reinicia o serviço e confere se o site respondeu. Durante o build (1 a 3 minutos) o site pode dar erro: rode fora dos horários de mais acesso. Fotos novas: coloque os arquivos `.webp` em `public/media/AAAA/MM/` no servidor (ou rode `migrate-media` enquanto o WordPress existir).
 
 ## Backup
 - **Acervo:** guarde `acervo-midia.tar` (ou a pasta `public/media`) fora do servidor, no Google Drive da comunidade ou num HD externo. É a única cópia das fotos depois que o WordPress for desligado.

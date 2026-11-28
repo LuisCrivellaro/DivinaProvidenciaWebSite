@@ -1,5 +1,5 @@
 {
-  "base": "http://localhost:3003",
+  "base": "http://localhost:3002",
   "rotas": 111,
   "viewports": [
     "1440x900",
@@ -9,7 +9,7 @@
   "requisicoesAoSiteAntigo": 0,
   "hostsExternos": {
     "maps.googleapis.com": 69,
-    "www.google.com": 41,
+    "www.google.com": 34,
     "maps.gstatic.com": 8,
     "maps.google.com": 4,
     "fonts.googleapis.com": 4,

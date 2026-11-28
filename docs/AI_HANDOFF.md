@@ -6,11 +6,11 @@
 - **O site é independente do WordPress/WooCommerce antigo.** Teste com o domínio antigo bloqueado (`scripts/test-independencia.mjs`): 111 páginas × desktop e celular, 0 requisições ao site antigo, 0 problemas. Build de produção, TypeScript e ESLint limpos.
 - **Tarefas concluídas em 28/11/2026:** (4) independência completa do site antigo; (5) todas as galerias públicas, inclusive as 16 antes restritas. Não há tarefa na fila.
 - **Nada publicado em produção, DNS intocado, site antigo no ar.** Hospedagem escolhida: **servidor com disco (VPS)**. Arquivos e passo a passo prontos em `deploy/` e `docs/DEPLOY.md`; uma instalação do zero (clone do GitHub + acervo em `.tar`) passou no teste de independência. Contratar o servidor, deploy e troca de domínio dependem do usuário.
-- Branch de trabalho: **`feat/redesign-dourado`** (PR #1 aberto para `main`). Não mexer direto na `main`.
+- A `main` tem todo o trabalho (PRs #1 e #2 mesclados). Branch atual: **`feat/deploy-vps`** (revisão dos arquivos de deploy, 28/11/2026). Não mexer direto na `main`.
 
 ## 2. Como retomar
 ```bash
-git fetch origin && git checkout feat/redesign-dourado
+git fetch origin && git checkout -b feat/sua-tarefa origin/main
 ```
 ```bash
 npm install
@@ -60,6 +60,6 @@ Menus desktop/mobile · agenda com próximos/passados · contagem regressiva e l
 Ver `MIGRACAO_DOMINIO.md` §7: pagamento online · hospedagem/storage do acervo e autorização de deploy/DNS · exportar pedidos do WooCommerce antes de desligar · confirmar direito de imagem das galerias de menores · validações de conteúdo antigas (carisma oficial, ano de fundação, endereço exato, horários dos grupos e da adoração, coordenação, política de privacidade oficial — lista em `docs/analise-divina-providencia/10_FONTES_E_PENDENCIAS.md`).
 
 ## 10. Próxima tarefa sugerida
-1. Usuário contratar a VPS e dar acesso; seguir `docs/DEPLOY.md` (merge do PR #1 na `main` antes) e rodar o teste de independência contra a homologação.
+1. Usuário contratar a VPS e dar acesso; seguir `docs/DEPLOY.md` em homologação (`deploy/Caddyfile.homologacao`) e rodar o teste de independência contra ela.
 2. Escolher o provedor de pagamento online e integrar às páginas `/inscricoes/[slug]`.
 3. Reunião de validação de conteúdo com a comunidade.

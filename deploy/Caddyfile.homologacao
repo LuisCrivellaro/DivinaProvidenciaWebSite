@@ -1,0 +1,19 @@
+# Caddy para a HOMOLOGAÇÃO (teste antes de trocar o domínio). docs/DEPLOY.md, passo 5.
+# 1. Troque "novo.adivinaprovidencia.com.br" pelo subdomínio de teste escolhido, se for outro.
+# 2. Crie no DNS só esse registro (A → IP do servidor). Não mexa nos demais registros.
+# 3. sudo cp /srv/divina-site/deploy/Caddyfile.homologacao /etc/caddy/Caddyfile && sudo systemctl reload caddy
+#
+# O cabeçalho X-Robots-Tag mantém a homologação fora do Google (evita conteúdo duplicado com o domínio
+# principal). Ao virar o domínio, troque por deploy/Caddyfile, que não tem esse bloqueio.
+
+novo.adivinaprovidencia.com.br {
+	encode zstd gzip
+	header X-Robots-Tag "noindex, nofollow"
+	reverse_proxy 127.0.0.1:3000 {
+		flush_interval -1
+	}
+
+	log {
+		output file /var/log/caddy/divina-site-homologacao.log
+	}
+}

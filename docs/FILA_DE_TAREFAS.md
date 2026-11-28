@@ -29,4 +29,9 @@ Prompt "MISSÃO — INDEPENDÊNCIA COMPLETA E FINALIZAÇÃO DO SITE DA DIVINA PR
 ## 5. [CONCLUÍDA em 28/11/2026] Mostrar todas as fotos das galerias restritas
 O usuário pediu (print da galeria "20º Acampamento FAC" com o cartão "Fotos com crianças e adolescentes ficam no acervo oficial"): "É para aparecer todas as fotos!". As 16 galerias marcadas como restritas (Mirim, Juvenil, FAC, Teatro Vivo — 2.256 fotos) devem ser migradas e exibidas como as demais (capa, grade, lightbox, sitemap). Decisão de privacidade tomada pelo usuário.
 
-Resultado das tarefas 4 e 5: `docs/MIGRACAO_DOMINIO.md` e `docs/AI_HANDOFF.md`. Fila vazia.
+Resultado das tarefas 4 e 5: `docs/MIGRACAO_DOMINIO.md` e `docs/AI_HANDOFF.md`.
+
+## 6. [EM ANDAMENTO — 28/11/2026] Deploy na VPS (homologação primeiro)
+Escolha do usuário entre as pendências. Branch `feat/deploy-vps`.
+- **Feito:** revisão de `deploy/` contra o Next 16 (guia de self-hosting). Corrigido: `atualizar.sh` chamava `sudo` como o usuário `divina`, que não tem sudo (agora roda com sudo e executa git/npm como `divina`); o serviço systemd rodava `npm start` com `ProtectHome` (o npm grava logs na pasta pessoal) e passou a chamar o Next direto pelo Node; no Docker, o cache de imagens em `.next/cache` era do root e o usuário `node` não conseguia gravar; o Caddy ganhou `flush_interval -1` para o streaming; novo `deploy/Caddyfile.homologacao` com `X-Robots-Tag: noindex`. `DEPLOY.md` atualizado.
+- **Falta (depende do usuário):** contratar a VPS (Ubuntu 22.04/24.04 ou Debian 12, 2 GB de RAM, 10 GB livres), passar IP e acesso SSH com sudo, escolher o subdomínio de homologação e criar só esse registro DNS. Não testado: os comandos Linux (systemd, Caddy) e o Docker, por falta de servidor Linux.

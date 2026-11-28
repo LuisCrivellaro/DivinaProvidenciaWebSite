@@ -28,7 +28,7 @@
 | Contatos (WhatsApp das secretarias, fixo, e-mails), endereço | `content/site.ts` | Site oficial, Facebook, Diocese | Endereço "Rua Padre Anchieta" (Diocese) × "Rua Anchieta" (Facebook) → **validar** |
 | Vídeos | `content/videos.ts` | Feed RSS do canal oficial (26/11/2026) | Confirmado |
 | Fotos (17 escolhidas a dedo + 58 galerias) | `photos` em `site.ts`, `content/galleries.json` | Acervo do WordPress oficial (servidas do próprio domínio) | **Autorização de uso e autoria a confirmar** |
-| Produtos/preços da loja | gerado em tempo real | Store API pública do WooCommerce | Ao vivo (cache de 1 h) |
+| Inscrições e valores da loja | `content/inscricoes.ts` | Produtos do WooCommerce, copiados em 28/11/2026 (a Store API foi desligada do site) | Estático: atualizar à mão quando houver nova inscrição |
 
 ## Decisões de privacidade
 - **28/11/2026 — todas as galerias públicas**, por decisão do usuário: as 16 galerias antes restritas (Mirim, Juvenil, FAC e Teatro Vivo, 2.256 fotos) aparecem como as demais e entram no sitemap. Confirmar com a coordenação o direito de imagem; o canal de remoção está em `/privacidade`.
