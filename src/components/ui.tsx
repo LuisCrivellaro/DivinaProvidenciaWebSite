@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
-import { photos, UPLOADS, type PhotoKey } from "@/content/site";
+import { photos, type PhotoKey } from "@/content/site";
+import { mediaUrl } from "@/lib/media";
 
 /* ------------------------------------------------------------------ */
 /* Botões (estrutura de Uiverse adaptada; estilos em globals.css .btn) */
@@ -111,7 +112,7 @@ export function Photo({
 }) {
   const p = photo ? photos[photo] : undefined;
   const path = p?.src ?? src ?? "";
-  const url = path.startsWith("http") ? path : `${UPLOADS}${path}`;
+  const url = mediaUrl(path);
   return (
     <div className={`relative overflow-hidden bg-linen ${className}`} data-reveal={reveal ? "image" : undefined}>
       <Image
@@ -203,9 +204,10 @@ export function BlurTitle({ text, accent, className = "" }: { text: string; acce
 /* Estrutura de página interna                                         */
 /* ------------------------------------------------------------------ */
 
-export function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
+export function Breadcrumbs({ items, tone = "light" }: { items: { label: string; href?: string }[]; tone?: "light" | "dark" }) {
+  const color = tone === "dark" ? "text-on-night-soft" : "text-ink-soft";
   return (
-    <nav aria-label="Você está em" className="text-sm text-ink-soft">
+    <nav aria-label="Você está em" className={`text-sm ${color}`}>
       <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
         <li>
           <Link href="/" className="link-draw">
@@ -214,7 +216,7 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
         </li>
         {items.map((it, i) => (
           <li key={i} className="flex items-center gap-1.5">
-            <ChevronRight size={14} aria-hidden="true" className="text-ink-soft/70" />
+            <ChevronRight size={14} aria-hidden="true" className="opacity-70" />
             {it.href ? (
               <Link href={it.href} className="link-draw">
                 {it.label}

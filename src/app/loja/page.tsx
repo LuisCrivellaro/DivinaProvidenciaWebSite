@@ -1,80 +1,70 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import Image from "next/image";
-import { ShoppingBag, UserRound } from "lucide-react";
-import { ButtonLink, Lede, Note, PageHeader, Section, SectionTitle } from "@/components/ui";
-import { getStoreProducts } from "@/lib/woocommerce";
-import { currency } from "@/lib/dates";
-import { shop } from "@/content/site";
+import Link from "next/link";
+import { ClipboardList } from "lucide-react";
+import { ButtonLink, Lede, Note, PageHeader, Photo, Section, SectionTitle } from "@/components/ui";
+import { BrandIcon } from "@/components/BrandIcon";
+import { inscricaoHref, inscricoes } from "@/content/inscricoes";
+import { events } from "@/content/events";
+import { contacts, whatsappLink } from "@/content/site";
+import { currency, dateRange } from "@/lib/dates";
+import { today } from "@/lib/today";
 
 export const metadata: Metadata = {
   title: "Loja e inscrições",
-  description: "Inscrições em retiros e produtos da Comunidade Divina Providência, com pagamento online no site oficial.",
+  description: "Inscrições abertas em retiros e encontros da Comunidade Divina Providência. A ficha é enviada pelo WhatsApp e a secretaria confirma a vaga.",
   alternates: { canonical: "/loja" },
 };
 
-async function Products() {
-  const res = await getStoreProducts();
-  if (!res.ok) {
-    return (
-      <Note>
-        Não conseguimos carregar os produtos agora. Você pode ver a loja diretamente no{" "}
-        <a href={shop.store} className="link-draw font-medium text-gold-deep" target="_blank" rel="noopener noreferrer">site oficial</a>.
-      </Note>
-    );
-  }
-  if (res.products.length === 0) {
-    return <Note>Não há inscrições ou produtos à venda no momento. Acompanhe a agenda para saber quando abrem.</Note>;
-  }
-  return (
-    <ul className="grid gap-6 md:grid-cols-2" data-reveal-stagger="">
-      {res.products.map((p) => (
-        <li key={p.id} className="grid overflow-hidden rounded-[var(--radius-xl)] border border-ink/10 bg-paper sm:grid-cols-[13rem_1fr]">
-          <div className="relative aspect-square bg-linen">
-            {p.image && <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 640px) 13rem, 100vw" className="object-cover" />}
-          </div>
-          <div className="flex flex-col p-6">
-            {p.categories[0] && <p className="text-sm font-medium text-gold-deep">{p.categories[0]}</p>}
-            <h3 className="mt-1 font-display text-[1.6rem] leading-tight">{p.name}</h3>
-            <p className="mt-2 text-[1.4rem] font-semibold tabular">{currency.format(p.price)}</p>
-            <p className="mt-3 line-clamp-4 text-[0.95rem] text-ink-soft">{p.shortDescription}</p>
-            <div className="mt-auto pt-6">
-              {p.purchasable && p.inStock ? (
-                <ButtonLink href={p.permalink}>Inscrever-se</ButtonLink>
-              ) : (
-                <span className="text-ink-soft">Indisponível no momento</span>
-              )}
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
-}
+export default async function Page() {
+  const now = await today();
+  const evangelizacao = contacts.find((c) => c.id === "evangelizacao")!;
+  const list = inscricoes.map((i) => {
+    const ev = events.find((e) => e.slug === i.eventSlug);
+    return { ...i, ev, open: ev ? (ev.end ?? ev.start) >= now : true };
+  });
+  const open = list.filter((i) => i.open);
 
-export default function Page() {
   return (
     <>
       <PageHeader
         crumbs={[{ label: "Loja e inscrições" }]}
         lead="Loja"
         accent="e inscrições."
-        intro="As inscrições em retiros e os produtos são vendidos pela loja do site oficial, com pagamento online. Esta página mostra o que está disponível agora."
+        intro="Aqui ficam as inscrições abertas em retiros e encontros. Você preenche a ficha, ela chega pelo WhatsApp à Secretaria de Evangelização e a secretaria confirma a vaga e o pagamento."
       >
-        <ButtonLink href={shop.cart} variant="ghost" icon={false}>
-          <span className="inline-flex items-center gap-2"><ShoppingBag size={18} aria-hidden="true" /> Meu carrinho</span>
-        </ButtonLink>
-        <ButtonLink href="/login" variant="ghost" icon={false}>
-          <span className="inline-flex items-center gap-2"><UserRound size={18} aria-hidden="true" /> Minha conta</span>
+        <ButtonLink href="/minhas-inscricoes" variant="ghost" icon={false}>
+          <span className="inline-flex items-center gap-2"><ClipboardList size={18} aria-hidden="true" /> Minhas inscrições</span>
         </ButtonLink>
       </PageHeader>
 
       <Section tone="sand" labelledBy="disponiveis" className="!pt-14">
-        <SectionTitle id="disponiveis" lead="Disponível agora" className="!text-[clamp(1.8rem,1.4rem+1.4vw,2.6rem)]" />
+        <SectionTitle id="disponiveis" lead="Inscrições abertas" className="!text-[clamp(1.8rem,1.4rem+1.4vw,2.6rem)]" />
         <div className="mt-8">
-          <Suspense fallback={<p className="text-ink-soft" aria-live="polite">Carregando produtos…</p>}>
-            <Products />
-          </Suspense>
+          {open.length === 0 ? (
+            <Note>
+              Não há inscrições abertas no momento. Acompanhe a <Link href="/agenda" className="link-draw font-medium text-gold-deep">agenda</Link> para saber quando abrem.
+            </Note>
+          ) : (
+            <ul className="grid gap-6 md:grid-cols-2" data-reveal-stagger="">
+              {open.map((i) => (
+                <li key={i.slug}>
+                  <Link href={inscricaoHref(i.slug)} className="group lift grid h-full overflow-hidden rounded-[var(--radius-xl)] border border-ink/10 bg-paper sm:grid-cols-[13rem_1fr]">
+                    <Photo src={i.image.src} alt={i.image.alt} sizes="(min-width: 640px) 13rem, 100vw" className="zoom-frame aspect-square" />
+                    <span className="flex flex-col p-6">
+                      <span className="text-sm font-medium text-gold-deep">{i.ev?.title}</span>
+                      <span className="mt-1 font-display text-[1.6rem] leading-tight">Inscrição de {i.role.toLowerCase()}</span>
+                      <span className="mt-2 text-[1.4rem] font-semibold tabular">{currency.format(i.price)}</span>
+                      {i.ev && <span className="mt-2 text-[0.95rem] text-ink-soft">{dateRange(i.ev.start, i.ev.end)}</span>}
+                      <span className="mt-1 text-[0.95rem] text-ink-soft">{i.roleDescription}</span>
+                      <span className="mt-auto pt-6 font-medium text-gold-deep">
+                        <span className="link-draw">Preencher a ficha</span> →
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </Section>
 
@@ -83,18 +73,21 @@ export default function Page() {
           <div>
             <SectionTitle id="como-funciona" lead="Como" accent="funciona." />
             <Lede className="mt-6">
-              Ao clicar em “Inscrever-se”, você vai para a página do produto no site oficial. Lá informa os dados do participante, adiciona ao carrinho e paga online. O seu pedido fica guardado em “Minha conta”.
+              A inscrição é feita por participante. O site não guarda os dados: a ficha vai direto para o WhatsApp da secretaria, que responde com a confirmação e as orientações de pagamento.
             </Lede>
+            <ButtonLink href={whatsappLink(evangelizacao.whatsapp!, "Olá! Tenho uma dúvida sobre inscrições.")} variant="ghost" icon={false} className="mt-8">
+              <span className="inline-flex items-center gap-2"><BrandIcon name="whatsapp" width={17} height={17} /> Tirar dúvidas com a secretaria</span>
+            </ButtonLink>
           </div>
           <ol className="space-y-6">
             {[
               ["Escolha a inscrição", "Retirante ou servo, por exemplo. Cada tipo tem um valor."],
-              ["Preencha os dados do participante", "Nome, celular (WhatsApp) e CPF são obrigatórios."],
-              ["Finalize no carrinho", "O pagamento é processado pelo site oficial."],
-              ["Acompanhe em Minha conta", "Entre com seu e-mail e senha para ver os pedidos."],
-            ].map(([t, d], i) => (
+              ["Preencha a ficha", "Nome, celular (WhatsApp) e CPF do participante."],
+              ["Envie pelo WhatsApp", "A ficha abre pronta para a Secretaria de Evangelização. É só tocar em enviar."],
+              ["Aguarde a confirmação", "A secretaria confirma a vaga e explica como fazer o pagamento."],
+            ].map(([t, d], n) => (
               <li key={t} className="grid grid-cols-[3rem_1fr] gap-4">
-                <span className="grid h-12 w-12 place-items-center rounded-full bg-gold font-display text-[1.4rem] text-ink tabular" aria-hidden="true">{i + 1}</span>
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-gold font-display text-[1.4rem] text-ink tabular" aria-hidden="true">{n + 1}</span>
                 <span>
                   <span className="block font-display text-[1.4rem] leading-tight">{t}</span>
                   <span className="mt-1 block text-ink-soft">{d}</span>
@@ -103,9 +96,6 @@ export default function Page() {
             ))}
           </ol>
         </div>
-        <Note className="mt-12">
-          Para recuperar a senha da conta, use a página <a href={shop.lostPassword} target="_blank" rel="noopener noreferrer" className="link-draw font-medium text-gold-deep">Perdeu sua senha?</a> do site oficial.
-        </Note>
       </Section>
     </>
   );

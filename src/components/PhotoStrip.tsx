@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Camera, ChevronLeft, ChevronRight, Expand, Share2, X } from "lucide-react";
+import { mediaUrl } from "@/lib/media";
 
-const UPLOADS = "https://adivinaprovidencia.com.br/wp-content/uploads/";
 
 export type StripPhoto = {
   slug: string;
@@ -117,7 +117,7 @@ export function PhotoStrip({ photos, speed = 60 }: { photos: StripPhoto[]; speed
             }}
             className="strip-photo keep-dark group relative block h-32 w-48 overflow-hidden rounded-[var(--radius-md)] bg-white/5 sm:h-40 sm:w-60"
           >
-            <Image src={`${UPLOADS}${p.cover}`} alt="" fill sizes="240px" quality={60} className="object-cover" />
+            <Image src={mediaUrl(p.cover)} alt="" fill sizes="240px" quality={60} className="object-cover" />
             <span className="strip-veil absolute inset-0 flex flex-col whitespace-normal justify-end bg-gradient-to-t from-night/90 via-night/20 to-transparent p-3 text-left" aria-hidden="true">
               <span className="strip-zoom absolute right-2.5 top-2.5 grid h-9 w-9 place-items-center rounded-full bg-gold text-ink">
                 <Expand size={16} />
@@ -182,7 +182,7 @@ export function PhotoStrip({ photos, speed = 60 }: { photos: StripPhoto[]; speed
             >
               <span className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 animate-spin rounded-full border-2 border-white/20 border-t-gold-light" aria-hidden="true" />
               <div key={p.slug} className="lb-photo absolute inset-3 sm:inset-6" data-dir={dir}>
-                <Image src={`${UPLOADS}${p.cover}`} alt={`Foto de capa da galeria ${p.title}`} fill sizes="(min-width: 1024px) 70vw, 100vw" quality={85} loading="eager" className="object-contain drop-shadow-[0_30px_60px_rgb(0_0_0/0.6)]" />
+                <Image src={mediaUrl(p.cover)} alt={`Foto de capa da galeria ${p.title}`} fill sizes="(min-width: 1024px) 70vw, 100vw" quality={85} loading="eager" className="object-contain drop-shadow-[0_30px_60px_rgb(0_0_0/0.6)]" />
               </div>
               <button type="button" onClick={() => go(-1)} className="lb-btn lb-nav absolute left-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/25 sm:left-6" aria-label="Foto anterior">
                 <ChevronLeft size={24} aria-hidden="true" />
@@ -235,7 +235,7 @@ export function PhotoStrip({ photos, speed = 60 }: { photos: StripPhoto[]; speed
                     aria-label={`Ver ${t.title}`}
                     className="lb-thumb relative block h-14 w-20 overflow-hidden rounded-[var(--radius-sm)] sm:h-16 sm:w-24"
                   >
-                    <Image src={`${UPLOADS}${t.cover}`} alt="" fill sizes="96px" quality={60} className="object-cover" />
+                    <Image src={mediaUrl(t.cover)} alt="" fill sizes="96px" quality={60} className="object-cover" />
                   </button>
                 </li>
               ))}

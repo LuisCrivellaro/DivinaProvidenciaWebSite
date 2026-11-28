@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} · Rondonópolis (MT)`,
     description: site.description,
-    images: [{ url: "https://adivinaprovidencia.com.br/wp-content/uploads/2026/07/DLS0930.jpg", width: 1920, height: 1280, alt: "Acampantes do 25º Acampamento Sênior" }],
   },
   alternates: { canonical: "/" },
 };
@@ -55,7 +54,7 @@ const jsonLd = {
   name: site.name,
   alternateName: site.legalName,
   url: site.url,
-  logo: `${site.url}/wp-content/uploads/2022/07/logo-divina-h.png`,
+  logo: `${site.url}/brand/logo-horizontal.png`,
   slogan: site.motto,
   address: {
     "@type": "PostalAddress",

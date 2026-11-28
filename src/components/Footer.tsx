@@ -22,6 +22,7 @@ const groups = [
       { href: "/retiros", label: "Retiros e formação" },
       { href: "/grupos-de-oracao", label: "Grupos de oração" },
       { href: "/vida-de-oracao", label: "Vida de oração" },
+      { href: "/festival-divina-brasa", label: "Festival Divina Brasa" },
     ],
   },
   {
@@ -30,7 +31,7 @@ const groups = [
       { href: "/galeria", label: "Galeria de fotos" },
       { href: "/videos", label: "Vídeos" },
       { href: "/loja", label: "Loja e inscrições" },
-      { href: "/login", label: "Minha conta" },
+      { href: "/minhas-inscricoes", label: "Minhas inscrições" },
       { href: "/privacidade", label: "Privacidade" },
     ],
   },
@@ -78,7 +79,7 @@ export function Footer() {
                     {"external" in l && l.external ? (
                       <a href={l.href} target="_blank" rel="noopener noreferrer" className="link-draw inline-flex min-h-10 items-center text-on-night-soft hover:text-on-night">
                         {l.label}
-                        <span className="sr-only"> (site oficial, abre em nova aba)</span>
+                        <span className="sr-only"> (abre em nova aba)</span>
                       </a>
                     ) : (
                       <Link href={l.href} className="link-draw inline-flex min-h-10 items-center text-on-night-soft hover:text-on-night">

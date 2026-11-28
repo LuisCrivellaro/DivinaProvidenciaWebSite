@@ -22,3 +22,9 @@ Aplicada após o término das páginas; tokens em `src/app/globals.css`, documen
 - Parar só quando tudo estiver concluído e testado, ou ao atingir 90% dos créditos.
 - O consumo de créditos **não é consultável** neste ambiente; não estimar. Registrar a limitação.
 - Ao parar: atualizar AI_HANDOFF.md, commit na branch de trabalho (`docs/analise-divina-providencia` → renomear/usar branch de feature), `git pull --rebase` só se seguro, `git push` sem `--force`, nunca na `main`, sem `.env`/credenciais.
+
+## 4. [EM ANDAMENTO desde 28/11/2026] Independência completa do site antigo
+Prompt "MISSÃO — INDEPENDÊNCIA COMPLETA E FINALIZAÇÃO DO SITE DA DIVINA PROVIDÊNCIA": varrer dependências de adivinaprovidencia.com.br (WordPress/WooCommerce), implementar as páginas que ainda levavam ao site antigo, migrar imagens e documentos, preparar SEO e redirecionamentos 301 (sempre do antigo para o novo), testar o site com o domínio antigo bloqueado (Playwright), documentar a migração de domínio e entregar relatório final. Não desativar o site antigo nem mexer em DNS sem autorização. Não inventar dados institucionais, horários, valores ou dados bancários.
+
+## 5. [NA FILA — pedido em 28/11/2026] Mostrar todas as fotos das galerias restritas
+O usuário pediu (print da galeria "20º Acampamento FAC" com o cartão "Fotos com crianças e adolescentes ficam no acervo oficial"): "É para aparecer todas as fotos!". As 16 galerias marcadas como restritas (Mirim, Juvenil, FAC, Teatro Vivo — 2.256 fotos) devem ser migradas e exibidas como as demais (capa, grade, lightbox, sitemap). Decisão de privacidade tomada pelo usuário.

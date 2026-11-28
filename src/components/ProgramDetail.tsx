@@ -66,14 +66,9 @@ export function ProgramDetail({ program, parent }: { program: Program; parent: {
             <SectionTitle id="informacoes" lead="Para participar" />
             <Lede className="mt-5">
               {program.registration
-                ? "As inscrições são feitas no site oficial, com pagamento online. Ao clicar, você vai para a página do produto, onde informa os dados do participante."
+                ? "A inscrição é feita aqui no site: você preenche a ficha do participante, ela segue pelo WhatsApp para a Secretaria de Evangelização, e a secretaria confirma a vaga e o pagamento."
                 : "Quando as inscrições abrirem, a Secretaria de Evangelização divulga valores, documentos e orientações. Enquanto isso, você pode perguntar pelo WhatsApp."}
             </Lede>
-            {program.minors && (
-              <Note className="mt-6">
-                Este acampamento recebe crianças ou adolescentes. Por cuidado com elas, as fotos ficam no acervo oficial da comunidade e não são republicadas aqui.
-              </Note>
-            )}
           </div>
           <div>
             <FactList facts={program.facts} />

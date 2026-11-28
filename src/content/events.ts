@@ -46,8 +46,8 @@ export const events: CommunityEvent[] = [
     summary: "Retiro para jovens que já fizeram o FAC (a partir de 17 anos), o Juvenil ou o Sênior (até 30 anos). Tema: “Voltei pra casa”.",
     programHref: "/retiros/desperta",
     registration: [
-      { label: "Inscrição de retirante", url: "https://adivinaprovidencia.com.br/produto/retiro-desperta26-retirante/", price: "R$ 120,00" },
-      { label: "Inscrição de servo", url: "https://adivinaprovidencia.com.br/produto/retiro-desperta-2026-servo/", price: "R$ 100,00" },
+      { label: "Inscrição de retirante", url: "/inscricoes/retiro-desperta26-retirante", price: "R$ 120,00" },
+      { label: "Inscrição de servo", url: "/inscricoes/retiro-desperta-2026-servo", price: "R$ 100,00" },
     ],
     source: "site",
   },
