@@ -34,11 +34,17 @@ export default async function Home() {
     <>
       {/* HERO ------------------------------------------------------------ */}
       <section aria-labelledby="hero-title" className="hero-drift keep-dark on-night relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-on-night">
-        <div className="ken-burns absolute inset-0 -z-10">
-          <Image src={uploadUrl(photos.hero.src)} alt={photos.hero.alt} fill preload loading="eager" sizes="100vw" quality={85} className="object-cover object-[50%_35%]" />
+        {/* Ken Burns ancorado no alto: o zoom lento cresce para baixo e não empurra o céu dourado para fora da tela */}
+        <div className="ken-burns absolute inset-0 -z-10" style={{ transformOrigin: "46% 0%" }}>
+          {/* Enquadramento: no celular e no tablet a foto mostra só uma faixa, centrada na árvore com o brilho do pôr do sol (≈46%); no desktop aparece quase inteira, com prioridade para o céu. */}
+          <Image src={uploadUrl(photos.heroCerco.src)} alt={photos.heroCerco.alt} fill preload loading="eager" sizes="100vw" quality={85} className="object-cover object-[46%_30%] lg:object-[50%_0%]" />
         </div>
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.35)_0%,rgb(31_26_22/0.1)_30%,rgb(31_26_22/0.78)_72%,rgb(31_26_22/0.94)_100%)]" aria-hidden="true" />
+        {/* Céu dourado quase sem véu no alto; o escuro cresce só onde está o texto. Um toque de luz dourada aquece o céu. */}
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_45%_at_46%_0%,rgb(242_203_108/0.28),transparent_70%)] mix-blend-soft-light" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.12)_0%,rgb(31_26_22/0.04)_26%,rgb(31_26_22/0.62)_58%,rgb(31_26_22/0.9)_80%,rgb(31_26_22/0.96)_100%)]" aria-hidden="true" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(31_26_22/0.6)_0%,rgb(31_26_22/0)_62%)]" aria-hidden="true" />
+        {/* Celular e tablet: o título cai sobre o trecho mais claro do céu. Esta faixa escurece só ali (contraste medido: título ≥ 3,5:1 no dourado e ≥ 5:1 no branco) e deixa o alto do céu aberto. */}
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.08)_0%,rgb(31_26_22/0.5)_10%,rgb(31_26_22/0.5)_45%,rgb(31_26_22/0)_62%)] lg:hidden" aria-hidden="true" />
         {/* No celular o texto ocupa a largura toda: um véu extra garante a leitura sobre a foto */}
         <div className="absolute inset-0 -z-10 bg-night/35 md:hidden" aria-hidden="true" />
         <Embers className="-z-10" />

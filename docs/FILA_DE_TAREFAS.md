@@ -31,11 +31,16 @@ O usuário pediu (print da galeria "20º Acampamento FAC" com o cartão "Fotos c
 
 Resultado das tarefas 4 e 5: `docs/MIGRACAO_DOMINIO.md` e `docs/AI_HANDOFF.md`.
 
-## 7. [EM ANDAMENTO — 28/11/2026] Página Comunidade conforme o Estatuto Canônico
+## 7. [CONCLUÍDA em 28/11/2026] Página Comunidade conforme o Estatuto Canônico
 O usuário enviou o Estatuto Canônico (PDF digitalizado, 8 páginas, aprovado por D. Juventino Kestering em 23/09/2020) e pediu para corrigir as informações da página `/comunidade` **sem mudar o front-end nem o responsivo** (só textos).
+- Feito: fundação jan/1998, associação jan/2008, associação privada de fiéis (cân. 298 ss.), mística, membros comprometidos e participantes, ingresso aos 21 anos com 12 encontros em 1 ano, organização (Conselho Administrativo, diretor espiritual, núcleos, diretoria e Conselho Fiscal), linha do tempo. Layout intacto.
+- **Pendente (perguntar ao usuário):** o carisma da faixa dourada segue a redação que o usuário passou; o Estatuto (art. 3º) diz "Ser um sinal da infinita bondade e misericórdia de Deus na vida e na história dos homens do nosso tempo".
+- **Pendente (fora do escopo pedido):** a home ainda diz "começou suas atividades em 2005", calcula os anos de missão a partir de 2005 e fala em "Comunidade de Aliança reconhecida pela Igreja"; o rodapé também. O Estatuto diz 1998 e "associação privada de fiéis".
+- **Atenção:** o Estatuto põe a sede no Sítio Divina Providência, BR-364 km 194, zona rural de Pedra Preta (MT). O site usa o endereço de Rondonópolis (Rua Padre Anchieta). Não alterado: confirmar com a comunidade qual endereço publicar.
 
-## 8. [NA FILA — 28/11/2026] Foto principal (hero) da home
+## 8. [CONCLUÍDA em 28/11/2026] Foto principal (hero) da home
 Trocar a foto do hero pela multidão do Cerco de Jericó 2022 ao pôr do sol (`2022/08/cerco-jerico-da-comunidade-divina-providencia-363`, 1920 px, já no acervo local). Enquadramento para desktop, tablet e celular; valorizar o céu dourado; contraste e legibilidade dos textos; imagem otimizada; preservar animações e funcionalidades; imagem salva no projeto (versionada), sem depender do site antigo. Não mexer em outras seções. Testar responsividade e validar visualmente.
+- Feito: nova chave `photos.heroCerco` (a antiga `hero` continua no Acampamento Sênior); enquadramento `46% 30%` no celular/tablet e `50% 0%` no desktop; Ken Burns ancorado no alto; véu do alto quase aberto e luz dourada suave (soft-light) no céu; faixa extra só abaixo de `lg` atrás do título (contraste medido no pior ponto: título dourado ≥ 3,7:1 e branco ≥ 5,3:1; parágrafo ≥ 7:1). Peso: 54 KB (AVIF, celular) e 227 KB (AVIF, 1920 px). Foto versionada com `git add -f`. Animações (Ken Burns, deriva, brasas, entradas) preservadas.
 
 Regras de execução dadas pelo usuário: trabalhar de forma contínua; ao terminar uma tarefa, iniciar a próxima da fila sem pedir autorização; commits e atualizações do AI_HANDOFF.md periódicas (o consumo de créditos não é consultável); push na branch atual, nunca na `main`.
 

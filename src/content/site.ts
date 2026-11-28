@@ -95,6 +95,8 @@ export const timeline = [
 
 /** Fotos oficiais escolhidas a dedo (adultos; nenhuma criança em destaque). Caminho do acervo migrado (src/lib/media.ts). */
 export const photos = {
+  // Hero da home (28/11/2026): 1920 px, nítida em telas grandes. "hero" continua na página do Acampamento Sênior.
+  heroCerco: { src: "2022/08/cerco-jerico-da-comunidade-divina-providencia-363.jpg", alt: "Multidão reunida em oração ao ar livre no Cerco de Jericó 2022, ao pôr do sol, com o céu dourado atrás das árvores" },
   hero: { src: "2026/07/DLS0930.jpg", alt: "Participantes do 25º Acampamento Sênior, de camisetas brancas com o rosto de Cristo, diante do palco iluminado e dos estandartes" },
   missaCompromisso: { src: "2024/10/DLS5605.jpg", alt: "O bispo celebra a Missa do Compromisso no altar da sede, com o logotipo da Divina Providência ao fundo" },
   missaBispo: { src: "2024/10/DLS5565.jpg", alt: "Celebrante no altar durante a Missa do Compromisso de 2024" },
