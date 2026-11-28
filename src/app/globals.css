@@ -12,18 +12,19 @@
   --color-linen: #efe3d6;          /* bordas suaves e fundo de imagem carregando */
   --color-ink: #2a221d;            /* Carvão quente — texto (14,8:1 no marfim) */
   --color-ink-soft: #675c53;       /* Texto secundário (6,2:1 marfim · 5,8:1 creme) */
-  --color-gold: #b99550;           /* DOURADO PRINCIPAL — botões, selos, fundos de destaque, filetes. Texto carvão sobre ele: 5,6:1. Nunca texto dourado sobre claro */
-  --color-gold-bright: #c9a660;    /* Dourado iluminado — hover dos botões (carvão 6,8:1) */
-  --color-gold-deep: #846430;      /* Dourado profundo — texto de destaque, links e ícones sobre claro (5,2:1 marfim · 4,9:1 creme) */
-  --color-gold-light: #e6c58c;     /* Dourado claro — texto sobre escuro (10,5:1 no night) */
-  --color-gold-ink: #6f5322;       /* Dourado escurecido para texto pequeno de reserva (6,8:1) */
+  /* "Ouro vivo" (28/11/2026): o dourado se aproxima do ouro da logo (#D2AE6D), mais quente e luminoso */
+  --color-gold: #d9a441;           /* DOURADO PRINCIPAL — botões, selos, fundos de destaque, filetes. Carvão sobre ele: 7,6:1. Nunca texto dourado sobre claro */
+  --color-gold-bright: #e8b954;    /* Dourado iluminado — hover dos botões (carvão 9:1) */
+  --color-gold-deep: #8a5a12;      /* Âmbar profundo — texto de destaque, links e ícones sobre claro (5,6:1 marfim · 5,3:1 creme) */
+  --color-gold-light: #f2cf7e;     /* Dourado claro — texto sobre escuro (11,5:1 no café) */
+  --color-gold-ink: #6f4a0e;       /* Dourado escurecido para texto pequeno de reserva */
   --color-danger: #9c3d2e;         /* Somente mensagens de erro de formulário (6,4:1) — não é cor de marca */
-  /* Superfícies de destaque (antes café profundo, desde 27/11/2026 no dourado principal).
+  /* Superfícies de destaque no dourado principal, com brilho (--gold-sheen) nas grandes áreas.
      As áreas que sombreiam fotos usam .keep-dark e voltam ao café. */
-  --color-night: #b99550;          /* Dourado principal — seções e cartões de destaque, rodapé */
-  --color-on-night: #1f1a16;       /* texto sobre o dourado (6,1:1) */
-  --color-on-night-soft: #3a2e25;  /* texto secundário sobre o dourado (4,7:1) */
-  --color-gold-night: #3f2c0e;     /* destaque sobre o dourado (4,7:1) */
+  --color-night: #d9a441;          /* Dourado principal — seções e cartões de destaque, rodapé */
+  --color-on-night: #1f1a16;       /* texto sobre o dourado (7,6:1; 6,1:1 no ponto mais escuro do degradê) */
+  --color-on-night-soft: #3a2a1c;  /* texto secundário sobre o dourado (≥ 4,9:1 em todo o degradê) */
+  --color-gold-night: #4a2a06;     /* destaque sobre o dourado (≥ 4,6:1 em todo o degradê) */
 
   --font-display: var(--font-gambetta), "Iowan Old Style", Georgia, serif;
   --font-sans: var(--font-switzer), ui-sans-serif, system-ui, sans-serif;
@@ -99,13 +100,34 @@
 
 .wrap { width: var(--wrap); margin-inline: auto; }
 
+/* Ouro vivo: as grandes superfícies douradas ganham luz, como folha de ouro iluminada.
+   Um brilho claro no alto, o ouro da marca no meio e um âmbar mais quente no canto oposto;
+   o brilho passeia devagar. Texto carvão mantém ≥ 6:1 em todo o degradê. */
+:root {
+  --gold-sheen:
+    radial-gradient(circle 34rem at 22% 18%, rgb(255 242 205 / 0.62), transparent),
+    radial-gradient(70% 60% at 100% 100%, rgb(180 110 24 / 0.18), transparent 70%),
+    linear-gradient(135deg, #f0c96e 0%, #d9a441 50%, #cc9232 100%);
+}
+.gold-surface,
+.bg-night:not(.keep-dark, .keep-dark *) {
+  background-image: var(--gold-sheen);
+  background-size: 200% 200%, 100% 100%, 100% 100%;
+  background-position: 0% 0%, 0 0, 0 0;
+  background-repeat: no-repeat;
+  animation: gold-breathe 18s ease-in-out infinite alternate;
+}
+@keyframes gold-breathe {
+  to { background-position: 90% 40%, 0 0, 0 0; }
+}
+
 /* Café profundo onde ele sombreia fotos (hero, cartões com foto, cartaz, vídeo, visualizadores):
    devolve os valores escuros aos tokens só dentro deste elemento. */
 .keep-dark {
   --color-night: #1f1a16;
   --color-on-night: #fff8f2;
   --color-on-night-soft: #eee3d6;
-  --color-gold-night: #e6c58c;
+  --color-gold-night: #f2cf7e;
   /* a cor herdada já vem resolvida do pai dourado: precisa ser declarada de novo aqui */
   color: var(--color-on-night);
 }
@@ -146,10 +168,11 @@
    discreto atravessa o botão, como luz sobre folha de ouro.
    ------------------------------------------------------------------ */
 .btn {
-  --btn-bg: var(--color-gold);
+  /* folha de ouro: mais clara no alto, como luz batendo */
+  --btn-bg: linear-gradient(180deg, #f2cb6c 0%, var(--color-gold) 100%);
   --btn-fg: var(--color-ink);
-  --btn-bg-hover: var(--color-gold-bright);
-  --btn-shadow: 0 1px 0 rgb(255 255 255 / 0.28) inset, 0 10px 24px -16px rgb(132 100 48 / 0.7);
+  --btn-bg-hover: linear-gradient(180deg, #f8d880 0%, var(--color-gold-bright) 100%);
+  --btn-shadow: 0 1px 0 rgb(255 255 255 / 0.45) inset, 0 10px 24px -14px rgb(170 105 15 / 0.75);
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -189,7 +212,7 @@
 .btn:hover {
   background: var(--btn-bg-hover);
   transform: translateY(-1px);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.3) inset, 0 16px 30px -18px rgb(132 100 48 / 0.8);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.5) inset, 0 16px 32px -16px rgb(170 105 15 / 0.85);
 }
 .btn:hover::after { transform: translateX(120%); }
 .btn:active { transform: translateY(0) scale(0.98); transition-duration: 0.12s; }
@@ -240,10 +263,10 @@
   .wa-chat {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: var(--wa-gap);
     min-width: max-content;
-    min-height: 44px;
+    min-height: 40px;
     padding: var(--wa-pad);
     border-radius: var(--wa-radius);
     background: var(--wa-bg);
@@ -260,9 +283,10 @@
   .wa-chat:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 16px rgb(0 0 0 / 0.14); }
   .wa-chat:active { transform: translateY(0); }
   .wa-chat:focus-visible { outline: 2px solid var(--color-gold-deep); outline-offset: 3px; }
-  /* No header, entre 1024 e 1279 px o menu ocupa a linha: o botão vira só o ícone */
-  @media (min-width: 1024px) and (max-width: 1279.98px) {
-    .wa-chat--collapse { padding: var(--wa-pad-icon); gap: 0; }
+  /* No header o botão vira só o ícone (quadrado de 40 px) no celular estreito e entre 1024 e 1279 px,
+     onde o menu ocupa a linha; nas outras larguras mostra "Fale Conosco" */
+  @media (max-width: 639.98px), (min-width: 1024px) and (max-width: 1279.98px) {
+    .wa-chat--collapse { padding: 0; gap: 0; width: 40px; min-width: 40px; }
   }
 }
 
@@ -272,7 +296,7 @@
 .carisma-band {
   background:
     radial-gradient(110% 85% at 50% -12%, color-mix(in oklab, var(--color-gold-bright) 80%, white) 0%, transparent 60%),
-    linear-gradient(180deg, var(--color-gold) 0%, #b08c48 100%);
+    linear-gradient(180deg, var(--color-gold) 0%, #cc9232 100%);
 }
 
 /* ------------------------------------------------------------------
@@ -415,7 +439,7 @@
   height: var(--size);
   border-radius: 999px;
   background: radial-gradient(circle, #fff3d6 0%, var(--color-gold-light) 45%, transparent 72%);
-  box-shadow: 0 0 calc(var(--size) * 3) calc(var(--size) * 0.6) rgb(230 197 140 / 0.55);
+  box-shadow: 0 0 calc(var(--size) * 3) calc(var(--size) * 0.6) rgb(242 207 126 / 0.6);
   opacity: 0;
   animation: ember-rise var(--dur) linear infinite;
   animation-delay: var(--delay);
@@ -450,8 +474,8 @@
 .btn-pulse { animation: btn-pulse 2.6s var(--ease-out-quart) infinite; }
 .btn-pulse::after { animation: btn-shine 3.8s var(--ease-out-expo) infinite 1.6s; }
 @keyframes btn-pulse {
-  0% { box-shadow: 0 0 0 0 rgb(201 166 96 / 0.6), var(--btn-shadow); }
-  70%, 100% { box-shadow: 0 0 0 18px rgb(201 166 96 / 0), var(--btn-shadow); }
+  0% { box-shadow: 0 0 0 0 rgb(232 185 84 / 0.7), var(--btn-shadow); }
+  70%, 100% { box-shadow: 0 0 0 18px rgb(232 185 84 / 0), var(--btn-shadow); }
 }
 @keyframes btn-shine {
   0% { transform: translateX(-120%); }
@@ -770,7 +794,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ken-burns, .embers, .float, .btn-pulse, .btn-pulse::after, .live-dot::after, .scroll-cue .mouse::after,
-  .marquee-sep, .carisma-band::before, .scroll-progress { animation: none !important; }
+  .gold-surface, .bg-night, .marquee-sep, .carisma-band::before, .scroll-progress { animation: none !important; }
   .embers { display: none; }
   .marquee-track { animation: none !important; flex-wrap: wrap; width: auto; }
   .marquee-row[aria-hidden] { display: none; }

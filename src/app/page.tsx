@@ -86,7 +86,7 @@ export default async function Home() {
       </section>
 
       {/* FAIXA QUE CORRE ------------------------------------------------------ */}
-      <div className="border-y border-ink/10 bg-gold py-5 text-ink md:py-7">
+      <div className="gold-surface border-y border-ink/10 bg-gold py-5 text-ink md:py-7">
         <Marquee
           className="font-display text-[clamp(1.6rem,1.1rem+2vw,2.8rem)] italic leading-none"
           items={["Acampamentos", "Retiros", "Adoração perpétua", "Grupos de oração", "Cerco de Jericó", "Comunidade Terapêutica", "Festa das Nações", "Divina Jovem"]}
@@ -191,16 +191,16 @@ export default async function Home() {
                 <h3 className="font-display text-[1.9rem] leading-none">Grupos de oração</h3>
                 <p className="mt-2 text-ink-soft">Quatro grupos semanais, entre eles um infantil, um de adolescentes e um de jovens.</p>
               </div>
-              <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4" aria-label="Grupos">
+              <ul className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-5" aria-label="Grupos">
                 {prayerGroups.map((g) => (
-                  <li key={g.slug}>
-                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-12 w-auto object-contain" />
+                  <li key={g.slug} className="flex items-center justify-center">
+                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-16 w-full object-contain transition-transform duration-500 group-hover:scale-105 sm:h-20" />
                   </li>
                 ))}
               </ul>
             </Link>
 
-            <Link href="/obras-e-projetos" className="group lift flex flex-col justify-between rounded-[var(--radius-lg)] bg-gold p-6 text-ink md:col-span-3">
+            <Link href="/obras-e-projetos" className="gold-surface group lift flex flex-col justify-between rounded-[var(--radius-lg)] bg-gold p-6 text-ink md:col-span-3">
               <h3 className="font-display text-[1.9rem] leading-none">Obras e caridade</h3>
               <p className="mt-2 max-w-[44ch] text-ink">A Comunidade Terapêutica acolhe homens em recuperação da dependência química. Em 2026 abrimos a Casa da Saúde São Padre Pio.</p>
               <span className="mt-6 inline-flex items-center gap-2 font-medium">

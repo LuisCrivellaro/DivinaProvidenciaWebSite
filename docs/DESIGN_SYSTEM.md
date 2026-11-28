@@ -1,7 +1,7 @@
 # Design system — Comunidade Divina Providência
 
 > Fonte da verdade no código: `src/app/globals.css` (bloco `@theme` do Tailwind 4) e `src/components/ui.tsx`.
-> Última atualização: 27/11/2026 — **redesign dourado**: o vinho e o vermelho deram lugar ao dourado `#B99550` como cor de destaque, e entrou um sistema de animações de entrada.
+> Última atualização: 28/11/2026 — **ouro vivo**: o dourado `#B99550` deu lugar a `#D9A441`, mais quente e próximo do ouro da logo, com brilho nas grandes superfícies. (27/11/2026: redesign dourado e sistema de animações.)
 
 ## 1. Direção
 
@@ -32,15 +32,17 @@ Contrastes calculados pela fórmula WCAG 2.x.
 | `linen` | `#EFE3D6` | Bordas suaves, fundo de imagem carregando | — |
 | `ink` | `#2A221D` | Carvão quente — texto | 14,8:1 marfim · 13,9:1 creme |
 | `ink-soft` | `#675C53` | Texto secundário | 6,2:1 marfim · 5,8:1 creme |
-| `gold` | `#B99550` | **Dourado principal**: botões, selos "Inscrições abertas", faixa do carisma, painéis de destaque, filetes, sublinhado do menu | carvão sobre ele **5,6:1** · 2,7:1 no marfim → **nunca texto dourado sobre claro**; branco sobre ele 2,8:1 → **nunca texto branco sobre dourado** |
-| `gold-bright` | `#C9A660` | Hover dos botões dourados (fica mais luminoso, não mais escuro) | carvão 6,8:1 |
-| `gold-deep` | `#846430` | Dourado profundo: segunda linha dos títulos, links, ícones, números de edição, mês na agenda, foco | 5,2:1 marfim · 4,9:1 creme |
-| `gold-light` | `#E6C58C` | Texto dourado sobre fundos escuros (fotos, `.keep-dark`) | 10,5:1 no café |
-| `gold-night` | `#3F2C0E` | Destaque (itálicos, selos, links) sobre a superfície `night` dourada. Em `.keep-dark` volta a `#E6C58C` | 4,7:1 no dourado |
-| `gold-ink` | `#6F5322` | Reserva para texto pequeno dourado | 6,8:1 marfim |
+| `gold` | `#D9A441` | **Dourado principal ("ouro vivo", 28/11/2026)**, mais próximo do ouro da logo (`#D2AE6D`): botões, selos "Inscrições abertas", faixas, painéis de destaque, filetes, sublinhado do menu | carvão sobre ele **7,6:1** · **nunca texto dourado sobre claro** · **nunca texto branco sobre dourado** |
+| `gold-bright` | `#E8B954` | Hover dos botões dourados (fica mais luminoso) | carvão 9:1 |
+| `gold-deep` | `#8A5A12` | Âmbar profundo: segunda linha dos títulos, links, ícones, números de edição, mês na agenda, foco | 5,6:1 marfim · 5,3:1 creme |
+| `gold-light` | `#F2CF7E` | Texto dourado sobre fundos escuros (fotos, `.keep-dark`) | 11,5:1 no café |
+| `gold-night` | `#4A2A06` | Destaque (itálicos, selos, links) sobre a superfície `night` dourada. Em `.keep-dark` volta a `#F2CF7E` | ≥ 4,6:1 em todo o degradê |
+| `gold-ink` | `#6F4A0E` | Reserva para texto pequeno dourado | — |
 | `danger` | `#9C3D2E` | **Só** mensagens e bordas de erro de formulário (não é cor de marca) | 6,4:1 marfim |
-| `night` | `#B99550` | **Desde 27/11/2026 é o dourado principal** (antes café `#1F1A16`): rodapé, painel "Fé que vira cuidado", galeria e próximos encontros da home, adoração, cartões de destaque | — |
-| `on-night` / `on-night-soft` | `#1F1A16` / `#3A2E25` | Texto sobre a superfície `night` dourada | 6,1:1 / 4,7:1 |
+| `night` | `#D9A441` | Superfície dourada (antes café `#1F1A16`): rodapé, painel "Fé que vira cuidado", galeria e próximos encontros da home, adoração, cartões de destaque. Ganha o brilho `--gold-sheen` | — |
+| `on-night` / `on-night-soft` | `#1F1A16` / `#3A2A1C` | Texto sobre a superfície `night` dourada | ≥ 6,1:1 / ≥ 4,9:1 em todo o degradê |
+
+**Ouro vivo (`--gold-sheen`)**: toda superfície `bg-night` fora de `.keep-dark` (e quem tiver `.gold-surface`) recebe um degradê `#F0C96E → #D9A441 → #CC9232` com um brilho claro que passeia devagar (18 s, para com redução de movimento). Os botões primários usam folha de ouro (`#F2CB6C → #D9A441`). A logo do rodapé é a versão âmbar (`logo-rodape-ambar.png`), legível em todo o degradê.
 
 **`.keep-dark`** devolve os valores café (`night #1F1A16`, `on-night #FFF8F2`, `on-night-soft #EEE3D6`, `gold-night #E6C58C`) só dentro do elemento. Usado onde o escuro sombreia fotos: hero, cartões com foto da home, ladrilhos da galeria, cartaz do próximo encontro, capa de vídeo, painel do login e os visualizadores de foto.
 

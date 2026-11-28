@@ -25,7 +25,7 @@ export default function Page() {
       <Section tone="sand" labelledBy="obras-lista">
         <h2 id="obras-lista" className="sr-only">Obras</h2>
         <div className="grid gap-6 lg:grid-cols-2">
-          <Link href="/casa-terapeutica" className="group lift flex flex-col justify-between rounded-[var(--radius-xl)] bg-gold p-8 text-ink md:p-12">
+          <Link href="/casa-terapeutica" className="gold-surface group lift flex flex-col justify-between rounded-[var(--radius-xl)] bg-gold p-8 text-ink md:p-12">
             <div>
               <h3 className="font-display text-[clamp(2rem,1.5rem+1.8vw,3rem)] leading-none">Comunidade Terapêutica</h3>
               <p className="mt-5 max-w-[46ch] text-ink">

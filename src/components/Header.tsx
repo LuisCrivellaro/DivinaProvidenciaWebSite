@@ -197,8 +197,9 @@ export function Header() {
             message="Olá! Vim pelo site da Comunidade Divina Providência e gostaria de falar com a secretaria."
             buttonText="Fale Conosco"
             srLabel="com a Secretaria de Evangelização"
-            className="wa-chat--collapse ml-1 hidden md:inline-flex"
-            labelClassName="lg:sr-only xl:not-sr-only"
+            size="small"
+            className="wa-chat--collapse ml-1"
+            labelClassName="max-sm:sr-only lg:sr-only xl:not-sr-only"
           />
           <button
             ref={menuBtnRef}

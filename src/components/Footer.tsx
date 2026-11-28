@@ -42,14 +42,15 @@ export function Footer() {
       <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" aria-hidden="true" />
       <div className="wrap grid gap-14 py-20 lg:grid-cols-[1.1fr_2fr]">
         <div>
-          {/* Versão da logo para o fundo dourado: o dourado vira marfim e o vermelho, vinho (public/brand/logo-rodape.png) */}
+          {/* Versão da logo para o fundo dourado: o dourado vira âmbar escuro (#4A2A06) e o vermelho fica mais fechado,
+              legível do ponto claro ao escuro do degradê (public/brand/logo-rodape-ambar.png) */}
           <Image
-            src="/brand/logo-rodape.png"
+            src="/brand/logo-rodape-ambar.png"
             alt="Comunidade Divina Providência"
             width={966}
             height={272}
             sizes="260px"
-            className="h-16 w-auto drop-shadow-[0_2px_12px_rgb(63_44_14/0.28)] md:h-[4.5rem]"
+            className="h-16 w-auto drop-shadow-[0_1px_0_rgb(255_240_205/0.5)] md:h-[4.5rem]"
           />
           <p className="mt-6 max-w-sm font-display text-[1.5rem] italic leading-snug text-gold-night">{site.motto}</p>
           <p className="mt-6 max-w-sm text-on-night-soft">
