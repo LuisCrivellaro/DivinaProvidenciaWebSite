@@ -58,7 +58,7 @@ Menus desktop/mobile · agenda com próximos/passados · contagem regressiva e l
 6. Skills externas citadas no prompt (impeccable, taste-skill, emilkowalski/skills) não foram instaladas: instalar exige baixar e executar código de terceiros e mudar a configuração do Claude; as regras foram aplicadas a partir das skills já instaladas (frontend-design, ui-ux-pro-max, web-design-guidelines, humanizer-pt-br, webapp-testing).
 
 ## 9. Pendências
-- **Decisões do usuário (28/11/2026):** carisma do Estatuto × redação atual; endereço da sede (Estatuto: Pedra Preta; site: Rondonópolis); foto do Retiro das Mulheres (sem galeria no acervo); foto antiga do hero (DLS0930) só existe em 1080 px — original com o fotógrafo.
+- **Decisões do usuário (28/11/2026):** carisma: manter a redação atual, não a do Estatuto (decidido); endereço da sede (Estatuto: Pedra Preta; site: Rondonópolis); foto do Retiro das Mulheres (sem galeria no acervo); foto antiga do hero (DLS0930) só existe em 1080 px — original com o fotógrafo.
 Ver `MIGRACAO_DOMINIO.md` §7: pagamento online · hospedagem/storage do acervo e autorização de deploy/DNS · exportar pedidos do WooCommerce antes de desligar · confirmar direito de imagem das galerias de menores · validações de conteúdo antigas (carisma oficial, ano de fundação, endereço exato, horários dos grupos e da adoração, coordenação, política de privacidade oficial — lista em `docs/analise-divina-providencia/10_FONTES_E_PENDENCIAS.md`).
 
 ## 10. Próxima tarefa sugerida

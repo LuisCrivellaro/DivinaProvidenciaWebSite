@@ -11,8 +11,8 @@ export const site = {
   city: "Rondonópolis",
   state: "MT",
   motto: "Sua família, nossa missão!",
-  // Redação publicada na homepage do site oficial (consultada em 26/11/2026).
-  // O Facebook usa uma variação mais longa; a redação do Estatuto Canônico ainda precisa ser confirmada.
+  // Redação escolhida pelo usuário (28/11/2026). O Estatuto Canônico (art. 3º) usa outra
+  // ("…na vida e na história dos homens do nosso tempo"); o usuário decidiu manter esta.
   carisma: "Ser sinal da infinita bondade e da infinita misericórdia de Deus na vida das pessoas.",
   diocese: "Diocese de Rondonópolis-Guiratinga",
   url: "https://adivinaprovidencia.com.br",
