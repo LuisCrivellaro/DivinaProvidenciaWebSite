@@ -31,6 +31,14 @@ O usuário pediu (print da galeria "20º Acampamento FAC" com o cartão "Fotos c
 
 Resultado das tarefas 4 e 5: `docs/MIGRACAO_DOMINIO.md` e `docs/AI_HANDOFF.md`.
 
+## 7. [EM ANDAMENTO — 28/11/2026] Página Comunidade conforme o Estatuto Canônico
+O usuário enviou o Estatuto Canônico (PDF digitalizado, 8 páginas, aprovado por D. Juventino Kestering em 23/09/2020) e pediu para corrigir as informações da página `/comunidade` **sem mudar o front-end nem o responsivo** (só textos).
+
+## 8. [NA FILA — 28/11/2026] Foto principal (hero) da home
+Trocar a foto do hero pela multidão do Cerco de Jericó 2022 ao pôr do sol (`2022/08/cerco-jerico-da-comunidade-divina-providencia-363`, 1920 px, já no acervo local). Enquadramento para desktop, tablet e celular; valorizar o céu dourado; contraste e legibilidade dos textos; imagem otimizada; preservar animações e funcionalidades; imagem salva no projeto (versionada), sem depender do site antigo. Não mexer em outras seções. Testar responsividade e validar visualmente.
+
+Regras de execução dadas pelo usuário: trabalhar de forma contínua; ao terminar uma tarefa, iniciar a próxima da fila sem pedir autorização; commits e atualizações do AI_HANDOFF.md periódicas (o consumo de créditos não é consultável); push na branch atual, nunca na `main`.
+
 ## 6. [EM ANDAMENTO — 28/11/2026] Deploy na VPS (homologação primeiro)
 Escolha do usuário entre as pendências. Branch `feat/deploy-vps`.
 - **Feito:** revisão de `deploy/` contra o Next 16 (guia de self-hosting). Corrigido: `atualizar.sh` chamava `sudo` como o usuário `divina`, que não tem sudo (agora roda com sudo e executa git/npm como `divina`); o serviço systemd rodava `npm start` com `ProtectHome` (o npm grava logs na pasta pessoal) e passou a chamar o Next direto pelo Node; no Docker, o cache de imagens em `.next/cache` era do root e o usuário `node` não conseguia gravar; o Caddy ganhou `flush_interval -1` para o streaming; novo `deploy/Caddyfile.homologacao` com `X-Robots-Tag: noindex`. `DEPLOY.md` atualizado.

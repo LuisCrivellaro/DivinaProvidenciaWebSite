@@ -148,7 +148,7 @@ export function UpcomingEvents({ items, now }: { items: CommunityEvent[]; now: s
                           <ArrowRight size={16} aria-hidden="true" className="-translate-x-2 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" />
                         </span>
                       </span>
-                      <Photo photo={photo} sizes="120px" quality={60} className="caminho-thumb hidden aspect-[4/5] rounded-[var(--radius-md)] sm:block lg:hidden xl:block" />
+                      <Photo photo={photo} sizes="240px" quality={85} className="caminho-thumb hidden aspect-[4/5] rounded-[var(--radius-md)] sm:block lg:hidden xl:block" />
                     </Link>
                     </div>
                   </li>

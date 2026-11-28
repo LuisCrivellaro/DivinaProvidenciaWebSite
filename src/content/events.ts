@@ -45,6 +45,7 @@ export const events: CommunityEvent[] = [
     end: "2026-12-06",
     summary: "Retiro para jovens que já fizeram o FAC (a partir de 17 anos), o Juvenil ou o Sênior (até 30 anos). Tema: “Voltei pra casa”.",
     programHref: "/retiros/desperta",
+    photo: "jovensOracao",
     registration: [
       { label: "Inscrição de retirante", url: "/inscricoes/retiro-desperta26-retirante", price: "R$ 120,00" },
       { label: "Inscrição de servo", url: "/inscricoes/retiro-desperta-2026-servo", price: "R$ 100,00" },

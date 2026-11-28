@@ -42,7 +42,15 @@ export function ProgramDetail({ program, parent }: { program: Program; parent: {
             </div>
             <div className="fade-up" style={{ ["--d" as string]: "160ms" }}>
               {program.photo ? (
-                <Photo photo={program.photo} sizes="(min-width: 1024px) 40vw, 100vw" priority className="aspect-[5/4] rounded-[var(--radius-lg)]" />
+                <div className={`relative ${program.brandMark ? "mb-10" : ""}`}>
+                  <Photo photo={program.photo} sizes="(min-width: 1024px) 40vw, 100vw" priority className="aspect-[5/4] rounded-[var(--radius-lg)]" />
+                  {program.brandMark && (
+                    // logotipo do grupo como um selo encostado na base da foto
+                    <span className="absolute -bottom-10 left-5 rounded-[var(--radius-md)] bg-paper p-3 shadow-[0_18px_40px_-18px_rgb(31_26_22/0.55)] ring-1 ring-ink/10 sm:left-8 sm:p-4">
+                      <Image src={program.brandMark} alt="" width={600} height={300} className="h-14 w-auto object-contain sm:h-16" />
+                    </span>
+                  )}
+                </div>
               ) : (
                 <div className="flex aspect-[5/4] flex-col justify-between rounded-[var(--radius-lg)] bg-night p-8 text-on-night">
                   {program.brandMark ? (

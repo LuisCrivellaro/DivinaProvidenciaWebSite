@@ -163,7 +163,7 @@ export default async function Home() {
 
           <div className="mt-14 grid gap-5 md:grid-cols-6 md:grid-rows-[auto_auto]" data-reveal-stagger="">
             <Link href="/acampamentos" className="group lift keep-dark relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-7 text-on-night md:col-span-4 md:row-span-2 md:min-h-[38rem]">
-              <Photo photo="louvor" sizes="(min-width: 768px) 66vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
+              <Photo photo="acampamentoLouvor" sizes="(min-width: 768px) 66vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/35 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[clamp(2rem,1.5rem+2vw,3rem)] leading-none">Acampamentos</h3>
               <p className="mt-3 max-w-[40ch] text-on-night-soft">Mirim, Juvenil, FAC, Sênior e Casais. O Sênior já passou de 25 edições.</p>
@@ -187,14 +187,11 @@ export default async function Home() {
             </Link>
 
             <Link href="/grupos-de-oracao" className="group lift flex flex-col justify-between rounded-[var(--radius-lg)] border border-ink/10 bg-paper p-6 md:col-span-3">
-              <div>
-                <h3 className="font-display text-[1.9rem] leading-none">Grupos de oração</h3>
-                <p className="mt-2 text-ink-soft">Quatro grupos semanais, entre eles um infantil, um de adolescentes e um de jovens.</p>
-              </div>
-              <ul className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-5" aria-label="Grupos">
+              <h3 className="font-display text-[1.9rem] leading-none">Grupos de oração</h3>
+              <ul className="mt-6 grid flex-1 grid-cols-2 content-center items-center gap-x-6 gap-y-6" aria-label="Grupos">
                 {prayerGroups.map((g) => (
                   <li key={g.slug} className="flex items-center justify-center">
-                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-16 w-full object-contain transition-transform duration-500 group-hover:scale-105 sm:h-20" />
+                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-20 w-full object-contain transition-transform duration-500 group-hover:scale-105 sm:h-24 lg:h-28" />
                   </li>
                 ))}
               </ul>

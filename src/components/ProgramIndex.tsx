@@ -18,7 +18,14 @@ export function ProgramIndex({ items, base }: { items: Program[]; base: string }
             <Link href={`${base}/${p.slug}`} className="group lift grid overflow-hidden rounded-[var(--radius-xl)] border border-ink/10 bg-paper md:grid-cols-2">
               <div className={`relative min-h-[16rem] ${reversed ? "md:order-2" : ""}`}>
                 {p.photo ? (
-                  <Photo photo={p.photo} sizes="(min-width: 768px) 50vw, 100vw" className="zoom-frame !absolute inset-0" />
+                  <>
+                    <Photo photo={p.photo} sizes="(min-width: 768px) 50vw, 100vw" className="zoom-frame !absolute inset-0" />
+                    {p.brandMark && (
+                      <span className="absolute left-5 top-5 rounded-[var(--radius-md)] bg-paper/95 p-2.5 shadow-[0_12px_30px_-14px_rgb(31_26_22/0.6)]">
+                        <Image src={p.brandMark} alt="" width={600} height={300} className="h-11 w-auto object-contain" />
+                      </span>
+                    )}
+                  </>
                 ) : (
                   <div className="absolute inset-0 flex flex-col justify-between bg-night p-8 text-on-night">
                     {p.brandMark ? (

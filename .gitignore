@@ -52,3 +52,4 @@ next-env.d.ts
 scripts/media-migration*.log
 /scripts/media-failures.json
 scripts/test-independencia.log
+/para-gerar-4k/
