@@ -17,7 +17,7 @@ export const site = {
   diocese: "Diocese de Rondonópolis-Guiratinga",
   url: "https://adivinaprovidencia.com.br",
   description:
-    "Comunidade católica de aliança em Rondonópolis (MT). Acampamentos, retiros, grupos de oração, adoração perpétua e a Comunidade Terapêutica Divina Providência.",
+    "Comunidade católica de fiéis leigos em Rondonópolis (MT), fundada em 1998. Acampamentos, retiros, grupos de oração, adoração perpétua e a Comunidade Terapêutica Divina Providência.",
 } as const;
 
 export const address = {

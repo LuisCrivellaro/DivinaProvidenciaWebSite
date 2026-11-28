@@ -35,7 +35,7 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <SectionTitle as="h2" lead="Comunidade de Aliança" />
+            <SectionTitle as="h2" lead="Associação de fiéis" />
             <div className="mt-6 space-y-5 text-[1.08rem] leading-relaxed text-ink-soft">
               <p>
                 Fundada em janeiro de 1998 e registrada como associação em janeiro de 2008, a Divina Providência teve o seu Estatuto Canônico aprovado por Dom Juventino Kestering em 23 de setembro de 2020. Desde então é uma associação privada de fiéis leigos católicos, segundo o Código de Direito Canônico.

@@ -27,7 +27,8 @@ export default async function Home() {
     .map((s) => galleries.find((g) => g.slug === s)!)
     .filter(Boolean);
   const totalPhotos = galleries.reduce((n, g) => n + g.images.length, 0);
-  const yearsOfMission = Number(now.slice(0, 4)) - 2005;
+  // Fundação de fato em janeiro de 1998 (Estatuto Canônico, art. 1º)
+  const yearsOfMission = Number(now.slice(0, 4)) - 1998;
   const stripCovers = galleries.filter((g) => !highlightGalleries.includes(g)).slice(0, 10);
 
   return (
@@ -54,7 +55,7 @@ export default async function Home() {
               <BlurTitle text="Sua família," accent="nossa missão." className="text-[clamp(3.1rem,1.6rem+6.4vw,7.2rem)] leading-[0.98] tracking-[-0.025em] text-on-night" />
             </div>
             <p className="fade-up mt-7 max-w-[46ch] text-[1.15rem] leading-relaxed text-on-night-soft" style={{ ["--d" as string]: "450ms" }}>
-              Somos a Comunidade Divina Providência, uma comunidade católica de aliança em Rondonópolis (MT). Evangelizamos famílias com acampamentos, retiros e grupos de oração, e acolhemos homens em recuperação na nossa Comunidade Terapêutica.
+              Somos a Comunidade Divina Providência, uma comunidade católica de fiéis leigos de Rondonópolis (MT), fundada em 1998. Evangelizamos famílias com acampamentos, retiros e grupos de oração, e acolhemos homens em recuperação na nossa Comunidade Terapêutica.
             </p>
             <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ ["--d" as string]: "560ms" }}>
               <ButtonLink href="/comunidade" className="btn-pulse" data-magnetic="">Conheça a comunidade</ButtonLink>
@@ -116,10 +117,10 @@ export default async function Home() {
             />
           </div>
           <div className="lg:pt-10" data-reveal-stagger="">
-            <SectionTitle id="quem-somos" lead="Uma comunidade de aliança" accent="nascida na Igreja local." />
+            <SectionTitle id="quem-somos" lead="Uma comunidade de leigos" accent="nascida na Igreja local." />
             <div className="mt-8 space-y-5 text-[1.08rem] leading-relaxed text-ink-soft">
               <p>
-                A Divina Providência começou suas atividades em 2005, em Rondonópolis. Em 2020 o bispo da {site.diocese} aprovou o seu Estatuto Canônico, e a comunidade passou a ser reconhecida pela Igreja como Comunidade de Aliança.
+                A Divina Providência nasceu em janeiro de 1998 e foi registrada como associação em 2008. Em 2020 o bispo da {site.diocese} aprovou o seu Estatuto Canônico, e a comunidade passou a ser uma associação privada de fiéis da Igreja.
               </p>
               <p>
                 Os membros vivem com suas famílias e seguem em suas profissões. O que os une é o mesmo carisma e a mesma missão: evangelizar as famílias e restaurar vidas.
@@ -144,7 +145,7 @@ export default async function Home() {
         </div>
         <dl className="wrap mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-ink/12 pt-12 lg:grid-cols-4" data-reveal-stagger="">
           {[
-            { value: yearsOfMission, label: "anos de missão em Rondonópolis" },
+            { value: yearsOfMission, label: "anos de missão" },
             { value: 25, label: "edições do Acampamento Sênior" },
             { value: galleries.length, label: "galerias de fotos publicadas" },
             { value: totalPhotos, label: "fotos de encontros e celebrações" },
