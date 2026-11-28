@@ -5,7 +5,7 @@
 ## 1. Estado atual
 - **O site é independente do WordPress/WooCommerce antigo.** Teste com o domínio antigo bloqueado (`scripts/test-independencia.mjs`): 111 páginas × desktop e celular, 0 requisições ao site antigo, 0 problemas. Build de produção, TypeScript e ESLint limpos.
 - **Tarefas concluídas em 28/11/2026:** (4) independência completa do site antigo; (5) todas as galerias públicas, inclusive as 16 antes restritas. Não há tarefa na fila.
-- **Nada publicado em produção, DNS intocado, site antigo no ar.** Deploy e troca de domínio dependem de autorização (passo a passo em `MIGRACAO_DOMINIO.md` §5).
+- **Nada publicado em produção, DNS intocado, site antigo no ar.** Hospedagem escolhida: **servidor com disco (VPS)**. Arquivos e passo a passo prontos em `deploy/` e `docs/DEPLOY.md`; uma instalação do zero (clone do GitHub + acervo em `.tar`) passou no teste de independência. Contratar o servidor, deploy e troca de domínio dependem do usuário.
 - Branch de trabalho: **`feat/redesign-dourado`** (PR #1 aberto para `main`). Não mexer direto na `main`.
 
 ## 2. Como retomar
@@ -30,6 +30,7 @@ npm run dev
 - Next.js 16.4 (App Router, Cache Components, Partial Prefetching) · React 19.3 · TypeScript · Tailwind 4 (tokens em `@theme` no `globals.css`) · `lucide-react`. Dev: `playwright-core` (teste de independência).
 - Conteúdo em `src/content/`: `site.ts` (contatos, endereço, fotos escolhidas, linha do tempo), `programs.ts`, `events.ts`, `inscricoes.ts` (inscrições abertas — migradas dos produtos do WooCommerce), `divina-brasa.ts` (festival), `videos.ts`, `galleries.json` (58 galerias, 7.081 fotos, todas públicas).
 - `src/lib/`: `media.ts` (`mediaUrl()` → `/media/…webp` ou `NEXT_PUBLIC_MEDIA_BASE_URL`), `redirects.ts` (301 das URLs antigas, usado no `next.config.ts`), `dates.ts`, `today.ts`, `galleries.ts`.
+- `deploy/`: serviço systemd, Caddyfile (HTTPS), `atualizar.sh`; `Dockerfile` + `docker-compose.yml` como alternativa.
 - `scripts/`: `migrate-media.mjs` (acervo), `test-independencia.mjs` (Playwright, domínio antigo bloqueado), `audit-links.mjs`, `perf.mjs`.
 
 ## 4. Identidade visual
@@ -59,6 +60,6 @@ Menus desktop/mobile · agenda com próximos/passados · contagem regressiva e l
 Ver `MIGRACAO_DOMINIO.md` §7: pagamento online · hospedagem/storage do acervo e autorização de deploy/DNS · exportar pedidos do WooCommerce antes de desligar · confirmar direito de imagem das galerias de menores · validações de conteúdo antigas (carisma oficial, ano de fundação, endereço exato, horários dos grupos e da adoração, coordenação, política de privacidade oficial — lista em `docs/analise-divina-providencia/10_FONTES_E_PENDENCIAS.md`).
 
 ## 10. Próxima tarefa sugerida
-1. Decidir hospedagem e storage; fazer o deploy de homologação e rodar o teste de independência contra ele.
+1. Usuário contratar a VPS e dar acesso; seguir `docs/DEPLOY.md` (merge do PR #1 na `main` antes) e rodar o teste de independência contra a homologação.
 2. Escolher o provedor de pagamento online e integrar às páginas `/inscricoes/[slug]`.
 3. Reunião de validação de conteúdo com a comunidade.

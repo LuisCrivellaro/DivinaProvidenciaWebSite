@@ -1,0 +1,30 @@
+# Alternativa em contêiner: site + Caddy (HTTPS automático).
+#   docker compose up -d --build
+# Antes: copie o acervo de fotos para ./public/media (docs/DEPLOY.md, passo 4).
+services:
+  site:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./public/media:/app/public/media:ro
+      - next-cache:/app/.next/cache
+    expose:
+      - "3000"
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile.docker:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - site
+
+volumes:
+  next-cache:
+  caddy-data:
+  caddy-config:

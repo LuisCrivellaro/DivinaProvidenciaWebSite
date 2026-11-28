@@ -44,7 +44,8 @@ O conteúdo textual das páginas antigas "Comunidade" e "Contato" era mínimo (a
 - **Gerado por:** `node scripts/migrate-media.mjs` (pula o que já existe; falhas em `scripts/media-failures.json`). Pega as capas e fotos de todas as galerias de `content/galleries.json` e qualquer caminho `AAAA/MM/arquivo.ext` citado em `src/`. **Só funciona enquanto o WordPress antigo estiver no ar** — rode de novo se acrescentar fotos antigas ao conteúdo.
 - **Tamanho:** ~880 MB (7.107 arquivos WebP). Resultado em 28/11/2026: 7.107 baixadas, 0 falhas.
 - **No git:** só as 98 imagens usadas pelas páginas e as capas das galerias (`git add -f`). O acervo completo fica fora do git (`.gitignore`), por ser grande demais para o repositório.
-- **Para publicar, escolha uma opção:**
+- **Decisão (28/11/2026): servidor com disco** — o acervo vai para o próprio servidor. Passo a passo em `docs/DEPLOY.md`.
+- Opções avaliadas:
   1. **Hospedagem com disco** (VPS, Render, Railway, servidor próprio com Node 20+): copie `public/media/` junto com o projeto. Nada mais a configurar.
   2. **Storage de objetos** (Cloudflare R2, Amazon S3, Bunny Storage…): envie o conteúdo de `public/media/` mantendo a estrutura `AAAA/MM/arquivo.webp`, torne a pasta pública e defina `NEXT_PUBLIC_MEDIA_BASE_URL=https://seu-storage/caminho` no ambiente de build. O `next.config.ts` libera esse host automaticamente.
   3. Vercel: use a opção 2 (o acervo é grande demais para ir no deploy).
