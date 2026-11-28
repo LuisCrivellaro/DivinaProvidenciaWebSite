@@ -1,0 +1,38 @@
+# Serviço systemd do site da Comunidade Divina Providência.
+# Mantém o Next.js rodando e o reinicia sozinho (queda, atualização ou reinício do servidor).
+#
+# Instalação (uma vez, no servidor):
+#   sudo cp /srv/divina-site/deploy/divina-site.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now divina-site
+# Acompanhar:  sudo systemctl status divina-site   ·   sudo journalctl -u divina-site -f
+
+[Unit]
+Description=Site da Comunidade Divina Providência (Next.js)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=divina
+Group=divina
+WorkingDirectory=/srv/divina-site
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOSTNAME=127.0.0.1
+# Se o acervo de fotos for para um storage em vez do disco, defina antes do build:
+# Environment=NEXT_PUBLIC_MEDIA_BASE_URL=https://midia.exemplo.com.br
+ExecStart=/usr/bin/npm start -- -p 3000 -H 127.0.0.1
+Restart=always
+RestartSec=5
+# Sharp (otimização de imagens) em glibc: reduz o uso de memória
+Environment=MALLOC_ARENA_MAX=2
+
+# Endurecimento básico
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

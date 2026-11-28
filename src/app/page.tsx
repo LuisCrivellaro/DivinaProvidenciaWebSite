@@ -2,15 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { BlurTitle, ButtonLink, Lede, Photo, SectionTitle, TextLink } from "@/components/ui";
-import { EventList } from "@/components/EventList";
+import { UpcomingEvents } from "@/components/UpcomingEvents";
 import { Carisma } from "@/components/Carisma";
 import { VideoFacade } from "@/components/VideoFacade";
 import { BrandIcon } from "@/components/BrandIcon";
+import { Embers, Marquee } from "@/components/Decor";
+import { CountUp } from "@/components/Motion";
+import { PhotoStrip } from "@/components/PhotoStrip";
 import { events } from "@/content/events";
 import { camps, prayerGroups, retreats } from "@/content/programs";
 import { contacts, mapsLink, photos, site, whatsappLink } from "@/content/site";
 import { videos } from "@/content/videos";
-import { galleries, uploadUrl } from "@/lib/galleries";
+import { galleries, groupLabel, uploadUrl } from "@/lib/galleries";
 import { dateRange } from "@/lib/dates";
 import { today } from "@/lib/today";
 
@@ -24,16 +27,21 @@ export default async function Home() {
     .map((s) => galleries.find((g) => g.slug === s)!)
     .filter(Boolean);
   const totalPhotos = galleries.reduce((n, g) => n + g.images.length, 0);
+  const yearsOfMission = Number(now.slice(0, 4)) - 2005;
+  const stripCovers = galleries.filter((g) => !highlightGalleries.includes(g)).slice(0, 10);
 
   return (
     <>
       {/* HERO ------------------------------------------------------------ */}
-      <section aria-labelledby="hero-title" className="hero-drift on-night relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-on-night">
-        <Image src={uploadUrl(photos.hero.src)} alt={photos.hero.alt} fill preload loading="eager" sizes="100vw" quality={85} className="-z-10 object-cover object-[50%_35%]" />
+      <section aria-labelledby="hero-title" className="hero-drift keep-dark on-night relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-on-night">
+        <div className="ken-burns absolute inset-0 -z-10">
+          <Image src={uploadUrl(photos.hero.src)} alt={photos.hero.alt} fill preload loading="eager" sizes="100vw" quality={85} className="object-cover object-[50%_35%]" />
+        </div>
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.35)_0%,rgb(31_26_22/0.1)_30%,rgb(31_26_22/0.78)_72%,rgb(31_26_22/0.94)_100%)]" aria-hidden="true" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(31_26_22/0.6)_0%,rgb(31_26_22/0)_62%)]" aria-hidden="true" />
         {/* No celular o texto ocupa a largura toda: um véu extra garante a leitura sobre a foto */}
         <div className="absolute inset-0 -z-10 bg-night/35 md:hidden" aria-hidden="true" />
+        <Embers className="-z-10" />
         <div className="wrap grid gap-10 pb-12 pt-[calc(var(--header-h)+3rem)] md:pb-16 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">
           <div>
             <div id="hero-title">
@@ -43,14 +51,15 @@ export default async function Home() {
               Somos a Comunidade Divina Providência, uma comunidade católica de aliança em Rondonópolis (MT). Evangelizamos famílias com acampamentos, retiros e grupos de oração, e acolhemos homens em recuperação na nossa Comunidade Terapêutica.
             </p>
             <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ ["--d" as string]: "560ms" }}>
-              <ButtonLink href="/comunidade">Conheça a comunidade</ButtonLink>
-              <ButtonLink href="/agenda" variant="ghost-light" icon={false}>
+              <ButtonLink href="/comunidade" className="btn-pulse" data-magnetic="">Conheça a comunidade</ButtonLink>
+              <ButtonLink href="/agenda" variant="ghost-light" icon={false} data-magnetic="">
                 Ver a agenda
               </ButtonLink>
             </div>
           </div>
 
           {next && (
+            <div className="float">
             <Link
               href={`/agenda/${next.slug}`}
               className="fade-up group block rounded-[var(--radius-lg)] border border-white/15 bg-night/55 p-6 backdrop-blur-md transition-colors hover:border-gold-night/60"
@@ -60,21 +69,45 @@ export default async function Home() {
               <span className="mt-2 block font-display text-[1.9rem] leading-tight">{next.title}</span>
               <span className="mt-2 block text-on-night-soft">{dateRange(next.start, next.end)}</span>
               <span className="mt-5 flex items-center justify-between border-t border-white/15 pt-4 text-[0.95rem]">
-                <span className={next.registration ? "font-semibold text-gold-night" : "text-on-night-soft"}>
+                <span className={next.registration ? "inline-flex items-center gap-2.5 font-semibold text-gold-night" : "text-on-night-soft"}>
+                  {next.registration && <span className="live-dot" aria-hidden="true" />}
                   {next.registration ? "Inscrições abertas" : "Detalhes do evento"}
                 </span>
                 <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </Link>
+            </div>
           )}
         </div>
+        <a href="#quem-somos" className="scroll-cue fade-up absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-on-night-soft transition-colors hover:text-gold-night xl:grid" style={{ ["--d" as string]: "1200ms" }}>
+          <span className="mouse" aria-hidden="true" />
+          Role
+        </a>
       </section>
+
+      {/* FAIXA QUE CORRE ------------------------------------------------------ */}
+      <div className="gold-surface border-y border-ink/10 bg-gold py-5 text-ink md:py-7">
+        <Marquee
+          className="font-display text-[clamp(1.6rem,1.1rem+2vw,2.8rem)] italic leading-none"
+          items={["Acampamentos", "Retiros", "Adoração perpétua", "Grupos de oração", "Cerco de Jericó", "Comunidade Terapêutica", "Festa das Nações", "Divina Jovem"]}
+        />
+      </div>
 
       {/* QUEM SOMOS --------------------------------------------------------- */}
       <section aria-labelledby="quem-somos" className="py-24 md:py-32">
         <div className="wrap grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div className="relative" data-reveal="image">
-            <Photo photo="missaCompromisso" sizes="(min-width: 1024px) 40vw, 100vw" className="arch aspect-[4/5]" imgClassName="object-[78%_45%]" />
+          <div className="relative">
+            <div data-reveal="image">
+              <Photo photo="missaCompromisso" sizes="(min-width: 1024px) 40vw, 100vw" className="arch aspect-[4/5]" imgClassName="object-[78%_45%]" />
+            </div>
+            <Image
+              src="/brand/logo-simbolo.png"
+              alt=""
+              width={589}
+              height={488}
+              sizes="176px"
+              className="float absolute -bottom-12 right-0 w-32 drop-shadow-[0_10px_18px_rgb(255_248_242/0.95)] sm:w-40 lg:-right-16 lg:w-44"
+            />
           </div>
           <div className="lg:pt-10" data-reveal-stagger="">
             <SectionTitle id="quem-somos" lead="Uma comunidade de aliança" accent="nascida na Igreja local." />
@@ -103,6 +136,21 @@ export default async function Home() {
             <TextLink href="/comunidade" className="mt-8">Nossa história e o nosso carisma</TextLink>
           </div>
         </div>
+        <dl className="wrap mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-ink/12 pt-12 lg:grid-cols-4" data-reveal-stagger="">
+          {[
+            { value: yearsOfMission, label: "anos de missão em Rondonópolis" },
+            { value: 25, label: "edições do Acampamento Sênior" },
+            { value: galleries.length, label: "galerias de fotos publicadas" },
+            { value: totalPhotos, label: "fotos de encontros e celebrações" },
+          ].map((st) => (
+            <div key={st.label} className="flex flex-col-reverse justify-end gap-3">
+              <dt className="max-w-[22ch] text-ink-soft">{st.label}</dt>
+              <dd className="stat-number font-display text-[clamp(2.8rem,2rem+3vw,4.6rem)] leading-none">
+                <CountUp value={st.value} />
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       {/* VIDA EM COMUNIDADE -------------------------------------------------- */}
@@ -114,7 +162,7 @@ export default async function Home() {
           </div>
 
           <div className="mt-14 grid gap-5 md:grid-cols-6 md:grid-rows-[auto_auto]" data-reveal-stagger="">
-            <Link href="/acampamentos" className="group lift relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-7 text-on-night md:col-span-4 md:row-span-2 md:min-h-[38rem]">
+            <Link href="/acampamentos" className="group lift keep-dark relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-7 text-on-night md:col-span-4 md:row-span-2 md:min-h-[38rem]">
               <Photo photo="louvor" sizes="(min-width: 768px) 66vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/35 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[clamp(2rem,1.5rem+2vw,3rem)] leading-none">Acampamentos</h3>
@@ -124,14 +172,14 @@ export default async function Home() {
               </span>
             </Link>
 
-            <Link href="/retiros" className="group lift relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
+            <Link href="/retiros" className="group lift keep-dark relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
               <Photo photo="retiroLouvor" sizes="(min-width: 768px) 33vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/30 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[1.9rem] leading-none">Retiros</h3>
               <p className="mt-2 text-on-night-soft">Desperta, Homens de Fé, Mulheres e o Curso 5 Linguagens do Amor.</p>
             </Link>
 
-            <Link href="/vida-de-oracao#adoracao" className="group lift relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
+            <Link href="/vida-de-oracao#adoracao" className="group lift keep-dark relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-6 text-on-night md:col-span-2">
               <Photo photo="adoracaoAltar" sizes="(min-width: 768px) 33vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/30 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[1.9rem] leading-none">Adoração</h3>
@@ -143,16 +191,16 @@ export default async function Home() {
                 <h3 className="font-display text-[1.9rem] leading-none">Grupos de oração</h3>
                 <p className="mt-2 text-ink-soft">Quatro grupos semanais, entre eles um infantil, um de adolescentes e um de jovens.</p>
               </div>
-              <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4" aria-label="Grupos">
+              <ul className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-5" aria-label="Grupos">
                 {prayerGroups.map((g) => (
-                  <li key={g.slug}>
-                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-12 w-auto object-contain" />
+                  <li key={g.slug} className="flex items-center justify-center">
+                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-16 w-full object-contain transition-transform duration-500 group-hover:scale-105 sm:h-20" />
                   </li>
                 ))}
               </ul>
             </Link>
 
-            <Link href="/obras-e-projetos" className="group lift flex flex-col justify-between rounded-[var(--radius-lg)] bg-gold p-6 text-ink md:col-span-3">
+            <Link href="/obras-e-projetos" className="gold-surface group lift flex flex-col justify-between rounded-[var(--radius-lg)] bg-gold p-6 text-ink md:col-span-3">
               <h3 className="font-display text-[1.9rem] leading-none">Obras e caridade</h3>
               <p className="mt-2 max-w-[44ch] text-ink">A Comunidade Terapêutica acolhe homens em recuperação da dependência química. Em 2026 abrimos a Casa da Saúde São Padre Pio.</p>
               <span className="mt-6 inline-flex items-center gap-2 font-medium">
@@ -164,20 +212,7 @@ export default async function Home() {
       </section>
 
       {/* PRÓXIMOS EVENTOS ----------------------------------------------------- */}
-      <section aria-labelledby="proximos" className="py-24 md:py-32">
-        <div className="wrap grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:self-start" data-reveal-stagger="">
-            <SectionTitle id="proximos" lead="Próximos" accent="encontros." />
-            <Lede className="mt-6">
-              Datas do site oficial e do calendário 2027 que a comunidade publicou em 19 de novembro de 2026. A programação pode mudar; horários e locais são confirmados pela secretaria.
-            </Lede>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/agenda" variant="ghost">Agenda completa</ButtonLink>
-            </div>
-          </div>
-          <EventList items={upcoming} />
-        </div>
-      </section>
+      <UpcomingEvents items={upcoming} now={now} />
 
       {/* ACAMPAMENTOS E RETIROS -------------------------------------------------- */}
       <section aria-labelledby="acampamentos" className="bg-sand py-24 md:py-32">
@@ -291,7 +326,7 @@ export default async function Home() {
           <ul className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-2" data-reveal-stagger="">
             {highlightGalleries.map((g, i) => (
               <li key={g.slug} className={i === 0 ? "col-span-2 row-span-2" : ""}>
-                <Link href={`/galeria/${g.slug}`} className="group relative block h-full min-h-[11rem] overflow-hidden rounded-[var(--radius-md)]">
+                <Link href={`/galeria/${g.slug}`} className="group keep-dark relative block h-full min-h-[11rem] overflow-hidden rounded-[var(--radius-md)]">
                   <Photo src={g.cover} alt="" sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"} className="zoom-frame !absolute inset-0" />
                   <span className="absolute inset-0 bg-gradient-to-t from-night/85 via-transparent to-transparent" aria-hidden="true" />
                   <span className="absolute bottom-0 left-0 p-4 font-display text-[1.15rem] leading-tight sm:text-[1.3rem]">{g.title}</span>
@@ -299,6 +334,20 @@ export default async function Home() {
               </li>
             ))}
           </ul>
+        </div>
+        <div className="mt-6">
+          <h3 className="sr-only">Mais fotos da comunidade</h3>
+          <PhotoStrip
+            photos={stripCovers.map((g) => ({
+              slug: g.slug,
+              title: g.title,
+              cover: g.cover,
+              group: g.group,
+              groupLabel: groupLabel[g.group] ?? "Galeria",
+              published: g.published,
+              count: g.images.length,
+            }))}
+          />
         </div>
       </section>
 
@@ -351,6 +400,11 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAIXA DO LEMA ------------------------------------------------------------ */}
+      <div className="on-night bg-night py-8 text-on-night md:py-10" aria-hidden="true">
+        <Marquee reverse speed={45} className="font-display text-[clamp(2.4rem,1.6rem+3.4vw,4.6rem)] italic leading-none text-gold-night" items={[site.motto, "Venha nos conhecer", site.motto, "Venha nos conhecer"]} />
+      </div>
 
       {/* PARTICIPE / CONTATO ------------------------------------------------------- */}
       <section aria-labelledby="participe" className="py-24 md:py-32">

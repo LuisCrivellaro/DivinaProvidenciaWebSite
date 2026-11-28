@@ -1,0 +1,21 @@
+# Caddy na frente do Next.js: HTTPS automático (Let's Encrypt), compressão e www → domínio principal.
+# Instalação no servidor: https://caddyserver.com/docs/install  (Debian/Ubuntu: pacote "caddy")
+#   sudo cp /srv/divina-site/deploy/Caddyfile /etc/caddy/Caddyfile
+#   sudo systemctl reload caddy
+#
+# Para testar ANTES de trocar o domínio, troque "adivinaprovidencia.com.br" por um subdomínio de
+# homologação (ex.: novo.adivinaprovidencia.com.br) e crie só esse registro DNS apontando para o servidor.
+
+adivinaprovidencia.com.br {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3000
+
+	# Fotos do acervo: o Next.js já otimiza e envia com cache; o Caddy só repassa.
+	log {
+		output file /var/log/caddy/divina-site.log
+	}
+}
+
+www.adivinaprovidencia.com.br {
+	redir https://adivinaprovidencia.com.br{uri} permanent
+}

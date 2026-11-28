@@ -184,12 +184,12 @@ export function Header() {
             <span className="sr-only xl:hidden">Loja e inscrições</span>
           </Link>
           <Link
-            href="/login"
-            aria-current={isActive("/login") ? "page" : undefined}
-            className={`hidden min-h-11 min-w-11 items-center justify-center rounded-full sm:flex transition-colors duration-300 hover:bg-gold/10 ${isActive("/login") ? "bg-gold/15" : ""}`}
+            href="/minhas-inscricoes"
+            aria-current={isActive("/minhas-inscricoes") ? "page" : undefined}
+            className={`hidden min-h-11 min-w-11 items-center justify-center rounded-full sm:flex transition-colors duration-300 hover:bg-gold/10 ${isActive("/minhas-inscricoes") ? "bg-gold/15" : ""}`}
           >
             <UserRound size={19} aria-hidden="true" />
-            <span className="sr-only">Entrar na minha conta</span>
+            <span className="sr-only">Minhas inscrições</span>
           </Link>
           {/* Componente WhatsAppChat (recriado do Framer), em português */}
           <WhatsAppChat
@@ -197,8 +197,9 @@ export function Header() {
             message="Olá! Vim pelo site da Comunidade Divina Providência e gostaria de falar com a secretaria."
             buttonText="Fale Conosco"
             srLabel="com a Secretaria de Evangelização"
-            className="wa-chat--collapse ml-1 hidden md:inline-flex"
-            labelClassName="lg:sr-only xl:not-sr-only"
+            size="small"
+            className="wa-chat--collapse ml-1"
+            labelClassName="max-sm:sr-only lg:sr-only xl:not-sr-only"
           />
           <button
             ref={menuBtnRef}
@@ -244,8 +245,8 @@ export function Header() {
             </span>
             <span className="sr-only"> (abre em nova aba)</span>
           </a>
-          <Link href="/login" className="btn btn-ghost btn-plain justify-start gap-2">
-            <UserRound size={18} aria-hidden="true" /> Minha conta
+          <Link href="/minhas-inscricoes" className="btn btn-ghost btn-plain justify-start gap-2">
+            <UserRound size={18} aria-hidden="true" /> Minhas inscrições
           </Link>
         </div>
         <ul className="mt-8 flex gap-2">

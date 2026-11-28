@@ -4,9 +4,6 @@
  * Não acrescente fatos, nomes ou horários sem fonte verificável.
  */
 
-export const OFFICIAL_SITE = "https://adivinaprovidencia.com.br";
-export const UPLOADS = `${OFFICIAL_SITE}/wp-content/uploads/`;
-
 export const site = {
   name: "Comunidade Divina Providência",
   shortName: "Divina Providência",
@@ -85,32 +82,6 @@ export function formatPhone(digits: string) {
   return digits;
 }
 
-/** Links oficiais do WooCommerce: loja, carrinho e conta continuam no site atual até a migração. */
-export const shop = {
-  store: `${OFFICIAL_SITE}/produtos/`,
-  cart: `${OFFICIAL_SITE}/carrinho/`,
-  account: `${OFFICIAL_SITE}/minha-conta/`,
-  /** Login padrão do WordPress oficial (sem nonce nem captcha). A tela /login envia as credenciais direto para cá. */
-  login: `${OFFICIAL_SITE}/wp-login.php`,
-  lostPassword: `${OFFICIAL_SITE}/minha-conta/lost-password/`,
-  storeApi: `${OFFICIAL_SITE}/wp-json/wc/store/v1/products?per_page=50`,
-};
-
-/**
- * Entrar com Google/Facebook. Depende do plugin gratuito Nextend Social Login no WordPress oficial,
- * que AINDA NÃO está instalado (verificado em 27/11/2026). Enquanto `enabled` for false, os botões
- * aparecem desativados com "em breve" — nunca simulam um login. Depois de instalar e configurar o
- * plugin (credenciais OAuth do Google e do Facebook), troque para true.
- */
-export const socialLogin = {
-  enabled: false,
-  providers: [
-    { id: "google", label: "Google" },
-    { id: "facebook", label: "Facebook" },
-  ],
-  href: (provider: string) => `${OFFICIAL_SITE}/wp-login.php?loginSocial=${provider}&redirect=${encodeURIComponent(shop.account)}`,
-} as const;
-
 /** Linha do tempo — somente marcos com fonte (ver docs/CONTENT_SOURCES.md). */
 export const timeline = [
   { year: "2005", title: "Início das atividades", text: "A Diocese de Rondonópolis-Guiratinga registra 2005 como o ano em que a comunidade começou suas atividades." },
@@ -121,7 +92,7 @@ export const timeline = [
   { year: "2026", title: "Casa da Saúde São Padre Pio", text: "A comunidade inaugura a Casa da Saúde São Padre Pio, em Rondonópolis." },
 ] as const;
 
-/** Fotos oficiais escolhidas a dedo (adultos; nenhuma criança em destaque). Caminho relativo a UPLOADS. */
+/** Fotos oficiais escolhidas a dedo (adultos; nenhuma criança em destaque). Caminho do acervo migrado (src/lib/media.ts). */
 export const photos = {
   hero: { src: "2026/07/DLS0930.jpg", alt: "Participantes do 25º Acampamento Sênior, de camisetas brancas com o rosto de Cristo, diante do palco iluminado e dos estandartes" },
   missaCompromisso: { src: "2024/10/DLS5605.jpg", alt: "O bispo celebra a Missa do Compromisso no altar da sede, com o logotipo da Divina Providência ao fundo" },

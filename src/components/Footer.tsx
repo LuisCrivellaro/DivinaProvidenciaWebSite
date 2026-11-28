@@ -22,6 +22,7 @@ const groups = [
       { href: "/retiros", label: "Retiros e formação" },
       { href: "/grupos-de-oracao", label: "Grupos de oração" },
       { href: "/vida-de-oracao", label: "Vida de oração" },
+      { href: "/festival-divina-brasa", label: "Festival Divina Brasa" },
     ],
   },
   {
@@ -30,7 +31,7 @@ const groups = [
       { href: "/galeria", label: "Galeria de fotos" },
       { href: "/videos", label: "Vídeos" },
       { href: "/loja", label: "Loja e inscrições" },
-      { href: "/login", label: "Minha conta" },
+      { href: "/minhas-inscricoes", label: "Minhas inscrições" },
       { href: "/privacidade", label: "Privacidade" },
     ],
   },
@@ -42,9 +43,16 @@ export function Footer() {
       <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" aria-hidden="true" />
       <div className="wrap grid gap-14 py-20 lg:grid-cols-[1.1fr_2fr]">
         <div>
-          <span className="inline-block rounded-[var(--radius-lg)] bg-paper px-5 py-3">
-            <Image src="/brand/logo-oficial.webp" alt="Comunidade Divina Providência" width={2000} height={667} className="h-16 w-auto" />
-          </span>
+          {/* Versão da logo para o fundo dourado: o dourado vira âmbar escuro (#4A2A06) e o vermelho fica mais fechado,
+              legível do ponto claro ao escuro do degradê (public/brand/logo-rodape-ambar.png) */}
+          <Image
+            src="/brand/logo-rodape-ambar.png"
+            alt="Comunidade Divina Providência"
+            width={966}
+            height={272}
+            sizes="260px"
+            className="h-16 w-auto drop-shadow-[0_1px_0_rgb(255_240_205/0.5)] md:h-[4.5rem]"
+          />
           <p className="mt-6 max-w-sm font-display text-[1.5rem] italic leading-snug text-gold-night">{site.motto}</p>
           <p className="mt-6 max-w-sm text-on-night-soft">
             Comunidade de Aliança da {site.diocese}.
@@ -71,7 +79,7 @@ export function Footer() {
                     {"external" in l && l.external ? (
                       <a href={l.href} target="_blank" rel="noopener noreferrer" className="link-draw inline-flex min-h-10 items-center text-on-night-soft hover:text-on-night">
                         {l.label}
-                        <span className="sr-only"> (site oficial, abre em nova aba)</span>
+                        <span className="sr-only"> (abre em nova aba)</span>
                       </a>
                     ) : (
                       <Link href={l.href} className="link-draw inline-flex min-h-10 items-center text-on-night-soft hover:text-on-night">

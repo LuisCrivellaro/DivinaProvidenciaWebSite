@@ -6,6 +6,7 @@ import { Breadcrumbs, ButtonLink, SectionTitle } from "@/components/ui";
 import { GalleryViewer } from "@/components/GalleryViewer";
 import { GalleryCard } from "@/components/GalleryCard";
 import { galleries, getGallery, groupLabel, uploadUrl } from "@/lib/galleries";
+import { contacts, whatsappLink } from "@/content/site";
 
 export function generateStaticParams() {
   return galleries.map((g) => ({ slug: g.slug }));
@@ -28,6 +29,7 @@ export default async function Page({ params }: PageProps<"/galeria/[slug]">) {
   const { slug } = await params;
   const g = getGallery(slug);
   if (!g) notFound();
+  const evangelizacao = contacts.find((c) => c.id === "evangelizacao")!;
   const related = galleries.filter((x) => x.group === g.group && x.slug !== g.slug && !x.restricted).slice(0, 4);
   return (
     <div className="pt-[calc(var(--header-h)+2.5rem)] pb-24">
@@ -45,13 +47,11 @@ export default async function Page({ params }: PageProps<"/galeria/[slug]">) {
             <div className="grid gap-8 rounded-[var(--radius-xl)] bg-night p-8 text-on-night md:grid-cols-[auto_1fr] md:p-12 on-night">
               <Lock size={36} className="text-gold-night" aria-hidden="true" />
               <div>
-                <h2 className="font-display text-[clamp(1.7rem,1.3rem+1.4vw,2.4rem)] leading-tight">Estas fotos ficam no acervo oficial.</h2>
+                <h2 className="font-display text-[clamp(1.7rem,1.3rem+1.4vw,2.4rem)] leading-tight">Fotos disponíveis sob pedido.</h2>
                 <p className="mt-4 max-w-[60ch] text-on-night-soft">
-                  {g.slug.includes("teatro")
-                    ? "A galeria mostra uma atividade da Comunidade Terapêutica. Para proteger quem está em tratamento, não republicamos essas fotos aqui."
-                    : "Esta galeria tem fotos de crianças e adolescentes. Até a comunidade validar a política de uso de imagem, elas continuam apenas no site oficial."}
+                  A comunidade preferiu não publicar esta galeria. Famílias e participantes podem pedir as fotos à Secretaria de Evangelização.
                 </p>
-                <ButtonLink href={g.source} variant="light" className="mt-8">Abrir no site oficial</ButtonLink>
+                <ButtonLink href={whatsappLink(evangelizacao.whatsapp!, `Olá! Gostaria de pedir as fotos da galeria "${g.title}".`)} variant="light" className="mt-8">Pedir as fotos</ButtonLink>
               </div>
             </div>
           ) : (

@@ -1,19 +1,19 @@
 # Integrações
 
+> Atualizado em 28/11/2026. O site não depende mais do WordPress/WooCommerce antigo (ver `MIGRACAO_DOMINIO.md`).
+
 | Integração | Estado | Como funciona | Pendente |
 |---|---|---|---|
-| **Loja / inscrições (WooCommerce oficial)** | ✅ Leitura ao vivo | `src/lib/woocommerce.ts` lê `GET /wp-json/wc/store/v1/products` (pública, sem dados pessoais) com `use cache` + `cacheLife("hours")` e tag `woocommerce-products`. O botão "Inscrever-se" leva à página oficial do produto, onde o participante informa nome, celular e CPF (campos PPOM). Se a API falhar, a página mostra aviso e link para a loja oficial. | Decidir a migração do checkout. Enquanto isso **não há checkout no novo site** (proibido simular). |
-| Login (`/login`) | ✅ Tela própria, autenticação oficial | `LoginForm` envia POST direto do navegador para `shop.login` (`/wp-login.php`, sem nonce nem captcha) com `redirect_to` = Minha conta. Nada passa pelo servidor do novo site. | Testar com uma conta real; se a hospedagem bloquear POST de outra origem ou o WordPress ganhar captcha, voltar a linkar `shop.account` |
-| Entrar com Google / Facebook | ⏳ Botões prontos, desativados ("em breve") | `SocialLogin` aponta para `wp-login.php?loginSocial=<provedor>&redirect=/minha-conta/` (padrão do plugin Nextend Social Login). O WordPress oficial **não** tem login social instalado (verificado em 27/11/2026), então os botões não fazem login de mentira. | Instalar o Nextend Social Login (gratuito) no WordPress, criar credenciais OAuth no Google Cloud e no Meta for Developers e trocar `socialLogin.enabled` para `true` em `content/site.ts` |
-| Carrinho, checkout, Minha conta, recuperação de senha | ✅ Links para o WordPress oficial | `shop.cart`, `shop.account`, `shop.lostPassword` em `content/site.ts` | Mantidos no domínio atual até a migração; ver redirecionamentos em `SITEMAP.md` |
-| Pagamento (Mercado Pago) | ✅ Inalterado | Acontece no WooCommerce oficial | Confirmar métodos habilitados no painel |
-| Contato | ✅ Sem servidor | `ContactForm` monta a mensagem e abre `wa.me/<secretaria>`; a confirmação diz apenas que o WhatsApp foi aberto. Nada é gravado. | Se a comunidade quiser formulário com e-mail, integrar um serviço (Resend, Formspree, endpoint no WordPress) com consentimento LGPD |
-| WhatsApp por setor | ✅ | Evangelização +55 66 99908-2128 · Casa Terapêutica +55 66 99665-5565 | — |
-| Fotos | ✅ | `next/image` otimiza as fotos de `adivinaprovidencia.com.br/wp-content/uploads/**` (`remotePatterns`), AVIF/WebP, cache 30 dias | Se o WordPress for desligado, migrar a biblioteca de mídia (~7,7 mil arquivos) para um storage próprio |
-| YouTube | ✅ | Fachada com miniatura `i.ytimg.com`; player `youtube-nocookie.com` só após o clique | Automatizar a lista pelo feed RSS do canal (hoje é curada em `content/videos.ts`) |
-| Google Maps | ✅ | `iframe` com `loading="lazy"` em Contato e Grupos | Usar coordenadas exatas da sede quando confirmadas |
-| Agenda | ✅ Estática | `content/events.ts`; "hoje" calculado em `lib/today.ts` (`use cache`, revalida a cada hora) separa próximos/passados | Conectar a um CMS (sugestão: eventos no próprio WordPress via REST, ou um CMS headless) |
-| Galerias | ✅ Estáticas | `content/galleries.json` gerado da pesquisa (58 galerias, 7.081 fotos) | Script de sincronização com a API do WordPress (`/wp-json/wp/v2/posts`) |
-| Analytics / pixels | ⛔ Desligados de propósito | O site atual dispara Meta Pixel e GA sem consentimento | Reativar só com banner de consentimento |
-| CMS | ⏳ | Conteúdo em `src/content/*` (tipado), pronto para trocar por CMS | Escolher CMS com a comunidade |
-| Deploy | ⏳ | `npm run build && npm start` (Node 20+) ou Vercel | **Nada publicado.** Requer autorização e decisão de domínio |
+| **Inscrições** | ✅ Próprias | `content/inscricoes.ts` (migrado dos produtos do WooCommerce: nome, valor, pré-requisitos). `/inscricoes/[slug]` tem a ficha (`InscricaoForm`): nome, celular, CPF com validação de dígitos e consentimento; abre o WhatsApp da Secretaria de Evangelização com a ficha pronta. Nada é guardado. Encerra sozinha quando o evento passa. | Pagamento online: escolher provedor e criar conta (exige autorização) |
+| Acompanhamento de inscrição | ✅ | `/minhas-inscricoes` (`ConsultaInscricaoForm`): confirmar, pagar, corrigir ou cancelar via WhatsApp da secretaria | — |
+| Loja | ✅ Local | `/loja` lista as inscrições abertas de `content/inscricoes.ts` | Produtos (camisetas etc.) entram no mesmo arquivo se a comunidade quiser |
+| Login / conta / carrinho do WooCommerce | ⛔ Removidos | Dependiam do WordPress. URLs antigas redirecionam para `/minhas-inscricoes` e `/loja` | Exportar pedidos/clientes antes de desligar o WordPress |
+| Contato | ✅ Sem servidor | `ContactForm` abre `wa.me/<secretaria>` com a mensagem | Formulário por e-mail exigiria serviço (Resend, Formspree) |
+| WhatsApp por setor | ✅ | Evangelização +55 66 99908-2128 · Casa Terapêutica +55 66 99665-5565 · Patrocínio do Divina Brasa +55 66 99955-9814 | — |
+| Fotos | ✅ Acervo próprio | `public/media` (7.107 WebP) via `mediaUrl()`; `NEXT_PUBLIC_MEDIA_BASE_URL` aponta para um storage, se usado | Publicar o acervo junto com o deploy ou num storage |
+| Festival Divina Brasa | ✅ | `/festival-divina-brasa`; ingressos da edição 2026 eram vendidos pela Total Ingressos (link só aparece antes da data) | Dados da edição 2027 quando divulgados |
+| YouTube | ✅ | Fachada com miniatura `i.ytimg.com`; player `youtube-nocookie.com` só após o clique | Automatizar a lista pelo RSS do canal |
+| Google Maps | ✅ | `iframe` com `loading="lazy"` em Contato e Grupos | Coordenadas exatas da sede |
+| Agenda / galerias | ✅ Estáticas | `content/events.ts`, `content/galleries.json` | CMS a definir |
+| Analytics / pixels | ⛔ Desligados de propósito | — | Só com banner de consentimento |
+| Deploy | ⏳ | `npm run build && npm start` (Node 20+) com `public/media`, ou Vercel + storage | **Nada publicado.** Requer autorização |

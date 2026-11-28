@@ -122,7 +122,7 @@ export const retreats: Program[] = [
     audience: "Jovens que já fizeram FAC (a partir de 17 anos), Juvenil ou Sênior (até 30 anos)",
     intro: [
       "O Desperta é um retiro para jovens que já passaram por um dos acampamentos da comunidade. A edição de 2026 é organizada com o grupo Jovens Diante do Altar e traz o tema “Voltei pra casa”, a partir de Lucas 15,20: “Quando ainda estava longe, o pai o avistou, e teve compaixão.”",
-      "As inscrições são feitas pela loja do site oficial. Há duas formas de participar: como retirante, vivendo o retiro, ou como servo, ajudando a equipe que o organiza.",
+      "As inscrições são feitas aqui no site e confirmadas pela Secretaria de Evangelização. Há duas formas de participar: como retirante, vivendo o retiro, ou como servo, ajudando a equipe que o organiza.",
     ],
     facts: [
       { label: "Data", value: "5 e 6 de dezembro de 2026" },
@@ -135,8 +135,8 @@ export const retreats: Program[] = [
     photo: "jovensPregacao",
     nextEventSlug: "retiro-desperta-2026",
     registration: [
-      { label: "Inscrição de retirante", url: "https://adivinaprovidencia.com.br/produto/retiro-desperta26-retirante/", price: "R$ 120,00" },
-      { label: "Inscrição de servo", url: "https://adivinaprovidencia.com.br/produto/retiro-desperta-2026-servo/", price: "R$ 100,00" },
+      { label: "Inscrição de retirante", url: "/inscricoes/retiro-desperta26-retirante", price: "R$ 120,00" },
+      { label: "Inscrição de servo", url: "/inscricoes/retiro-desperta-2026-servo", price: "R$ 100,00" },
     ],
   },
   {
@@ -264,6 +264,6 @@ export const bigEvents: BigEvent[] = [
     photo: "divinaBrasa",
     gallerySlugs: ["divina-brasa"],
     nextEventSlug: "divina-brasa-2027",
-    link: { label: "Instagram do festival", href: "https://www.instagram.com/festivaldivinabrasa/" },
+    link: { label: "Página do festival", href: "/festival-divina-brasa" },
   },
 ];

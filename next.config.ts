@@ -1,4 +1,16 @@
 import type { NextConfig } from "next";
+import { redirects } from "./src/lib/redirects";
+
+/**
+ * Fotos: migradas para public/media (scripts/migrate-media.mjs). Se o acervo for servido por um storage
+ * próprio, NEXT_PUBLIC_MEDIA_BASE_URL (ex.: https://midia.exemplo.com.br) libera esse host para o next/image.
+ * Nenhum recurso vem mais do WordPress antigo.
+ */
+const mediaHost = (() => {
+  const base = process.env.NEXT_PUBLIC_MEDIA_BASE_URL;
+  if (!base || !/^https?:\/\//.test(base)) return [];
+  return [new URL(`${base.replace(/\/+$/, "")}/**`)];
+})();
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
@@ -6,11 +18,8 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [60, 75, 85],
-    // Fotos oficiais servidas pelo WordPress da comunidade e miniaturas do YouTube.
-    remotePatterns: [
-      new URL("https://adivinaprovidencia.com.br/wp-content/uploads/**"),
-      new URL("https://i.ytimg.com/vi/**"),
-    ],
+    // Miniaturas do YouTube (canal oficial) e, se configurado, o storage próprio das fotos.
+    remotePatterns: [new URL("https://i.ytimg.com/vi/**"), ...mediaHost],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   turbopack: {
@@ -20,6 +29,10 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  // Endereços do WordPress antigo → páginas novas (301). Ver src/lib/redirects.ts e docs/MIGRACAO_DOMINIO.md.
+  async redirects() {
+    return redirects;
   },
   async headers() {
     return [

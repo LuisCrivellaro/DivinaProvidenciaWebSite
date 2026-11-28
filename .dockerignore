@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.claude
+public/media
+scripts/*.log
+scripts/media-failures.json
+docs
+*.md
+.env*

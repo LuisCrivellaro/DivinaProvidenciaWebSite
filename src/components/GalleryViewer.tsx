@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { mediaUrl } from "@/lib/media";
 
-const UPLOADS = "https://adivinaprovidencia.com.br/wp-content/uploads/";
 const PAGE = 48;
 
 /**
@@ -82,7 +82,7 @@ export function GalleryViewer({ images, title }: { images: string[]; title: stri
               className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-sm)] bg-linen"
             >
               <Image
-                src={`${UPLOADS}${src}`}
+                src={mediaUrl(src)}
                 alt=""
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
@@ -116,7 +116,7 @@ export function GalleryViewer({ images, title }: { images: string[]; title: stri
           e.preventDefault();
           close();
         }}
-        className="m-0 h-dvh max-h-none w-screen max-w-none overscroll-contain bg-night/96 p-0 text-on-night backdrop:bg-night/80"
+        className="keep-dark m-0 h-dvh max-h-none w-screen max-w-none overscroll-contain bg-night/96 p-0 text-on-night backdrop:bg-night/80"
       >
         {index !== null && (
           <div
@@ -140,9 +140,9 @@ export function GalleryViewer({ images, title }: { images: string[]; title: stri
             <div className="relative flex-1">
               {/* indicador de carregamento (anel girando, inspirado nos loaders do Uiverse); a foto cobre ao carregar */}
               <span className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 animate-spin rounded-full border-2 border-white/20 border-t-gold-light" aria-hidden="true" />
-              <Image key={images[index]} src={`${UPLOADS}${images[index]}`} alt={`${title}, foto ${index + 1}`} fill sizes="100vw" quality={85} loading="eager" className="object-contain" />
+              <Image key={images[index]} src={mediaUrl(images[index])} alt={`${title}, foto ${index + 1}`} fill sizes="100vw" quality={85} loading="eager" className="object-contain" />
               {/* pré-carrega a próxima */}
-              <link rel="prefetch" as="image" href={`${UPLOADS}${images[(index + 1) % images.length]}`} />
+              <link rel="prefetch" as="image" href={mediaUrl(images[(index + 1) % images.length])} />
             </div>
             <div className="flex items-center justify-center gap-3 px-4 py-4">
               <button type="button" onClick={() => go(-1)} className="grid h-12 w-12 place-items-center rounded-full border border-white/25 hover:bg-white/10" aria-label="Foto anterior">

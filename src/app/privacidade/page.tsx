@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Note, PageHeader, Section } from "@/components/ui";
-import { contacts, shop } from "@/content/site";
+import { contacts } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Privacidade",
@@ -18,21 +18,21 @@ export default function Page() {
           <Note>Texto provisório, que descreve o funcionamento técnico deste site. A política oficial da comunidade ainda precisa ser aprovada por ela.</Note>
           <section>
             <h2 className="font-display text-[1.8rem] text-ink">O que este site coleta</h2>
-            <p className="mt-3">Este site não tem cadastro, não grava formulários e não usa cookies de publicidade. O formulário de contato apenas monta uma mensagem e abre o WhatsApp; nada é enviado até você tocar em enviar no próprio WhatsApp. Na tela Entrar, o e-mail e a senha vão direto do seu navegador para o site oficial, sem passar por este site.</p>
+            <p className="mt-3">Este site não tem cadastro, não grava formulários e não usa cookies de publicidade. Os formulários de contato e de inscrição apenas montam uma mensagem e abrem o WhatsApp da secretaria; nada é enviado até você tocar em enviar no próprio WhatsApp.</p>
           </section>
           <section>
             <h2 className="font-display text-[1.8rem] text-ink">Inscrições e compras</h2>
             <p className="mt-3">
-              Inscrições, carrinho, pagamentos e a sua conta ficam no site oficial da comunidade (<a href={shop.store} className="link-draw text-gold-deep">adivinaprovidencia.com.br</a>), que pede nome, celular e CPF do participante e processa o pagamento. Esses dados seguem as regras daquele site.
+              Na ficha de inscrição você informa nome, celular e CPF do participante. Esses dados não ficam neste site: seguem pelo WhatsApp para a Secretaria de Evangelização, que os usa somente para confirmar a vaga e orientar o pagamento. Para corrigir ou apagar uma inscrição, use a página Minhas inscrições.
             </p>
           </section>
           <section>
             <h2 className="font-display text-[1.8rem] text-ink">Conteúdo de terceiros</h2>
-            <p className="mt-3">Fotos vêm do acervo oficial da comunidade. Vídeos do YouTube só carregam quando você aperta o play. O mapa usa o Google Maps.</p>
+            <p className="mt-3">As fotos fazem parte do acervo da comunidade e são servidas por este próprio site. Vídeos do YouTube só carregam quando você aperta o play. O mapa usa o Google Maps.</p>
           </section>
           <section>
-            <h2 className="font-display text-[1.8rem] text-ink">Fotos de crianças, adolescentes e acolhidos</h2>
-            <p className="mt-3">Galerias com crianças e adolescentes, e as da Comunidade Terapêutica, não são republicadas aqui. Se você aparece em alguma foto e quer que ela seja retirada, escreva para {sec.email}.</p>
+            <h2 className="font-display text-[1.8rem] text-ink">Fotos e direito de imagem</h2>
+            <p className="mt-3">As galerias registram os encontros da comunidade, inclusive acampamentos de crianças e adolescentes. Se você, ou alguém por quem você é responsável, aparece em uma foto e quer que ela seja retirada, escreva para {sec.email} com o nome da galeria; a foto é removida.</p>
           </section>
         </div>
       </Section>

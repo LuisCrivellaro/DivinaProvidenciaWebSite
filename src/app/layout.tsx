@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { RevealObserver } from "@/components/RevealObserver";
+import { PointerFX } from "@/components/Motion";
 import { revealBootScript } from "@/lib/reveal";
 import { site } from "@/content/site";
 import "./globals.css";
@@ -37,7 +38,6 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} · Rondonópolis (MT)`,
     description: site.description,
-    images: [{ url: "https://adivinaprovidencia.com.br/wp-content/uploads/2026/07/DLS0930.jpg", width: 1920, height: 1280, alt: "Acampantes do 25º Acampamento Sênior" }],
   },
   alternates: { canonical: "/" },
 };
@@ -54,7 +54,7 @@ const jsonLd = {
   name: site.name,
   alternateName: site.legalName,
   url: site.url,
-  logo: `${site.url}/wp-content/uploads/2022/07/logo-divina-h.png`,
+  logo: `${site.url}/brand/logo-horizontal.png`,
   slogan: site.motto,
   address: {
     "@type": "PostalAddress",
@@ -85,12 +85,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Pular para o conteúdo
         </a>
+        <div className="scroll-progress" aria-hidden="true" />
         <Header />
         <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>
         <Footer />
         <RevealObserver />
+        <PointerFX />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

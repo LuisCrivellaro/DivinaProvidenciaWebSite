@@ -81,6 +81,7 @@ export default async function Page() {
                   <div className="mt-7 flex flex-wrap gap-3">
                     {next && <ButtonLink href={`/agenda/${next.slug}`} variant="ghost">Próxima edição</ButtonLink>}
                     {b.gallerySlugs[0] && <ButtonLink href={`/galeria/${b.gallerySlugs[0]}`} variant="ghost" icon={false}>Fotos</ButtonLink>}
+                    {b.link && <ButtonLink href={b.link.href} variant="ghost">{b.link.label}</ButtonLink>}
                   </div>
                 </div>
               </li>

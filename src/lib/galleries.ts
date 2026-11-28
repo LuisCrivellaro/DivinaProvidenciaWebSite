@@ -1,5 +1,5 @@
 import data from "@/content/galleries.json";
-import { UPLOADS } from "@/content/site";
+import { mediaUrl } from "@/lib/media";
 
 export type Gallery = {
   slug: string;
@@ -31,6 +31,7 @@ export function getGallery(slug: string) {
   return galleries.find((g) => g.slug === slug);
 }
 
-export const uploadUrl = (path: string) => (path.startsWith("http") ? path : `${UPLOADS}${path}`);
+/** Imagem migrada (ver src/lib/media.ts). */
+export const uploadUrl = mediaUrl;
 
 export const years = Array.from(new Set(galleries.map((g) => g.year))).sort((a, b) => b - a);

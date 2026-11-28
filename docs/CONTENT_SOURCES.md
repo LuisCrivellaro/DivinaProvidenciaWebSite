@@ -31,6 +31,15 @@
 | Produtos/preços da loja | gerado em tempo real | Store API pública do WooCommerce | Ao vivo (cache de 1 h) |
 
 ## Decisões de privacidade
-- 16 galerias (2.256 fotos) com crianças/adolescentes (Mirim, Juvenil, FAC) ou acolhidos (Teatro Vivo) **não são republicadas**: mostram aviso e link para o site oficial, ficam fora do sitemap e com `noindex`.
-- Fotos de destaque escolhidas sem crianças em primeiro plano. Galerias abertas (festas, Divina Jovem) podem conter crianças ao fundo — pendência de curadoria.
+- **28/11/2026 — todas as galerias públicas**, por decisão do usuário: as 16 galerias antes restritas (Mirim, Juvenil, FAC e Teatro Vivo, 2.256 fotos) aparecem como as demais e entram no sitemap. Confirmar com a coordenação o direito de imagem; o canal de remoção está em `/privacidade`.
+- O campo `restricted` continua em `galleries.json`: se uma galeria voltar a ser restrita, a página mostra "Pedir as fotos" à secretaria (nunca o site antigo).
+- Fichas de inscrição (nome, celular, CPF) não ficam no site: seguem pelo WhatsApp para a secretaria.
 - Nenhum nome de pessoa da coordenação é publicado até validação.
+
+## Conteúdo migrado do site antigo em 28/11/2026
+| Conteúdo | Onde está no código | Fonte |
+|---|---|---|
+| Inscrições do Retiro Desperta 2026 (retirante R$ 120, servo R$ 100, pré-requisitos, campos) | `content/inscricoes.ts` | Produtos do WooCommerce `/produto/retiro-desperta26-retirante/` e `/produto/retiro-desperta-2026-servo/` |
+| Festival Divina Brasa 2026 (14 estações, 5 horas, 18h, lotes R$ 150/170/190, regras de idade, formas de pagamento, destino da renda, atrações, patrocinadores, WhatsApp de patrocínio, Instagram) | `content/divina-brasa.ts` | Landings `/festival-divina-brasa/` e `/festival-divina-brasa-3/` |
+| Cartaz da Festa Junina 2023 | `content/divina-brasa.ts` (`festaJunina2023`, só arquivado) | `/festajunina/` |
+| 7.107 imagens | `public/media` | `/wp-content/uploads/` |

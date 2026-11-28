@@ -76,17 +76,16 @@ export default async function Page({ params }: PageProps<"/agenda/[slug]">) {
               <div className="mt-10">
                 <h2 className="font-display text-[1.8rem]">Inscrições</h2>
                 <p className="mt-2 max-w-[55ch] text-ink-soft">
-                  A inscrição é feita no site oficial, com pagamento online. Lá você informa nome, celular e CPF do participante.
+                  Escolha a forma de participar e preencha a ficha com nome, celular e CPF do participante. A Secretaria de Evangelização confirma a vaga e orienta o pagamento.
                 </p>
                 <ul className="mt-6 grid gap-3 sm:grid-cols-2" data-reveal-stagger="">
                   {e.registration.map((r, i) => (
                     <li key={r.url}>
-                      <a href={r.url} target="_blank" rel="noopener noreferrer" className={`lift flex h-full flex-col rounded-[var(--radius-lg)] p-6 ${i === 0 ? "bg-gold text-ink" : "border border-ink/15"}`}>
+                      <Link href={r.url} className={`lift flex h-full flex-col rounded-[var(--radius-lg)] p-6 ${i === 0 ? "gold-surface bg-gold text-ink" : "border border-ink/15"}`}>
                         <span className="font-display text-[1.5rem] leading-tight">{r.label}</span>
                         {r.price && <span className={`mt-2 text-[1.3rem] font-semibold tabular ${i === 0 ? "" : "text-gold-deep"}`}>{r.price}</span>}
-                        <span className={`mt-4 text-sm ${i === 0 ? "text-ink" : "text-ink-soft"}`}>Ir para a inscrição ↗</span>
-                        <span className="sr-only"> (site oficial, abre em nova aba)</span>
-                      </a>
+                        <span className={`mt-4 text-sm font-medium ${i === 0 ? "text-ink" : "text-gold-deep"}`}>Preencher a ficha →</span>
+                      </Link>
                     </li>
                   ))}
                 </ul>

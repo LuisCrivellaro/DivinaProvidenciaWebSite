@@ -44,3 +44,11 @@ next-env.d.ts
 /.claude/skills/
 /.taste-skill/
 /.claude/launch.json
+
+# Acervo de fotos migrado do WordPress antigo (scripts/migrate-media.mjs, ~880 MB).
+# Só as imagens essenciais das páginas e as capas das galerias são versionadas (git add -f);
+# o acervo completo vai junto no deploy ou para o storage de NEXT_PUBLIC_MEDIA_BASE_URL (docs/MIGRACAO_DOMINIO.md).
+/public/media/
+scripts/media-migration*.log
+/scripts/media-failures.json
+scripts/test-independencia.log

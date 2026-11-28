@@ -1,0 +1,9 @@
+# Caddyfile usado pelo docker-compose.yml (o site responde no serviço "site", porta 3000).
+adivinaprovidencia.com.br {
+	encode zstd gzip
+	reverse_proxy site:3000
+}
+
+www.adivinaprovidencia.com.br {
+	redir https://adivinaprovidencia.com.br{uri} permanent
+}
