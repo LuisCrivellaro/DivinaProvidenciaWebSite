@@ -55,7 +55,7 @@ export function Footer() {
           />
           <p className="mt-6 max-w-sm font-display text-[1.5rem] italic leading-snug text-gold-night">{site.motto}</p>
           <p className="mt-6 max-w-sm text-on-night-soft">
-            Comunidade de Aliança da {site.diocese}.
+            Associação privada de fiéis da {site.diocese}.
           </p>
           <address className="mt-6 not-italic text-on-night-soft">
             {address.street} · {address.district}

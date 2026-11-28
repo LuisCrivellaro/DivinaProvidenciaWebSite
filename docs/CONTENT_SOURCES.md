@@ -5,8 +5,9 @@
 | Conteúdo no site | Onde está no código | Fonte | Status |
 |---|---|---|---|
 | Nome, lema "Sua família, nossa missão!" | `content/site.ts` | Site oficial (meta), Instagram | Confirmado |
-| Carisma ("…na vida das pessoas.") | `site.carisma` | Homepage do site oficial | Confirmado; o Facebook usa redação mais longa → **validar texto do Estatuto** |
-| Comunidade de Aliança, Estatuto Canônico aprovado por Dom Juventino Kestering (2020), revisões pelo bispo e pela CNBB, membros vivem com famílias e profissões | `app/comunidade`, home | A Tribuna MT, 25/09/2020 | Fonte única de imprensa |
+| Carisma ("Ser sinal da infinita bondade e da infinita misericórdia de Deus na vida das pessoas.") | `site.carisma` | Redação passada pelo usuário em 28/11/2026 | Confirmado pelo usuário. **O Estatuto (art. 3º) diz: "Ser um sinal da infinita bondade e misericórdia de Deus na vida e na história dos homens do nosso tempo"** → **decisão do usuário (28/11/2026): manter a redação atual** no site |
+| Fundação de fato em jan/1998, associação de direito em jan/2008, associação privada de fiéis leigos (cân. 298 ss.), mística (instruir, aconselhar, consolar e confortar as famílias), finalidades, membros comprometidos e participantes, ingresso aos 21 anos com formação inicial de 12 encontros em 1 ano, Conselho Administrativo (2 anos), diretor espiritual indicado pelo bispo (3 anos, renovável uma vez), núcleos, diretoria, Conselho Fiscal, cargos não remunerados, aprovação por D. Juventino Kestering em 23/09/2020 | `app/comunidade`, `timeline` | **Estatuto Canônico** (PDF enviado pelo usuário em 28/11/2026) | Confirmado. Aplicado também na home, no rodapé e na descrição do site (28/11/2026) |
+| Revisões do estatuto pelo bispo e pela CNBB; missas do Compromisso e de "seis anos de aliança" | `app/comunidade` | A Tribuna MT, 25/09/2020; YouTube oficial | Imprensa / canal oficial |
 | Início em 2005; associação em fev/2007; missão (evangelizar famílias por acampamentos, grupos, retiros; restaurar vidas pela CT); grupos semanais na sede; formação de adolescentes pelo FAC e Juvenil | `timeline`, comunidade, grupos | Diocese de Rondonópolis-Guiratinga (página publicada 23/07/2024) | Institucional |
 | Comunidade Terapêutica: homens 18+, dependência de álcool e drogas, atividades socioeducativas/culturais/esportivas, grupos pós-tratamento | `app/casa-terapeutica` | ALMT, Projeto de Resolução 166/2015 | Dados de 2015 (rotulados) |
 | CT: 30 vagas masculinas | idem | A Tribuna MT, 2020 | Dados de 2020 (rotulado) |
@@ -28,7 +29,7 @@
 | Contatos (WhatsApp das secretarias, fixo, e-mails), endereço | `content/site.ts` | Site oficial, Facebook, Diocese | Endereço "Rua Padre Anchieta" (Diocese) × "Rua Anchieta" (Facebook) → **validar** |
 | Vídeos | `content/videos.ts` | Feed RSS do canal oficial (26/11/2026) | Confirmado |
 | Fotos (17 escolhidas a dedo + 58 galerias) | `photos` em `site.ts`, `content/galleries.json` | Acervo do WordPress oficial (servidas do próprio domínio) | **Autorização de uso e autoria a confirmar** |
-| Produtos/preços da loja | gerado em tempo real | Store API pública do WooCommerce | Ao vivo (cache de 1 h) |
+| Inscrições e valores da loja | `content/inscricoes.ts` | Produtos do WooCommerce, copiados em 28/11/2026 (a Store API foi desligada do site) | Estático: atualizar à mão quando houver nova inscrição |
 
 ## Decisões de privacidade
 - **28/11/2026 — todas as galerias públicas**, por decisão do usuário: as 16 galerias antes restritas (Mirim, Juvenil, FAC e Teatro Vivo, 2.256 fotos) aparecem como as demais e entram no sitemap. Confirmar com a coordenação o direito de imagem; o canal de remoção está em `/privacidade`.

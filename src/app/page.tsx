@@ -27,18 +27,25 @@ export default async function Home() {
     .map((s) => galleries.find((g) => g.slug === s)!)
     .filter(Boolean);
   const totalPhotos = galleries.reduce((n, g) => n + g.images.length, 0);
-  const yearsOfMission = Number(now.slice(0, 4)) - 2005;
+  // Fundação de fato em janeiro de 1998 (Estatuto Canônico, art. 1º)
+  const yearsOfMission = Number(now.slice(0, 4)) - 1998;
   const stripCovers = galleries.filter((g) => !highlightGalleries.includes(g)).slice(0, 10);
 
   return (
     <>
       {/* HERO ------------------------------------------------------------ */}
       <section aria-labelledby="hero-title" className="hero-drift keep-dark on-night relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-on-night">
-        <div className="ken-burns absolute inset-0 -z-10">
-          <Image src={uploadUrl(photos.hero.src)} alt={photos.hero.alt} fill preload loading="eager" sizes="100vw" quality={85} className="object-cover object-[50%_35%]" />
+        {/* Ken Burns ancorado no alto: o zoom lento cresce para baixo e não empurra o céu dourado para fora da tela */}
+        <div className="ken-burns absolute inset-0 -z-10" style={{ transformOrigin: "46% 0%" }}>
+          {/* Enquadramento: no celular e no tablet a foto mostra só uma faixa, centrada na árvore com o brilho do pôr do sol (≈46%); no desktop aparece quase inteira, com prioridade para o céu. */}
+          <Image src={uploadUrl(photos.heroCerco.src)} alt={photos.heroCerco.alt} fill preload loading="eager" sizes="100vw" quality={85} className="object-cover object-[46%_30%] lg:object-[50%_0%]" />
         </div>
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.35)_0%,rgb(31_26_22/0.1)_30%,rgb(31_26_22/0.78)_72%,rgb(31_26_22/0.94)_100%)]" aria-hidden="true" />
+        {/* Céu dourado quase sem véu no alto; o escuro cresce só onde está o texto. Um toque de luz dourada aquece o céu. */}
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_45%_at_46%_0%,rgb(242_203_108/0.28),transparent_70%)] mix-blend-soft-light" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.12)_0%,rgb(31_26_22/0.04)_26%,rgb(31_26_22/0.62)_58%,rgb(31_26_22/0.9)_80%,rgb(31_26_22/0.96)_100%)]" aria-hidden="true" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(31_26_22/0.6)_0%,rgb(31_26_22/0)_62%)]" aria-hidden="true" />
+        {/* Celular e tablet: o título cai sobre o trecho mais claro do céu. Esta faixa escurece só ali (contraste medido: título ≥ 3,5:1 no dourado e ≥ 5:1 no branco) e deixa o alto do céu aberto. */}
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(31_26_22/0.08)_0%,rgb(31_26_22/0.5)_10%,rgb(31_26_22/0.5)_45%,rgb(31_26_22/0)_62%)] lg:hidden" aria-hidden="true" />
         {/* No celular o texto ocupa a largura toda: um véu extra garante a leitura sobre a foto */}
         <div className="absolute inset-0 -z-10 bg-night/35 md:hidden" aria-hidden="true" />
         <Embers className="-z-10" />
@@ -48,7 +55,7 @@ export default async function Home() {
               <BlurTitle text="Sua família," accent="nossa missão." className="text-[clamp(3.1rem,1.6rem+6.4vw,7.2rem)] leading-[0.98] tracking-[-0.025em] text-on-night" />
             </div>
             <p className="fade-up mt-7 max-w-[46ch] text-[1.15rem] leading-relaxed text-on-night-soft" style={{ ["--d" as string]: "450ms" }}>
-              Somos a Comunidade Divina Providência, uma comunidade católica de aliança em Rondonópolis (MT). Evangelizamos famílias com acampamentos, retiros e grupos de oração, e acolhemos homens em recuperação na nossa Comunidade Terapêutica.
+              Somos a Comunidade Divina Providência, uma comunidade católica de fiéis leigos de Rondonópolis (MT), fundada em 1998. Evangelizamos famílias com acampamentos, retiros e grupos de oração, e acolhemos homens em recuperação na nossa Comunidade Terapêutica.
             </p>
             <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ ["--d" as string]: "560ms" }}>
               <ButtonLink href="/comunidade" className="btn-pulse" data-magnetic="">Conheça a comunidade</ButtonLink>
@@ -110,10 +117,10 @@ export default async function Home() {
             />
           </div>
           <div className="lg:pt-10" data-reveal-stagger="">
-            <SectionTitle id="quem-somos" lead="Uma comunidade de aliança" accent="nascida na Igreja local." />
+            <SectionTitle id="quem-somos" lead="Uma comunidade de leigos" accent="nascida na Igreja local." />
             <div className="mt-8 space-y-5 text-[1.08rem] leading-relaxed text-ink-soft">
               <p>
-                A Divina Providência começou suas atividades em 2005, em Rondonópolis. Em 2020 o bispo da {site.diocese} aprovou o seu Estatuto Canônico, e a comunidade passou a ser reconhecida pela Igreja como Comunidade de Aliança.
+                A Divina Providência nasceu em janeiro de 1998 e foi registrada como associação em 2008. Em 2020 o bispo da {site.diocese} aprovou o seu Estatuto Canônico, e a comunidade passou a ser uma associação privada de fiéis da Igreja.
               </p>
               <p>
                 Os membros vivem com suas famílias e seguem em suas profissões. O que os une é o mesmo carisma e a mesma missão: evangelizar as famílias e restaurar vidas.
@@ -138,7 +145,7 @@ export default async function Home() {
         </div>
         <dl className="wrap mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-ink/12 pt-12 lg:grid-cols-4" data-reveal-stagger="">
           {[
-            { value: yearsOfMission, label: "anos de missão em Rondonópolis" },
+            { value: yearsOfMission, label: "anos de missão" },
             { value: 25, label: "edições do Acampamento Sênior" },
             { value: galleries.length, label: "galerias de fotos publicadas" },
             { value: totalPhotos, label: "fotos de encontros e celebrações" },
@@ -163,7 +170,7 @@ export default async function Home() {
 
           <div className="mt-14 grid gap-5 md:grid-cols-6 md:grid-rows-[auto_auto]" data-reveal-stagger="">
             <Link href="/acampamentos" className="group lift keep-dark relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-[var(--radius-lg)] p-7 text-on-night md:col-span-4 md:row-span-2 md:min-h-[38rem]">
-              <Photo photo="louvor" sizes="(min-width: 768px) 66vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
+              <Photo photo="acampamentoLouvor" sizes="(min-width: 768px) 66vw, 100vw" className="zoom-frame !absolute inset-0 -z-10" />
               <span className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/35 to-transparent" aria-hidden="true" />
               <h3 className="font-display text-[clamp(2rem,1.5rem+2vw,3rem)] leading-none">Acampamentos</h3>
               <p className="mt-3 max-w-[40ch] text-on-night-soft">Mirim, Juvenil, FAC, Sênior e Casais. O Sênior já passou de 25 edições.</p>
@@ -187,14 +194,11 @@ export default async function Home() {
             </Link>
 
             <Link href="/grupos-de-oracao" className="group lift flex flex-col justify-between rounded-[var(--radius-lg)] border border-ink/10 bg-paper p-6 md:col-span-3">
-              <div>
-                <h3 className="font-display text-[1.9rem] leading-none">Grupos de oração</h3>
-                <p className="mt-2 text-ink-soft">Quatro grupos semanais, entre eles um infantil, um de adolescentes e um de jovens.</p>
-              </div>
-              <ul className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-5" aria-label="Grupos">
+              <h3 className="font-display text-[1.9rem] leading-none">Grupos de oração</h3>
+              <ul className="mt-6 grid flex-1 grid-cols-2 content-center items-center gap-x-6 gap-y-6" aria-label="Grupos">
                 {prayerGroups.map((g) => (
                   <li key={g.slug} className="flex items-center justify-center">
-                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-16 w-full object-contain transition-transform duration-500 group-hover:scale-105 sm:h-20" />
+                    <Image src={g.logo} alt={g.fullName} width={g.logoW} height={g.logoH} className="h-20 w-full object-contain transition-transform duration-500 group-hover:scale-105 sm:h-24 lg:h-28" />
                   </li>
                 ))}
               </ul>

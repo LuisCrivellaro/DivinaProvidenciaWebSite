@@ -1,6 +1,6 @@
 # Alternativa em contêiner: site + Caddy (HTTPS automático).
 #   docker compose up -d --build
-# Antes: copie o acervo de fotos para ./public/media (docs/DEPLOY.md, passo 4).
+# Antes: copie o acervo de fotos para ./public/media (docs/DEPLOY.md, passo 3).
 services:
   site:
     build: .

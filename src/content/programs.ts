@@ -13,7 +13,7 @@ export type Program = {
   audience: string;
   intro: string[]; // parágrafos
   facts: { label: string; value: string }[];
-  photo?: PhotoKey; // ausente em programas de crianças/adolescentes: usamos composição tipográfica
+  photo?: PhotoKey; // sem foto, a página usa uma composição tipográfica dourada
   brandMark?: string; // logotipo do grupo, quando existe
   gallerySlugs: string[]; // galerias relacionadas (galleries.json)
   nextEventSlug?: string; // events.ts
@@ -24,6 +24,7 @@ export type Program = {
 export const camps: Program[] = [
   {
     slug: "mirim",
+    photo: "mirimFesta",
     name: "Acampamento Mirim",
     short: "O acampamento das crianças.",
     audience: "Crianças",
@@ -42,6 +43,7 @@ export const camps: Program[] = [
   },
   {
     slug: "juvenil",
+    photo: "juvenilBaloes",
     name: "Acampamento Juvenil",
     short: "Para jovens de 18 a 24 anos, no começo do ano.",
     audience: "Jovens de 18 a 24 anos",
@@ -61,6 +63,7 @@ export const camps: Program[] = [
   },
   {
     slug: "fac",
+    photo: "facDanca",
     name: "Acampamento FAC",
     short: "Formação de Adolescentes Cristãos.",
     audience: "Adolescentes",

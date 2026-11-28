@@ -3,14 +3,16 @@
 #   sudo cp /srv/divina-site/deploy/Caddyfile /etc/caddy/Caddyfile
 #   sudo systemctl reload caddy
 #
-# Para testar ANTES de trocar o domínio, troque "adivinaprovidencia.com.br" por um subdomínio de
-# homologação (ex.: novo.adivinaprovidencia.com.br) e crie só esse registro DNS apontando para o servidor.
+# Para testar ANTES de trocar o domínio, use deploy/Caddyfile.homologacao (subdomínio de teste, fora do Google).
 
 adivinaprovidencia.com.br {
 	encode zstd gzip
-	reverse_proxy 127.0.0.1:3000
-
+	# flush_interval -1: repassa o streaming do Next.js (Suspense, Cache Components) sem segurar a resposta.
 	# Fotos do acervo: o Next.js já otimiza e envia com cache; o Caddy só repassa.
+	reverse_proxy 127.0.0.1:3000 {
+		flush_interval -1
+	}
+
 	log {
 		output file /var/log/caddy/divina-site.log
 	}

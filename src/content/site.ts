@@ -11,13 +11,13 @@ export const site = {
   city: "Rondonópolis",
   state: "MT",
   motto: "Sua família, nossa missão!",
-  // Redação publicada na homepage do site oficial (consultada em 26/11/2026).
-  // O Facebook usa uma variação mais longa; a redação do Estatuto Canônico ainda precisa ser confirmada.
-  carisma: "Ser sinal da infinita bondade e misericórdia de Deus na vida das pessoas.",
+  // Redação escolhida pelo usuário (28/11/2026). O Estatuto Canônico (art. 3º) usa outra
+  // ("…na vida e na história dos homens do nosso tempo"); o usuário decidiu manter esta.
+  carisma: "Ser sinal da infinita bondade e da infinita misericórdia de Deus na vida das pessoas.",
   diocese: "Diocese de Rondonópolis-Guiratinga",
   url: "https://adivinaprovidencia.com.br",
   description:
-    "Comunidade católica de aliança em Rondonópolis (MT). Acampamentos, retiros, grupos de oração, adoração perpétua e a Comunidade Terapêutica Divina Providência.",
+    "Comunidade católica de fiéis leigos em Rondonópolis (MT), fundada em 1998. Acampamentos, retiros, grupos de oração, adoração perpétua e a Comunidade Terapêutica Divina Providência.",
 } as const;
 
 export const address = {
@@ -84,16 +84,19 @@ export function formatPhone(digits: string) {
 
 /** Linha do tempo — somente marcos com fonte (ver docs/CONTENT_SOURCES.md). */
 export const timeline = [
-  { year: "2005", title: "Início das atividades", text: "A Diocese de Rondonópolis-Guiratinga registra 2005 como o ano em que a comunidade começou suas atividades." },
-  { year: "2007", title: "Associação Divina Providência", text: "Em fevereiro, a comunidade passa a existir também como associação civil." },
+  // 1998, 2008 e 2020: Estatuto Canônico (art. 1º e data de aprovação, 23/09/2020).
+  { year: "1998", title: "Fundação", text: "Em janeiro, a Comunidade Divina Providência começa a existir de fato, reunindo leigos católicos em torno do mesmo carisma." },
+  { year: "2008", title: "Associação Divina Providência", text: "Em janeiro, a comunidade é registrada oficialmente como Associação Divina Providência." },
   { year: "2012", title: "Comunidade Terapêutica", text: "Por volta de 2012 é inaugurada a casa de acolhimento para homens em recuperação da dependência química, erguida com doações e eventos beneficentes." },
-  { year: "2020", title: "Comunidade de Aliança", text: "O bispo diocesano aprova o Estatuto Canônico. A Divina Providência passa a ser reconhecida pela Igreja como Comunidade de Aliança." },
+  { year: "2020", title: "Estatuto Canônico", text: "Em 23 de setembro, Dom Juventino Kestering aprova o Estatuto Canônico. A Divina Providência passa a ser uma associação privada de fiéis da Diocese de Rondonópolis-Guiratinga." },
   { year: "2025", title: "Adoração Perpétua", text: "Começa a adoração perpétua ao Santíssimo Sacramento, que completou um ano em 2026." },
   { year: "2026", title: "Casa da Saúde São Padre Pio", text: "A comunidade inaugura a Casa da Saúde São Padre Pio, em Rondonópolis." },
 ] as const;
 
 /** Fotos oficiais escolhidas a dedo (adultos; nenhuma criança em destaque). Caminho do acervo migrado (src/lib/media.ts). */
 export const photos = {
+  // Hero da home (28/11/2026): 1920 px, nítida em telas grandes. "hero" continua na página do Acampamento Sênior.
+  heroCerco: { src: "2022/08/cerco-jerico-da-comunidade-divina-providencia-363.jpg", alt: "Multidão reunida em oração ao ar livre no Cerco de Jericó 2022, ao pôr do sol, com o céu dourado atrás das árvores" },
   hero: { src: "2026/07/DLS0930.jpg", alt: "Participantes do 25º Acampamento Sênior, de camisetas brancas com o rosto de Cristo, diante do palco iluminado e dos estandartes" },
   missaCompromisso: { src: "2024/10/DLS5605.jpg", alt: "O bispo celebra a Missa do Compromisso no altar da sede, com o logotipo da Divina Providência ao fundo" },
   missaBispo: { src: "2024/10/DLS5565.jpg", alt: "Celebrante no altar durante a Missa do Compromisso de 2024" },
@@ -114,6 +117,11 @@ export const photos = {
   divinaJovemShow: { src: "2025/10/DLS3110.jpg", alt: "Show no palco do Divina Jovem 2025 com o público de braços erguidos" },
   cincoLinguagens: { src: "2026/04/5-linguagens-2026-65.jpg", alt: "Casais em oração durante o Curso 5 Linguagens do Amor 2026" },
   divinaBrasa: { src: "2026/04/divina-brasa-rondonopolis-52-1.jpg", alt: "Equipe reunida no Festival Divina Brasa 2026" },
+  mirimFesta: { src: "2026/05/18-Acampamento-Mirim-168.jpg", alt: "Crianças de camiseta branca comemoram de braços erguidos no 18º Acampamento Mirim" },
+  juvenilBaloes: { src: "2026/02/DLS0689.jpg", alt: "Jovens de camiseta azul louvam de braços erguidos sob uma chuva de balões brancos no 17º Acampamento Juvenil" },
+  facDanca: { src: "2026/09/20-fac-divina-providencia-27.jpg", alt: "Adolescentes de camiseta verde dançam à noite no 20º Acampamento FAC" },
+  jovensOracao: { src: "2025/10/DLS2465.jpg", alt: "Jovem reza de mãos juntas e olhos fechados, entre outros jovens em oração, no Divina Jovem 2025" },
+  acampamentoLouvor: { src: "2026/07/DLS0866.jpg", alt: "Acampantes do 25º Acampamento Sênior, de camisetas brancas, louvam de braços erguidos diante dos estandartes, à noite" },
   seniorRoda: { src: "2026/07/DLS0741.jpg", alt: "Acampantes do 25º Acampamento Sênior em roda, de mãos dadas" },
 } as const;
 

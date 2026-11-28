@@ -48,7 +48,7 @@ Contrastes calculados pela fórmula WCAG 2.x.
 
 Regra de ouro: **fundo dourado → texto carvão; fundo claro → dourado só em `gold-deep`; fundo escuro → `gold-light`.** Vinho e vermelho não existem mais como tokens.
 
-**Onde cada cor aparece:** header marfim com sublinhado dourado e CTA dourado · hero com foto real e sobreposição café · títulos com segunda linha em itálico `gold-deep` · "Nosso carisma" numa faixa dourada com luz vinda do alto (`.carisma-band`) e texto carvão · cartão "Obras e caridade", cartão da Comunidade Terapêutica e primeira opção de inscrição em dourado com texto carvão · selos "Inscrições abertas" dourados · números de edição, mês da agenda e ícones em `gold-deep` · formulários brancos com foco e seleção dourados e erros em `danger` · footer café com filete dourado no topo e títulos em dourado claro.
+**Onde cada cor aparece:** header marfim com sublinhado dourado e CTA dourado · hero com foto real e sobreposição café · títulos com segunda linha em itálico `gold-deep` · "Nosso carisma" numa faixa dourada com luz vinda do alto (`.carisma-band`) e texto carvão · cartão "Obras e caridade", cartão da Comunidade Terapêutica e primeira opção de inscrição em dourado com texto carvão · selos "Inscrições abertas" dourados · números de edição, mês da agenda e ícones em `gold-deep` · formulários brancos com foco e seleção dourados e erros em `danger` · footer dourado (superfície `night` com brilho) e texto café.
 
 ## 4. Tipografia
 
@@ -59,7 +59,7 @@ Regra de ouro: **fundo dourado → texto carvão; fundo claro → dourado só em
 
 Escala (fluida com `clamp`): H1 de página 2,4 → 4,6 rem · H1 do hero 3,1 → 7,2 rem · H2 2 → 3,6 rem · corpo 17 px (1,0625 rem), linha 1,6 · legendas 14 px. Títulos com `text-wrap: balance`, parágrafos `pretty`, `letter-spacing` −0,015 em nos títulos (nunca abaixo de −0,025 em). Números de datas com `tabular-nums`.
 
-**Título em dois tons** (`SectionTitle`): primeira linha em carvão, segunda em itálico vinho (ou dourado claro sobre escuro). Não há "eyebrow/kicker" acima de títulos (regra do Impeccable).
+**Título em dois tons** (`SectionTitle`): primeira linha em carvão, segunda em itálico `gold-deep` (`gold-night` sobre a superfície dourada, `gold-light` sobre escuro). Não há "eyebrow/kicker" acima de títulos (regra do Impeccable).
 
 ## 5. Espaço, grid e forma
 

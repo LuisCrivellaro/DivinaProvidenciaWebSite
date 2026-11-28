@@ -6,11 +6,12 @@
 - **O site é independente do WordPress/WooCommerce antigo.** Teste com o domínio antigo bloqueado (`scripts/test-independencia.mjs`): 111 páginas × desktop e celular, 0 requisições ao site antigo, 0 problemas. Build de produção, TypeScript e ESLint limpos.
 - **Tarefas concluídas em 28/11/2026:** (4) independência completa do site antigo; (5) todas as galerias públicas, inclusive as 16 antes restritas. Não há tarefa na fila.
 - **Nada publicado em produção, DNS intocado, site antigo no ar.** Hospedagem escolhida: **servidor com disco (VPS)**. Arquivos e passo a passo prontos em `deploy/` e `docs/DEPLOY.md`; uma instalação do zero (clone do GitHub + acervo em `.tar`) passou no teste de independência. Contratar o servidor, deploy e troca de domínio dependem do usuário.
-- Branch de trabalho: **`feat/redesign-dourado`** (PR #1 aberto para `main`). Não mexer direto na `main`.
+- A `main` tem os PRs #1 e #2. Branch atual: **`feat/deploy-vps`** (PR #3), com: revisão dos arquivos de deploy; página Comunidade conforme o Estatuto Canônico; nova foto do hero (Cerco de Jericó 2022 ao pôr do sol); fotos nos acampamentos Mirim, Juvenil e FAC; ajustes da home (carisma, cartões, miniaturas nítidas). Não mexer direto na `main`.
+- **Estatuto Canônico** (PDF digitalizado enviado pelo usuário em 28/11/2026; não está no repositório): fonte oficial para fundação (jan/1998), associação (jan/2008), natureza jurídica, membros e organização. Ver `docs/FILA_DE_TAREFAS.md` §7 para as divergências ainda abertas (carisma, "2005" na home, endereço da sede).
 
 ## 2. Como retomar
 ```bash
-git fetch origin && git checkout feat/redesign-dourado
+git fetch origin && git checkout -b feat/sua-tarefa origin/main
 ```
 ```bash
 npm install
@@ -57,9 +58,10 @@ Menus desktop/mobile · agenda com próximos/passados · contagem regressiva e l
 6. Skills externas citadas no prompt (impeccable, taste-skill, emilkowalski/skills) não foram instaladas: instalar exige baixar e executar código de terceiros e mudar a configuração do Claude; as regras foram aplicadas a partir das skills já instaladas (frontend-design, ui-ux-pro-max, web-design-guidelines, humanizer-pt-br, webapp-testing).
 
 ## 9. Pendências
+- **Decisões do usuário (28/11/2026):** carisma: manter a redação atual, não a do Estatuto (decidido); endereço da sede (Estatuto: Pedra Preta; site: Rondonópolis); foto do Retiro das Mulheres (sem galeria no acervo); foto antiga do hero (DLS0930) só existe em 1080 px — original com o fotógrafo.
 Ver `MIGRACAO_DOMINIO.md` §7: pagamento online · hospedagem/storage do acervo e autorização de deploy/DNS · exportar pedidos do WooCommerce antes de desligar · confirmar direito de imagem das galerias de menores · validações de conteúdo antigas (carisma oficial, ano de fundação, endereço exato, horários dos grupos e da adoração, coordenação, política de privacidade oficial — lista em `docs/analise-divina-providencia/10_FONTES_E_PENDENCIAS.md`).
 
 ## 10. Próxima tarefa sugerida
-1. Usuário contratar a VPS e dar acesso; seguir `docs/DEPLOY.md` (merge do PR #1 na `main` antes) e rodar o teste de independência contra a homologação.
+1. Usuário contratar a VPS e dar acesso; seguir `docs/DEPLOY.md` em homologação (`deploy/Caddyfile.homologacao`) e rodar o teste de independência contra ela.
 2. Escolher o provedor de pagamento online e integrar às páginas `/inscricoes/[slug]`.
 3. Reunião de validação de conteúdo com a comunidade.
