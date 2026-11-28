@@ -1,6 +1,6 @@
 # Mapa do novo site
 
-> 117 rotas geradas no build (91 páginas no `sitemap.xml`; galerias restritas ficam fora do sitemap e com `noindex`).
+> Atualizado em 28/11/2026: 111 páginas no `sitemap.xml` (todas as galerias são públicas).
 
 ```
 /                              Início
@@ -16,29 +16,20 @@
 /obras-e-projetos              Comunidade Terapêutica · Casa da Saúde São Padre Pio · eventos beneficentes · projetos citados na imprensa
 /casa-terapeutica              Apresentação · história · o que se sabe publicamente · como apoiar · contato
 /galeria                       58 galerias com filtros ?tipo= e ?ano=
-/galeria/[slug]                Grade + lightbox (?foto=N); 16 galerias restritas (2.256 fotos) mostram aviso + link para o site oficial
+/galeria/[slug]                Grade + lightbox (?foto=N); as 58 galerias são públicas
 /videos                        Vídeos do canal oficial por tema
-/loja                          Produtos vivos da Store API do WooCommerce + links para carrinho/conta oficiais
-/login                         Tela de login própria; envia direto ao wp-login.php oficial e abre Minha conta (noindex)
+/loja                          Inscrições abertas (content/inscricoes.ts)
+/inscricoes/[slug]             Ficha de inscrição → WhatsApp da secretaria (2: Desperta retirante e servo)
+/minhas-inscricoes             Confirmar, pagar, corrigir ou cancelar inscrição
+/festival-divina-brasa         Festival Divina Brasa (migrado da landing antiga)
 /contato                       Secretarias · formulário → WhatsApp · endereço · mapa · redes
 /privacidade                   Texto provisório sobre dados e imagens
 /sitemap.xml  /robots.txt  /icon.png  /apple-icon.png
 ```
 
-**Menu principal (desktop):** Participe ▾ (Acampamentos, Retiros e formação, Grupos de oração, Vida de oração) · Comunidade · Agenda · Obras · Galeria · Contato · ícones Loja e Minha conta (→ `/login`) · botão "Fale conosco" (WhatsApp da Evangelização).
+**Menu principal (desktop):** Participe ▾ (Acampamentos, Retiros e formação, Grupos de oração, Vida de oração) · Comunidade · Agenda · Obras · Galeria · Contato · ícones Loja e Minhas inscrições (→ `/minhas-inscricoes`) · botão "Fale conosco" (WhatsApp da Evangelização).
 **Menu mobile:** tela cheia com 12 itens + WhatsApp + Minha conta + redes.
 **Rodapé:** A comunidade · Participe · Acervo e serviços · Fale com a gente · endereço · redes.
 
-## Redirecionamentos sugeridos (site atual → novo)
-| Atual | Novo |
-|---|---|
-| `/comunidade/` | `/comunidade` |
-| `/contato/` | `/contato` |
-| `/galerias/`, `/category/galeria/` | `/galeria` |
-| `/category/acampamento/` | `/galeria?tipo=acampamentos` |
-| `/category/cerco-jerico/` | `/galeria?tipo=oracao` |
-| `/category/divina-jovem/` | `/galeria?tipo=divina-jovem` |
-| `/{slug-da-galeria}/` (58) | `/galeria/{slug}` (mesmos slugs) |
-| `/produtos/`, `/loja/` | `/loja` (enquanto o WooCommerce estiver no domínio, manter `/produto/*`, `/carrinho/`, `/finalizar-compra/`, `/minha-conta/` no WordPress) |
-| `/festival-divina-brasa/`, `/festival-divina-brasa-3/` | `/agenda#divina-brasa` |
-| `/festajunina/` | `/agenda` |
+## Redirecionamentos
+Implementados em `src/lib/redirects.ts`. Tabela completa em `docs/MIGRACAO_DOMINIO.md` §6.

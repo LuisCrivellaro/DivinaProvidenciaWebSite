@@ -56,7 +56,7 @@ export function UpcomingEvents({ items, now }: { items: CommunityEvent[]; now: s
         <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end" data-reveal-stagger="">
           <SectionTitle id="proximos" tone="dark" lead="Próximos" accent="encontros." />
           <div className="md:max-w-[38ch]">
-            <Lede tone="dark">Datas do site oficial e do calendário 2027 que a comunidade publicou em 19 de novembro de 2026. A programação pode mudar; horários e locais são confirmados pela secretaria.</Lede>
+            <Lede tone="dark">Datas divulgadas pela comunidade e do calendário 2027, publicado em 19 de novembro de 2026. A programação pode mudar; horários e locais são confirmados pela secretaria.</Lede>
           </div>
         </div>
 

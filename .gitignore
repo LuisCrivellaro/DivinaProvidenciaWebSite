@@ -51,3 +51,4 @@ next-env.d.ts
 /public/media/
 scripts/media-migration*.log
 /scripts/media-failures.json
+scripts/test-independencia.log

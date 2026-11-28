@@ -1,0 +1,20 @@
+{
+  "base": "http://localhost:3002",
+  "rotas": 111,
+  "viewports": [
+    "1440x900",
+    "390x844"
+  ],
+  "linksInternosVerificados": 111,
+  "requisicoesAoSiteAntigo": 0,
+  "hostsExternos": {
+    "maps.googleapis.com": 69,
+    "www.google.com": 41,
+    "maps.gstatic.com": 8,
+    "maps.google.com": 4,
+    "fonts.googleapis.com": 4,
+    "fonts.gstatic.com": 4,
+    "places.googleapis.com": 2
+  },
+  "problemas": []
+}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ButtonLink, FactList, Lede, Note, Photo, SectionTitle, Breadcrumbs } from "./ui";
+import { ButtonLink, FactList, Lede, Photo, SectionTitle, Breadcrumbs } from "./ui";
 import { GalleryCard } from "./GalleryCard";
 import { BrandIcon } from "./BrandIcon";
 import { contacts, whatsappLink } from "@/content/site";
